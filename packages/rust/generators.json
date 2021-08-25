@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "rust",
+  "version": "0.0.1",
+  "generators": {
+    "rust": {
+      "factory": "./src/generators/rust/generator",
+      "schema": "./src/generators/rust/schema.json",
+      "description": "rust generator"
+    }
+  }
+}
