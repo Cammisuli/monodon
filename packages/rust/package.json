@@ -2,6 +2,12 @@
   "name": "@monodon/rust",
   "version": "0.0.1",
   "main": "src/index.js",
+  "repository": {
+    "url": "https://github.com/cammisuli/monodon",
+    "type": "git"
+  },
+  "license": "MIT",
+  "private": false,
   "generators": "./generators.json",
   "executors": "./executors.json"
 }
