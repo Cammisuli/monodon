@@ -1,0 +1,56 @@
+{
+  "root": "packages/rust",
+  "sourceRoot": "packages/rust/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/rust/**/*.ts"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/rust"],
+      "options": {
+        "jestConfig": "packages/rust/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/rust",
+        "tsConfig": "packages/rust/tsconfig.lib.json",
+        "packageJson": "packages/rust/package.json",
+        "main": "packages/rust/src/index.ts",
+        "assets": [
+          "packages/rust/*.md",
+          {
+            "input": "./packages/rust/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/rust/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/rust",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/rust",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    }
+  },
+  "tags": []
+}
