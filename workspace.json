@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "rust": "packages/rust",
-    "rust-e2e": "e2e/rust-e2e"
+    "rust-e2e": "e2e/rust-e2e",
+    "typescript-nx-imports-plugin": "packages/typescript-nx-imports-plugin"
   }
 }

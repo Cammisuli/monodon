@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@monodon/typescript-nx-imports-plugin": [
+        "packages/typescript-nx-imports-plugin/src/index.ts"
+      ],
       "monodon/rust": ["packages/rust/src/index.ts"]
     }
   },

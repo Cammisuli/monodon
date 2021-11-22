@@ -1,0 +1,34 @@
+{
+  "root": "packages/typescript-nx-imports-plugin",
+  "sourceRoot": "packages/typescript-nx-imports-plugin/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/typescript-nx-imports-plugin/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/typescript-nx-imports-plugin"],
+      "options": {
+        "jestConfig": "packages/typescript-nx-imports-plugin/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/typescript-nx-imports-plugin",
+        "tsConfig": "packages/typescript-nx-imports-plugin/tsconfig.lib.json",
+        "packageJson": "packages/typescript-nx-imports-plugin/package.json",
+        "main": "packages/typescript-nx-imports-plugin/src/index.ts",
+        "assets": ["packages/typescript-nx-imports-plugin/*.md"]
+      }
+    }
+  },
+  "tags": []
+}
