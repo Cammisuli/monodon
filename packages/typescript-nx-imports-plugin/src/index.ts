@@ -4,14 +4,15 @@ function init(modules: {
   const ts = modules.typescript;
 
   function create(info: ts.server.PluginCreateInfo) {
+    // info.project.addMissingFileRoot(ts.server.toNormalizedPath('../'));
+    // info.project.addMissingFileRoot;
     // Set up decorator object
     const proxy: ts.LanguageService = Object.create(null);
     for (const k of Object.keys(info.languageService) as Array<
       keyof ts.LanguageService
     >) {
-      const x = info.languageService[k]!;
-      proxy[k] = (...args: Array<unknown>) =>
-        x.apply(info.languageService, args);
+      const x = (proxy[k] = (...args: Array<unknown>) =>
+        x.apply(info.languageService, args));
     }
 
     // TODO: get list of imports from proxy.getProgram()
@@ -27,7 +28,7 @@ function init(modules: {
 
     return proxy;
   }
-  return { create };
+  return { create } as ts.server.PluginModule;
 }
 
 export = init;
