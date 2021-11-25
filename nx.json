@@ -3,6 +3,7 @@
   "affected": {
     "defaultBase": "master"
   },
+  "plugins": ["./packages/rust/rust-project-graph.js"],
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
