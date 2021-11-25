@@ -17,11 +17,10 @@ const init: ts.server.PluginModuleFactory = ({ typescript }) => {
     },
     onConfigurationChanged: function (config: any) {
       logger?.log('onConfigurationChanged, ' + JSON.stringify(config, null, 2));
+      nxImportsPlugin?.setConfig(config);
     },
     getExternalFiles(project: ts.server.Project) {
-      if (!nxImportsPlugin) return [];
-
-      return nxImportsPlugin.getExternalFiles(project);
+      return nxImportsPlugin?.getExternalFiles(project) ?? [];
     },
   };
 };

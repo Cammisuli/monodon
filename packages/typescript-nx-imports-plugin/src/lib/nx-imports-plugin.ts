@@ -12,6 +12,10 @@ export class NxImportsPlugin {
     logger.log('config ' + JSON.stringify(config));
   }
 
+  setConfig(config: Record<string, unknown>) {
+    this.config = config;
+  }
+
   getExternalFiles(project: ts_module.server.Project): string[] {
     const externalFiles =
       (this.config['externalFiles'] as {
