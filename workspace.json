@@ -3,6 +3,7 @@
   "projects": {
     "rust": "packages/rust",
     "rust-e2e": "e2e/rust-e2e",
+    "test-lib": "packages/test-lib",
     "typescript-nx-imports-plugin": "packages/typescript-nx-imports-plugin"
   }
 }
