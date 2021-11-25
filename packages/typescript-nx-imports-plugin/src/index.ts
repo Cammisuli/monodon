@@ -11,13 +11,7 @@ const init: ts.server.PluginModuleFactory = ({ typescript }) => {
       logger = Logger.create(info);
       logger.log('create');
 
-      nxImportsPlugin = new NxImportsPlugin(
-        typescript,
-        info.languageServiceHost,
-        logger,
-        info.project,
-        info.config
-      );
+      nxImportsPlugin = new NxImportsPlugin(logger, info.config);
 
       return nxImportsPlugin.decorate(info.languageService);
     },

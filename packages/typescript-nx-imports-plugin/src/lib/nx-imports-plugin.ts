@@ -6,10 +6,7 @@ const isNxImportPlugin = Symbol('__isNxImportPlugin__');
 
 export class NxImportsPlugin {
   constructor(
-    private readonly ts: typeof ts_module,
-    private readonly languageServiceHost: ts_module.LanguageServiceHost,
     private readonly logger: Logger,
-    private readonly project: ts_module.server.Project,
     private config: Record<string, unknown>
   ) {
     logger.log('config ' + JSON.stringify(config));
@@ -34,13 +31,7 @@ export class NxImportsPlugin {
 
     return filteredExternalFiles;
   }
-  /**
-   * /user/projects/parent
-   *
-   * /user/projects/parent/src/index.ts
-   * /user/projects/parent/child/src/index.ts
-   *
-   */
+
   decorate(languageService: ts.LanguageService) {
     if ((languageService as any)[isNxImportPlugin]) {
       // Already decorated

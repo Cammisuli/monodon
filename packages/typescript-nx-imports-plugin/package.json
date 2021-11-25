@@ -1,4 +1,12 @@
 {
   "name": "@monodon/typescript-nx-imports-plugin",
-  "version": "0.0.1"
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cammisuli/monodon.git",
+    "directory": "packages/typescript-nx-imports-plugin"
+  },
+  "private": false,
+  "author": "Jonathan Cammisuli"
 }
