@@ -15,6 +15,25 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "@monodon/typescript-nx-imports-plugin",
+        "externalFiles": [
+          {
+            "mainFile": "/Users/jon/Dev/monodon/packages/typescript-nx-imports-plugin/src/index.ts",
+            "directory": "/Users/jon/Dev/monodon/packages/typescript-nx-imports-plugin"
+          },
+          {
+            "mainFile": "/Users/jon/Dev/monodon/packages/test-lib/src/index.ts",
+            "directory": "/Users/jon/Dev/monodon/packages/test-lib"
+          },
+          {
+            "mainFile": "/Users/jon/Dev/monodon/packages/rust/src/index.ts",
+            "directory": "/Users/jon/Dev/monodon/packages/rust"
+          }
+        ]
+      }
+    ],
     "paths": {
       "@monodon/test-lib": ["packages/test-lib/src/index.ts"],
       "@monodon/typescript-nx-imports-plugin": [

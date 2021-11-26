@@ -5,18 +5,43 @@ import { Logger } from './logger';
 const isNxImportPlugin = Symbol('__isNxImportPlugin__');
 
 export class NxImportsPlugin {
-  constructor(
-    private readonly logger: Logger,
-    private config: Record<string, unknown>
-  ) {
-    logger.log('config ' + JSON.stringify(config));
-  }
+  logger: Logger | undefined;
+  config: Record<string, unknown> = {};
+  projects = new Map<string, ts_module.server.Project>();
+
+  constructor(private readonly typescript: typeof ts_module) {}
 
   setConfig(config: Record<string, unknown>) {
+    this.logger?.log('setting configuration ' + JSON.stringify(config));
     this.config = config;
+
+    this.projects.forEach((project) => {
+      this.updateProject(project);
+    });
   }
 
-  getExternalFiles(project: ts_module.server.Project): string[] {
+  addProject(project: ts_module.server.Project) {
+    this.logger?.log('addProject ' + project.getProjectName());
+    if (this.projects.has(project.getProjectName())) {
+      this.logger?.log('project already tracked ' + project.getProjectName());
+      return;
+    }
+    this.projects.set(project.getProjectName(), project);
+    this.updateProject(project);
+  }
+
+  private updateProject(project: ts_module.server.Project) {
+    this.logger?.log('updating project');
+    const externals = this.getRootFiles(project);
+    externals.forEach((external) => {
+      project.addMissingFileRoot(
+        this.typescript.server.toNormalizedPath(external)
+      );
+    });
+  }
+
+  getRootFiles(project: ts_module.server.Project): string[] {
+    this.logger?.log('get root files: ' + JSON.stringify(this.config));
     const externalFiles =
       (this.config['externalFiles'] as {
         mainFile: string;
@@ -24,19 +49,20 @@ export class NxImportsPlugin {
       }[]) || [];
 
     const projectDirectory = dirname(project.getProjectName());
-    this.logger.log(`project directory: ${projectDirectory}`);
+    this.logger?.log(`project directory: ${projectDirectory}`);
 
     const filteredExternalFiles = externalFiles
       .filter(({ directory }) => {
         return !projectDirectory.startsWith(directory);
       })
       .map(({ mainFile }) => mainFile);
-    this.logger.log(`external files: ${JSON.stringify(filteredExternalFiles)}`);
+    this.logger?.log(`root files: ${JSON.stringify(filteredExternalFiles)}`);
 
     return filteredExternalFiles;
   }
 
   decorate(languageService: ts.LanguageService) {
+    this.logger?.log('decorate');
     if ((languageService as any)[isNxImportPlugin]) {
       // Already decorated
       return;
@@ -51,7 +77,7 @@ export class NxImportsPlugin {
       position: number,
       options: ts_module.GetCompletionsAtPositionOptions | undefined
     ) => {
-      this.logger.log(`getCompletionsAtPosition ${fileName}:${position}`);
+      this.logger?.log(`getCompletionsAtPosition ${fileName}:${position}`);
       return this.getCompletionsAtPosition(
         oldGetCompletionsAtPosition,
         fileName,

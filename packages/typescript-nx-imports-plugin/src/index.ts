@@ -4,23 +4,24 @@ import { NxImportsPlugin } from './lib/nx-imports-plugin';
 
 const init: ts.server.PluginModuleFactory = ({ typescript }) => {
   let logger: Logger | undefined;
-  let nxImportsPlugin: NxImportsPlugin | undefined;
+  const nxImportsPlugin = new NxImportsPlugin(typescript);
 
   return {
-    create: function (info: ts.server.PluginCreateInfo) {
+    create(info: ts.server.PluginCreateInfo) {
       logger = Logger.create(info);
       logger.log('create');
+      nxImportsPlugin.logger = logger;
 
-      nxImportsPlugin = new NxImportsPlugin(logger, info.config);
+      if (Object.keys(info.config).length > 0) {
+        nxImportsPlugin.setConfig(info.config);
+      }
+      nxImportsPlugin.addProject(info.project);
 
       return nxImportsPlugin.decorate(info.languageService);
     },
-    onConfigurationChanged: function (config: any) {
-      logger?.log('onConfigurationChanged, ' + JSON.stringify(config, null, 2));
-      nxImportsPlugin?.setConfig(config);
-    },
-    getExternalFiles(project: ts.server.Project) {
-      return nxImportsPlugin?.getExternalFiles(project) ?? [];
+    onConfigurationChanged(config: any) {
+      logger?.log('onConfigurationChanged called, ' + JSON.stringify(config));
+      nxImportsPlugin.setConfig(config);
     },
   };
 };

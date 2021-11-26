@@ -30,7 +30,9 @@ Within the `tsconfig.base.json` file, add the following plugin:
 
 > Note: mainFile and directory should be the absolute paths.
 
-## Local development
+This plugin was also made to work well with Nx Console. Using it outside of this extension probably won't work :frown:
+
+### Local development
 
 Build the `@monodon/typescript-nx-imports-plugin` with `yarn nx build typescript-nx-imports-plugin --watch`. Navigate to the `dist/packages/typescript-nx-imports-plugin` directory and run `npm link`. Navigate back to the root of this project and run `npm link @monodon/typescript-nx-imports-plugin`.
 
