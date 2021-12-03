@@ -19,7 +19,10 @@ const init: ts.server.PluginModuleFactory = ({ typescript }) => {
 
       return nxImportsPlugin.decorate(info.languageService);
     },
-    onConfigurationChanged(config: any) {
+    onConfigurationChanged(config: {
+      externalFiles?: { mainFile: string; directory: string }[];
+      disable?: boolean;
+    }) {
       logger?.log('onConfigurationChanged called, ' + JSON.stringify(config));
       nxImportsPlugin.setConfig(config);
     },

@@ -2,16 +2,23 @@ import ts_module from 'typescript/lib/tsserverlibrary';
 import { dirname } from 'path';
 import { Logger } from './logger';
 
+export interface Configuration {
+  externalFiles?: {
+    mainFile: string;
+    directory: string;
+  }[];
+}
+
 const isNxImportPlugin = Symbol('__isNxImportPlugin__');
 
 export class NxImportsPlugin {
   logger: Logger | undefined;
-  config: Record<string, unknown> = {};
+  config: Configuration = {};
   projects = new Map<string, ts_module.server.Project>();
 
   constructor(private readonly typescript: typeof ts_module) {}
 
-  setConfig(config: Record<string, unknown>) {
+  setConfig(config: Configuration) {
     this.logger?.log('setting configuration ' + JSON.stringify(config));
     this.config = config;
 
@@ -31,7 +38,7 @@ export class NxImportsPlugin {
   }
 
   private updateProject(project: ts_module.server.Project) {
-    this.logger?.log('updating project');
+    this.logger?.log('updating project: ' + project.getProjectName());
     const externals = this.getRootFiles(project);
     externals.forEach((external) => {
       project.addMissingFileRoot(
@@ -42,11 +49,11 @@ export class NxImportsPlugin {
 
   getRootFiles(project: ts_module.server.Project): string[] {
     this.logger?.log('get root files: ' + JSON.stringify(this.config));
-    const externalFiles =
-      (this.config['externalFiles'] as {
-        mainFile: string;
-        directory: string;
-      }[]) || [];
+    const externalFiles = this.config.externalFiles || [];
+
+    if (externalFiles.length === 0) {
+      return [];
+    }
 
     const projectDirectory = dirname(project.getProjectName());
     this.logger?.log(`project directory: ${projectDirectory}`);
