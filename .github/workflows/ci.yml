@@ -14,7 +14,7 @@ jobs:
         name: Checkout [main]
         with:
           fetch-depth: 0
-      - uses: ./.github/workflows/composite/setup.yml
+      - uses: ./.github/workflows/setup/action.yml
       - run: yarn nx affected --target=build --parallel --max-parallel=3
       - run: yarn nx affected --target=test --parallel --max-parallel=2
   pr:
@@ -25,6 +25,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - uses: ./.github/workflows/composite/setup.yml
+      - uses: ./.github/workflows/setup/action.yml
       - run: yarn nx affected --target=build --parallel --max-parallel=3
       - run: yarn nx affected --target=test --parallel --max-parallel=2
