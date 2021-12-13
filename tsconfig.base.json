@@ -35,11 +35,11 @@
       }
     ],
     "paths": {
+      "@monodon/rust": ["packages/rust/src/index.ts"],
       "@monodon/test-lib": ["packages/test-lib/src/index.ts"],
       "@monodon/typescript-nx-imports-plugin": [
         "packages/typescript-nx-imports-plugin/src/index.ts"
-      ],
-      "@monodon/rust": ["packages/rust/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
