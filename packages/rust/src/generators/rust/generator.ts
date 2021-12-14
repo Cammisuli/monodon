@@ -57,6 +57,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
 
 export default async function (tree: Tree, options: RustGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
+  // todo: 
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'library',
