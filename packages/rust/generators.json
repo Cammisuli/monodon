@@ -7,6 +7,11 @@
       "factory": "./src/generators/rust/generator",
       "schema": "./src/generators/rust/schema.json",
       "description": "rust generator"
+    },
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "initializes rust within a Nx workspace"
     }
   }
 }
