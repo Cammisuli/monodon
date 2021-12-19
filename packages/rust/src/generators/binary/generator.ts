@@ -8,9 +8,9 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
-import { RustGeneratorSchema } from './schema';
+import { RustBinaryGeneratorSchema } from './schema';
 
-interface NormalizedSchema extends RustGeneratorSchema {
+interface NormalizedSchema extends RustBinaryGeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;
@@ -19,17 +19,20 @@ interface NormalizedSchema extends RustGeneratorSchema {
 
 function normalizeOptions(
   tree: Tree,
-  options: RustGeneratorSchema
+  options: RustBinaryGeneratorSchema
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
     ? `${names(options.directory).fileName}/${name}`
     : name;
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
-  const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
+  const projectRoot = `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : [];
+
+  // rust specifics
+  options.edition ??= '2021';
 
   return {
     ...options,
@@ -55,12 +58,12 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (tree: Tree, options: RustGeneratorSchema) {
+export default async function (tree: Tree, options: RustBinaryGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options);
   // todo: 
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
-    projectType: 'library',
+    projectType: 'application',
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
       build: {

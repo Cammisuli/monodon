@@ -14,6 +14,12 @@
       },
       "x-prompt": "What name would you like to use?"
     },
+    "edition": {
+      "type": "string",
+      "description": "The edition of Rust to use for this binary (default is 2021)",
+      "default": "2021",
+      "enum": ["2015", "2018", "2021"]
+    },
     "tags": {
       "type": "string",
       "description": "Add tags to the project (used for linting)",

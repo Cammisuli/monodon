@@ -2,11 +2,11 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
-import { RustGeneratorSchema } from './schema';
+import { RustBinaryGeneratorSchema } from './schema';
 
 describe('rust generator', () => {
   let appTree: Tree;
-  const options: RustGeneratorSchema = { name: 'test' };
+  const options: RustBinaryGeneratorSchema = { name: 'test' };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();

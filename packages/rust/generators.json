@@ -3,10 +3,11 @@
   "name": "rust",
   "version": "0.0.1",
   "generators": {
-    "rust": {
-      "factory": "./src/generators/rust/generator",
-      "schema": "./src/generators/rust/schema.json",
-      "description": "rust generator"
+    "binary": {
+      "factory": "./src/generators/binary/generator",
+      "schema": "./src/generators/binary/schema.json",
+      "description": "binary generator",
+      "aliases": ["bin"]
     },
     "init": {
       "factory": "./src/generators/init/generator",
