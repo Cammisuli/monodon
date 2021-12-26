@@ -12,7 +12,8 @@
     "init": {
       "factory": "./src/generators/init/generator",
       "schema": "./src/generators/init/schema.json",
-      "description": "initializes rust within a Nx workspace"
+      "description": "initializes a cargo workspace within a Nx workspace",
+      "hidden": true
     }
   }
 }
