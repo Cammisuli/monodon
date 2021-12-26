@@ -4,27 +4,49 @@ on:
     branches:
       - main
   pull_request:
+env:
+  node_version: 14
 
 jobs:
-  main:
+  setup:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' }}
-    steps:
-      - uses: actions/checkout@v2
-        name: Checkout [main]
-        with:
-          fetch-depth: 0
-      - uses: ./.github/workflows/setup
-      - run: yarn nx affected --target=build --parallel --max-parallel=3
-      - run: yarn nx affected --target=test --parallel --max-parallel=2
-  pr:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+        with:
           fetch-depth: 0
       - uses: ./.github/workflows/setup
+        with:
+          node_version: ${{ env.node_version }}
       - run: yarn nx affected --target=build --parallel --max-parallel=3
-      - run: yarn nx affected --target=test --parallel --max-parallel=2
+  test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+        with:
+          fetch-depth: 0
+      - uses: ./.github/workflows/setup
+        with:
+          node_version: ${{ env.node_version }}
+      - run: yarn nx affected --target=test --parallel --max-parallel=3
+  lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+        with:
+          fetch-depth: 0
+      - uses: ./.github/workflows/setup
+        with:
+          node_version: ${{ env.node_version }}
+      - run: yarn nx affected --target=lint --parallel --max-parallel=3
