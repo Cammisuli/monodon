@@ -8,48 +8,15 @@ env:
   node_version: 14
 
 jobs:
-  setup:
+  checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: ./.github/workflows/setup
-        with:
-          node_version: ${{ env.node_version }}
-  build:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        name: Checkout
         with:
           fetch-depth: 0
       - uses: ./.github/workflows/setup
         with:
           node_version: ${{ env.node_version }}
       - run: yarn nx affected --target=build --parallel --max-parallel=3
-  test:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        name: Checkout
-        with:
-          fetch-depth: 0
-      - uses: ./.github/workflows/setup
-        with:
-          node_version: ${{ env.node_version }}
       - run: yarn nx affected --target=test --parallel --max-parallel=3
-  lint:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        name: Checkout
-        with:
-          fetch-depth: 0
-      - uses: ./.github/workflows/setup
-        with:
-          node_version: ${{ env.node_version }}
       - run: yarn nx affected --target=lint --parallel --max-parallel=3
