@@ -14,12 +14,12 @@ describe('init generator', () => {
     await generator(appTree);
     const cargoToml = appTree.read('./Cargo.toml')?.toString() ?? '';
 
-    expect(appTree.exists('./Cargo.toml')).toBeTruthy();
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
       Object {
         "workspace": Object {
           "members": Array [
             "libs/*",
+            "apps/*",
           ],
         },
       }

@@ -9,12 +9,14 @@ import * as path from 'path';
 
 type NormalizedSchema = {
   libsPath: string;
+  appsPath: string;
 };
 
 function normalizeOptions(tree: Tree): NormalizedSchema {
   const layout = getWorkspaceLayout(tree);
   return {
     libsPath: layout.libsDir,
+    appsPath: layout.appsDir,
   };
 }
 

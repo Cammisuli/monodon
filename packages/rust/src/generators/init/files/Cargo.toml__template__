@@ -1,2 +1,2 @@
 [workspace]
-members = ["<%= libsPath %>/*"]
+members = ["<%= libsPath %>/*", "<%= appsPath %>/*"]
