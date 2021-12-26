@@ -18,8 +18,8 @@ runs:
       id: workspace-cache
       with:
         path: node_modules
-        key: ${{ runner.os }}-${{ inputs.node-version }}-workspace-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-${{ inputs.node_version }}-workspace-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-${{ inputs.node-version }}-workspace-
+          ${{ runner.os }}-${{ inputs.node_version }}-workspace-
     - run: yarn install --frozen-lockfile
       shell: bash
