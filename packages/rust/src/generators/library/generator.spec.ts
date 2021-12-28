@@ -2,11 +2,11 @@ import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 import TOML from '@ltd/j-toml';
 import generator from './generator';
-import { RustBinaryGeneratorSchema } from './schema';
+import { RustLibraryGeneratorSchema } from './schema';
 
 describe('rust generator', () => {
   let appTree: Tree;
-  const options: RustBinaryGeneratorSchema = { name: 'test' };
+  const options: RustLibraryGeneratorSchema = { name: 'test' };
 
   beforeEach(() => {
     appTree = createTreeWithEmptyWorkspace();
@@ -20,7 +20,7 @@ describe('rust generator', () => {
 
   it('should create a Cargo.toml project', async () => {
     await generator(appTree, { ...options });
-    const cargoToml = appTree.read('./apps/test/Cargo.toml')?.toString() ?? '';
+    const cargoToml = appTree.read('./libs/test/Cargo.toml')?.toString() ?? '';
     expect(cargoToml.length).toBeGreaterThan(0);
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
       Object {
@@ -36,7 +36,7 @@ describe('rust generator', () => {
 
   it('should create a project with a specified edition', async () => {
     await generator(appTree, { ...options, edition: '2018' });
-    const cargoToml = appTree.read('./apps/test/Cargo.toml')?.toString() ?? '';
+    const cargoToml = appTree.read('./libs/test/Cargo.toml')?.toString() ?? '';
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
       Object {
         "dependencies": Object {},

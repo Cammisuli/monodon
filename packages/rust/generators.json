@@ -6,7 +6,7 @@
     "binary": {
       "factory": "./src/generators/binary/generator",
       "schema": "./src/generators/binary/schema.json",
-      "description": "binary generator",
+      "description": "Generate a Cargo bin",
       "aliases": ["bin"]
     },
     "init": {
@@ -14,6 +14,12 @@
       "schema": "./src/generators/init/schema.json",
       "description": "initializes a cargo workspace within a Nx workspace",
       "hidden": true
+    },
+    "library": {
+      "factory": "./src/generators/library/generator",
+      "schema": "./src/generators/library/schema.json",
+      "description": "Generate a Cargo library",
+      "aliases": ["lib"]
     }
   }
 }
