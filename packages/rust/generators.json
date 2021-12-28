@@ -3,10 +3,23 @@
   "name": "rust",
   "version": "0.0.1",
   "generators": {
-    "rust": {
-      "factory": "./src/generators/rust/generator",
-      "schema": "./src/generators/rust/schema.json",
-      "description": "rust generator"
+    "binary": {
+      "factory": "./src/generators/binary/generator",
+      "schema": "./src/generators/binary/schema.json",
+      "description": "Generate a Cargo bin",
+      "aliases": ["bin"]
+    },
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "initializes a cargo workspace within a Nx workspace",
+      "hidden": true
+    },
+    "library": {
+      "factory": "./src/generators/library/generator",
+      "schema": "./src/generators/library/schema.json",
+      "description": "Generate a Cargo library",
+      "aliases": ["lib"]
     }
   }
 }

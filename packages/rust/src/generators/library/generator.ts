@@ -8,9 +8,9 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
-import { RustGeneratorSchema } from './schema';
+import { RustLibraryGeneratorSchema } from './schema';
 
-interface NormalizedSchema extends RustGeneratorSchema {
+interface NormalizedSchema extends RustLibraryGeneratorSchema {
   projectName: string;
   projectRoot: string;
   projectDirectory: string;
@@ -19,7 +19,7 @@ interface NormalizedSchema extends RustGeneratorSchema {
 
 function normalizeOptions(
   tree: Tree,
-  options: RustGeneratorSchema
+  options: RustLibraryGeneratorSchema
 ): NormalizedSchema {
   const name = names(options.name).fileName;
   const projectDirectory = options.directory
@@ -30,6 +30,9 @@ function normalizeOptions(
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : [];
+
+  // rust specifics
+  options.edition ??= '2021';
 
   return {
     ...options,
@@ -55,9 +58,12 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (tree: Tree, options: RustGeneratorSchema) {
+export default async function (
+  tree: Tree,
+  options: RustLibraryGeneratorSchema
+) {
   const normalizedOptions = normalizeOptions(tree, options);
-  // todo: 
+  // todo:
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'library',
