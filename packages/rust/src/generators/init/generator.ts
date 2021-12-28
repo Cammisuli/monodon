@@ -8,15 +8,19 @@ import {
 import * as path from 'path';
 
 type NormalizedSchema = {
-  libsPath: string;
-  appsPath: string;
+  libsDir: string;
+  appsDir: string;
+  cargoMembers: string;
 };
 
 function normalizeOptions(tree: Tree): NormalizedSchema {
-  const layout = getWorkspaceLayout(tree);
+  const { libsDir, appsDir } = getWorkspaceLayout(tree);
   return {
-    libsPath: layout.libsDir,
-    appsPath: layout.appsDir,
+    libsDir,
+    appsDir,
+    cargoMembers: Array.from(
+      new Set([`"${libsDir}/*"`, `"${appsDir}/*"`])
+    ).join(','),
   };
 }
 
