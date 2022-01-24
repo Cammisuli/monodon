@@ -1,14 +1,16 @@
 import { Tree } from '@nrwl/devkit';
-import TOML from '@ltd/j-toml';
+import TOML, { stringify } from '@ltd/j-toml';
 
-export function addToWorkspace(tree: Tree, projectPath: string) {
+type TomlTable = ReturnType<typeof TOML.parse>;
+
+export function addToCargoWorkspace(tree: Tree, projectPath: string) {
   const cargoTomlString = tree.read('./Cargo.toml')?.toString();
   if (!cargoTomlString) {
     return;
   }
 
   const cargoToml = parseCargoToml(cargoTomlString);
-  const workspace = cargoToml.workspace as any as { members: string[] };
+  const workspace = cargoToml.workspace as never as { members: string[] };
   if (!workspace) {
     throw new Error('Cargo.toml does not contain a workspace section');
   }
@@ -18,8 +20,7 @@ export function addToWorkspace(tree: Tree, projectPath: string) {
     throw new Error('Cargo.toml workspace section does not contain members');
   }
 
-  const newMembers = members.concat([projectPath]);
-  workspace.members = newMembers.join(',') as any;
+  workspace.members = members.concat([projectPath]);
 
   const newCargoToml = stringifyCargoToml(cargoToml);
   tree.write('./Cargo.toml', newCargoToml);
@@ -29,6 +30,12 @@ function parseCargoToml(cargoString: string) {
   return TOML.parse(cargoString);
 }
 
-function stringifyCargoToml(cargoToml: any) {
-  return TOML.stringify(cargoToml);
+function stringifyCargoToml(cargoToml: TomlTable) {
+  const tomlString = TOML.stringify(cargoToml);
+
+  if (Array.isArray(tomlString)) {
+    return tomlString.join('\n');
+  }
+
+  return tomlString;
 }

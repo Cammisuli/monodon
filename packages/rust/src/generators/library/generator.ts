@@ -8,8 +8,8 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
+import { addToCargoWorkspace } from '../../utils/add-to-workspace';
 import init from '../init/generator';
-// import init from '../init/generator';
 import { RustLibraryGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends RustLibraryGeneratorSchema {
@@ -78,5 +78,6 @@ export default async function libraryGenerator(
     tags: normalizedOptions.parsedTags,
   });
   addFiles(tree, normalizedOptions);
+  addToCargoWorkspace(tree, normalizedOptions.projectRoot);
   await formatFiles(tree);
 }

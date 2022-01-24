@@ -8,6 +8,7 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
+import { addToCargoWorkspace } from '../../utils/add-to-workspace';
 import init from '../init/generator';
 import { RustBinaryGeneratorSchema } from './schema';
 
@@ -78,5 +79,6 @@ export default async function binaryGenerator(
     tags: normalizedOptions.parsedTags,
   });
   addFiles(tree, normalizedOptions);
+  addToCargoWorkspace(tree, normalizedOptions.projectRoot);
   await formatFiles(tree);
 }

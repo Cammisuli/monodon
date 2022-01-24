@@ -48,4 +48,18 @@ describe('rust generator', () => {
       }
     `);
   });
+
+  it('should add a project to the main Cargo.toml workspace members', async () => {
+    await generator(appTree, options);
+    const cargoToml = appTree.read('Cargo.toml')?.toString() ?? '';
+    expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
+      Object {
+        "workspace": Object {
+          "members": Array [
+            "libs/test",
+          ],
+        },
+      }
+    `);
+  });
 });
