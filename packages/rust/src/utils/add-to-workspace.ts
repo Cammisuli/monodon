@@ -1,5 +1,5 @@
+import TOML from '@ltd/j-toml';
 import { Tree } from '@nrwl/devkit';
-import TOML, { stringify } from '@ltd/j-toml';
 
 type TomlTable = ReturnType<typeof TOML.parse>;
 
