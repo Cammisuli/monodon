@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "graph-tests": "packages/graph-tests",
     "rust": "packages/rust",
     "rust-e2e": "e2e/rust-e2e",
     "test-lib": "packages/test-lib",

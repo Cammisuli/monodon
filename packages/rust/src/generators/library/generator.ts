@@ -8,6 +8,8 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
+import init from '../init/generator';
+// import init from '../init/generator';
 import { RustLibraryGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends RustLibraryGeneratorSchema {
@@ -58,12 +60,12 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (
+export default async function libraryGenerator(
   tree: Tree,
   options: RustLibraryGeneratorSchema
 ) {
+  await init(tree);
   const normalizedOptions = normalizeOptions(tree, options);
-  // todo:
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'library',

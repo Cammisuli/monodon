@@ -8,6 +8,7 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
+import init from '../init/generator';
 import { RustBinaryGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends RustBinaryGeneratorSchema {
@@ -58,9 +59,13 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (tree: Tree, options: RustBinaryGeneratorSchema) {
+export default async function binaryGenerator(
+  tree: Tree,
+  options: RustBinaryGeneratorSchema
+) {
+  await init(tree);
   const normalizedOptions = normalizeOptions(tree, options);
-  // todo: 
+  // todo:
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
