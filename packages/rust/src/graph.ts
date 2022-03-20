@@ -3,6 +3,7 @@ import {
   ProjectGraphProcessorContext,
   ProjectGraphBuilder,
 } from '@nrwl/devkit';
+import { CargoMetadata } from './models/cargo-metadata';
 import { runCargoSync } from './utils/cargo';
 
 export function processProjectGraph(
@@ -10,18 +11,21 @@ export function processProjectGraph(
   ctx: ProjectGraphProcessorContext
 ): ProjectGraph {
   const metadata = runCargoSync('metadata --format-version=1');
-  // let metadata = cp.execSync('cargo metadata --format-version=1', {
-  //   encoding: 'utf8',
-  // });
   if (!metadata) {
     return graph;
   }
 
-  const { packages, workspace_members } = JSON.parse(metadata);
+  const {
+    packages: cargoPackages,
+    workspace_members: cargoMembers,
+    resolve: { nodes: cargoDeps },
+  } = JSON.parse(metadata) as CargoMetadata;
+
   const builder = new ProjectGraphBuilder(graph);
-  console.log(packages, workspace_members);
+
+  console.log(cargoPackages, cargoMembers, cargoDeps);
   // workspace_members
-  //   .map((id) => packages.find((pkg) => pkg.id === id))
+  //   .map((id: string) => packages.find((pkg) => pkg.id === id))
   //   .filter((pkg) => Object.keys(ctx.fileMap).includes(pkg.name))
   //   .forEach((pkg) => {
   //     pkg.dependencies.forEach((dep) => {
@@ -32,13 +36,6 @@ export function processProjectGraph(
   //           pkg.source.startsWith(dep.source)
   //         );
   //         if (!depPkg) {
-  //           console.log(
-  //             `${chalk.yellowBright.bold.inverse(
-  //               ' WARN '
-  //             )} Failed to find package for dependency:`
-  //           );
-  //           console.log(util.inspect(dep));
-
   //           return;
   //         }
 
