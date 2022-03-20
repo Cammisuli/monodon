@@ -3,7 +3,7 @@ import {
   ProjectGraphProcessorContext,
   ProjectGraphBuilder,
 } from '@nrwl/devkit';
-import { runCargoSync } from './src/utils/cargo';
+import { runCargoSync } from './utils/cargo';
 
 export function processProjectGraph(
   graph: ProjectGraph,

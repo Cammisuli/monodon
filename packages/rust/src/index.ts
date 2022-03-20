@@ -1,1 +1,1 @@
-export const rustTemp = '';
+export { processProjectGraph } from './graph';

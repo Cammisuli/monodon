@@ -66,7 +66,7 @@ export default async function binaryGenerator(
 ) {
   await init(tree);
   const normalizedOptions = normalizeOptions(tree, options);
-  // todo:
+  // TODO(cammisuli): change this to use the cargo builder.
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',

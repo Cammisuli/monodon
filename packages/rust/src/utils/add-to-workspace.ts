@@ -10,7 +10,7 @@ export function addToCargoWorkspace(tree: Tree, projectPath: string) {
   }
 
   const cargoToml = parseCargoToml(cargoTomlString);
-  const workspace = cargoToml.workspace as never as { members: string[] };
+  const workspace = cargoToml.workspace as unknown as { members: string[] };
   if (!workspace) {
     throw new Error('Cargo.toml does not contain a workspace section');
   }
