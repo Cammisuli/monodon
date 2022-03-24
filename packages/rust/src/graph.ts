@@ -2,14 +2,18 @@ import {
   ProjectGraph,
   ProjectGraphProcessorContext,
   ProjectGraphBuilder,
+  NxPlugin,
+  ProjectTargetConfigurator,
+  TargetConfiguration,
 } from '@nrwl/devkit';
 import { CargoMetadata } from './models/cargo-metadata';
 import { runCargoSync } from './utils/cargo';
 
-export function processProjectGraph(
+type ProjectGraphProcessor = NonNullable<NxPlugin['processProjectGraph']>;
+export const processProjectGraph: ProjectGraphProcessor = (
   graph: ProjectGraph,
   ctx: ProjectGraphProcessorContext
-): ProjectGraph {
+): ProjectGraph => {
   const metadata = runCargoSync('metadata --format-version=1');
   if (!metadata) {
     return graph;
@@ -55,4 +59,10 @@ export function processProjectGraph(
   //   });
 
   return builder.getUpdatedProjectGraph();
-}
+};
+
+export const registerProjectTargets: ProjectTargetConfigurator = (
+  file: string
+): Record<string, TargetConfiguration> => {
+  return {};
+};

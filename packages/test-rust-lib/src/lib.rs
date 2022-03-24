@@ -1,3 +1,11 @@
+use itertools::interleave;
+
+pub fn temp() {
+    for elt in interleave(&[1, 2, 3], &[2, 3, 4]) {
+        println!("{}", elt);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     #[test]

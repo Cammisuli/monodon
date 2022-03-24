@@ -1,12 +1,11 @@
 import { NxPlugin } from '@nrwl/devkit';
-import { processProjectGraph } from './graph';
+import { processProjectGraph, registerProjectTargets } from './graph';
 
 const nxPlugin: NxPlugin = {
   name: '@monodon/rust',
   processProjectGraph,
   projectFilePatterns: ['Cargo.toml'],
-  // TODO(cammisuli): add support for registering targets
-  // registerProjectTargets,
+  registerProjectTargets,
 };
 
 export = nxPlugin;
