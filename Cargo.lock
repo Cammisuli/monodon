@@ -18,8 +18,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "temp-rust-lib-two"
+version = "0.1.0"
+
+[[package]]
 name = "test-rust-lib"
 version = "0.1.0"
 dependencies = [
  "itertools",
+ "temp-rust-lib-two",
 ]

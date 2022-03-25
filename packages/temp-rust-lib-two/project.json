@@ -1,0 +1,11 @@
+{
+  "root": "packages/temp-rust-lib-two",
+  "projectType": "library",
+  "sourceRoot": "packages/temp-rust-lib-two/src",
+  "targets": {
+    "build": {
+      "executor": "@monodon/rust:build"
+    }
+  },
+  "tags": []
+}

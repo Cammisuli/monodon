@@ -6,7 +6,7 @@ import {
   ProjectTargetConfigurator,
   TargetConfiguration,
 } from '@nrwl/devkit';
-import { CargoMetadata } from './models/cargo-metadata';
+import { CargoMetadata, Package } from './models/cargo-metadata';
 import { runCargoSync } from './utils/cargo';
 
 type ProjectGraphProcessor = NonNullable<NxPlugin['processProjectGraph']>;
@@ -27,36 +27,39 @@ export const processProjectGraph: ProjectGraphProcessor = (
 
   const builder = new ProjectGraphBuilder(graph);
 
-  console.log(cargoPackages, cargoMembers, cargoDeps);
-  // workspace_members
-  //   .map((id: string) => packages.find((pkg) => pkg.id === id))
-  //   .filter((pkg) => Object.keys(ctx.fileMap).includes(pkg.name))
-  //   .forEach((pkg) => {
-  //     pkg.dependencies.forEach((dep) => {
-  //       let depName = dep.source == null ? dep.name : `cargo:${dep.name}`;
+  const cargoPackageMap = cargoPackages.reduce((acc, p) => {
+    if (!acc.has(p.name)) {
+      acc.set(p.name, p);
+    }
+    return acc;
+  }, new Map<string, Package>());
 
-  //       if (!Object.keys(graph.nodes).includes(depName)) {
-  //         let depPkg = packages.find((pkg) =>
-  //           pkg.source.startsWith(dep.source)
-  //         );
-  //         if (!depPkg) {
-  //           return;
-  //         }
-
-  //         builder.addNode({
-  //           name: depName,
-  //           type: 'cargo' as any,
-  //           data: {
-  //             version: depPkg.version,
-  //             packageName: depPkg.name,
-  //             files: [],
-  //           },
-  //         });
-  //       }
-
-  //       builder.addImplicitDependency(pkg.name, depName);
-  //     });
-  //   });
+  for (const pkg of cargoPackages) {
+    if (graph.nodes[pkg.name]) {
+      for (const deps of pkg.dependencies) {
+        // if the dependency is listed in nx projects, it's not an external dependency
+        if (graph.nodes[deps.name]) {
+          // TODO(cammisuli): figure out the file link. Look into the targets
+          builder.addExplicitDependency(pkg.name, pkg.manifest_path, deps.name);
+        } else {
+          const externalDepName = `cargo:${deps.name}`;
+          builder.addExternalNode({
+            type: 'cargo' as any,
+            name: externalDepName as any,
+            data: {
+              packageName: deps.name,
+              version: cargoPackageMap.get(deps.name)?.version ?? '0.0.0',
+            },
+          });
+          builder.addExplicitDependency(
+            pkg.name,
+            pkg.manifest_path,
+            externalDepName
+          );
+        }
+      }
+    }
+  }
 
   return builder.getUpdatedProjectGraph();
 };

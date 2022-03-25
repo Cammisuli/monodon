@@ -1,0 +1,582 @@
+{
+  "graph": {
+    "nodes": {
+      "typescript-nx-imports-plugin": {
+        "name": "typescript-nx-imports-plugin",
+        "type": "lib",
+        "data": {
+          "root": "packages/typescript-nx-imports-plugin",
+          "sourceRoot": "packages/typescript-nx-imports-plugin/src",
+          "projectType": "library",
+          "targets": {
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "packages/typescript-nx-imports-plugin/**/*.ts"
+                ]
+              }
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "coverage/packages/typescript-nx-imports-plugin"
+              ],
+              "options": {
+                "jestConfig": "packages/typescript-nx-imports-plugin/jest.config.js",
+                "passWithNoTests": true
+              }
+            },
+            "build": {
+              "executor": "@nrwl/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/packages/typescript-nx-imports-plugin",
+                "tsConfig": "packages/typescript-nx-imports-plugin/tsconfig.lib.json",
+                "packageJson": "packages/typescript-nx-imports-plugin/package.json",
+                "main": "packages/typescript-nx-imports-plugin/src/index.ts",
+                "assets": [
+                  "packages/typescript-nx-imports-plugin/*.md"
+                ]
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "packages/typescript-nx-imports-plugin/.eslintrc.json",
+              "hash": "9d9c0db55bb1e91c5f2e7b64a02bc6bf69fc7cb5"
+            },
+            {
+              "file": "packages/typescript-nx-imports-plugin/jest.config.js",
+              "hash": "4a9aeb6b95ce635718b8736a41cdb8ff5c5c826b"
+            },
+            {
+              "file": "packages/typescript-nx-imports-plugin/package.json",
+              "hash": "3d7dea1628d73c7674e14fde58544e73ab36e133"
+            },
+            {
+              "file": "packages/typescript-nx-imports-plugin/project.json",
+              "hash": "1f537915a49fa3ffe8761a7d09728c71ea890858"
+            },
+            {
+              "file": "packages/typescript-nx-imports-plugin/README.md",
+              "hash": "4ef56ae2840b1216baf9f6611e7141a3bd9ce140"
+            },
+            {
+              "file": "packages/typescript-nx-imports-plugin/src/index.ts",
+              "hash": "ab2cffd90994461e904d2ce37abe5b041fe271e9",
+              "deps": [
+                "npm:typescript"
+              ]
+            },
+            {
+              "file": "packages/typescript-nx-imports-plugin/src/lib/logger.ts",
+              "hash": "02193dbac9a9dc13d5f8ddb201c1caa32144158a",
+              "deps": [
+                "npm:typescript"
+              ]
+            },
+            {
+              "file": "packages/typescript-nx-imports-plugin/src/lib/nx-imports-plugin.ts",
+              "hash": "0b20a711f0da35c020a6c14926af8265cf46bf75",
+              "deps": [
+                "npm:typescript"
+              ]
+            },
+            {
+              "file": "packages/typescript-nx-imports-plugin/tsconfig.json",
+              "hash": "62ebbd946474cea997e774d20fffc4d585c184f3"
+            },
+            {
+              "file": "packages/typescript-nx-imports-plugin/tsconfig.lib.json",
+              "hash": "89fed3f935b6e887ad1b39cd47038094de7880f9"
+            },
+            {
+              "file": "packages/typescript-nx-imports-plugin/tsconfig.spec.json",
+              "hash": "67f149c4c04b9fad28e3b59462e55ba2d1e1d09b"
+            }
+          ]
+        }
+      },
+      "temp-rust-lib-two": {
+        "name": "temp-rust-lib-two",
+        "type": "lib",
+        "data": {
+          "root": "packages/temp-rust-lib-two",
+          "projectType": "library",
+          "sourceRoot": "packages/temp-rust-lib-two/src",
+          "targets": {
+            "build": {
+              "executor": "@monodon/rust:build"
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "packages/temp-rust-lib-two/Cargo.toml",
+              "hash": "ece11cf663e3a5469388d8e7f4080631b248e994"
+            },
+            {
+              "file": "packages/temp-rust-lib-two/project.json",
+              "hash": "042c14f5f1935aabade5cc640b4614578533909b"
+            },
+            {
+              "file": "packages/temp-rust-lib-two/src/lib.rs",
+              "hash": "9bb42593385b905392d7af3d43a504e28c266c55"
+            }
+          ]
+        }
+      },
+      "test-rust-lib": {
+        "name": "test-rust-lib",
+        "type": "lib",
+        "data": {
+          "root": "packages/test-rust-lib",
+          "sourceRoot": "packages/test-rust-lib/src",
+          "projectType": "library",
+          "targets": {
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "packages/test-rust-lib/**/*.ts"
+                ]
+              }
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "coverage/packages/test-rust-lib"
+              ],
+              "options": {
+                "jestConfig": "packages/test-lib/jest.config.js",
+                "passWithNoTests": true
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "packages/test-rust-lib/Cargo.toml",
+              "hash": "e991e5922848d0badf4d459ff948535fd39966dc"
+            },
+            {
+              "file": "packages/test-rust-lib/project.json",
+              "hash": "f3f05f0de84f898903ccf9e3bdcd687c3094e8bc"
+            },
+            {
+              "file": "packages/test-rust-lib/src/lib.rs",
+              "hash": "4f52ab1d29c0248c90321354e7560f84ccc7a30f"
+            }
+          ]
+        }
+      },
+      "test-lib": {
+        "name": "test-lib",
+        "type": "lib",
+        "data": {
+          "root": "packages/test-lib",
+          "sourceRoot": "packages/test-lib/src",
+          "projectType": "library",
+          "targets": {
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "packages/test-lib/**/*.ts"
+                ]
+              }
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "coverage/packages/test-lib"
+              ],
+              "options": {
+                "jestConfig": "packages/test-lib/jest.config.js",
+                "passWithNoTests": true
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "packages/test-lib/.babelrc",
+              "hash": "cf7ddd99c615a064ac18eb3109eee4f394ab1faf"
+            },
+            {
+              "file": "packages/test-lib/.eslintrc.json",
+              "hash": "9d9c0db55bb1e91c5f2e7b64a02bc6bf69fc7cb5"
+            },
+            {
+              "file": "packages/test-lib/jest.config.js",
+              "hash": "2db52c0dd6599915f948e05f835d24ee2bc5e2f6"
+            },
+            {
+              "file": "packages/test-lib/project.json",
+              "hash": "f04e1608c9ec6c5a4ce5d5530c2d00e4b03542e2"
+            },
+            {
+              "file": "packages/test-lib/README.md",
+              "hash": "b9bac523954b7ab521829627ab0dbc25de0ab962"
+            },
+            {
+              "file": "packages/test-lib/src/index.ts",
+              "hash": "b8aa379313d90a31f163aa1b43853fc729b8efb3"
+            },
+            {
+              "file": "packages/test-lib/src/lib/test-lib.spec.ts",
+              "hash": "799883bfca0de89405b657ea40808a5e1f72cb31"
+            },
+            {
+              "file": "packages/test-lib/src/lib/test-lib.ts",
+              "hash": "88a16ce51c9e936ea72807eb1cf43b14175d08bb"
+            },
+            {
+              "file": "packages/test-lib/tsconfig.json",
+              "hash": "62ebbd946474cea997e774d20fffc4d585c184f3"
+            },
+            {
+              "file": "packages/test-lib/tsconfig.lib.json",
+              "hash": "6efdbeecb5481388fd79af80e5825e38c25bc038"
+            },
+            {
+              "file": "packages/test-lib/tsconfig.spec.json",
+              "hash": "67f149c4c04b9fad28e3b59462e55ba2d1e1d09b"
+            }
+          ]
+        }
+      },
+      "rust": {
+        "name": "rust",
+        "type": "lib",
+        "data": {
+          "root": "packages/rust",
+          "sourceRoot": "packages/rust/src",
+          "projectType": "library",
+          "targets": {
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "options": {
+                "lintFilePatterns": [
+                  "packages/rust/**/*.ts"
+                ]
+              },
+              "outputs": [
+                "{options.outputFile}"
+              ]
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "coverage/packages/rust"
+              ],
+              "options": {
+                "jestConfig": "packages/rust/jest.config.js",
+                "passWithNoTests": true
+              }
+            },
+            "build": {
+              "executor": "@nrwl/js:tsc",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/packages/rust",
+                "tsConfig": "packages/rust/tsconfig.lib.json",
+                "packageJson": "packages/rust/package.json",
+                "main": "packages/rust/src/index.ts",
+                "assets": [
+                  "packages/rust/*.md",
+                  {
+                    "input": "./packages/rust/src",
+                    "glob": "**/!(*.ts)",
+                    "output": "./src"
+                  },
+                  {
+                    "input": "./packages/rust/src",
+                    "glob": "**/*.d.ts",
+                    "output": "./src"
+                  },
+                  {
+                    "input": "./packages/rust",
+                    "glob": "generators.json",
+                    "output": "."
+                  },
+                  {
+                    "input": "./packages/rust",
+                    "glob": "executors.json",
+                    "output": "."
+                  }
+                ]
+              }
+            },
+            "link-plugin": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "commands": [
+                  "npm link ./dist/packages/rust",
+                  "npm link @monodon/rust"
+                ],
+                "parallel": false
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "packages/rust/.eslintrc.json",
+              "hash": "9d9c0db55bb1e91c5f2e7b64a02bc6bf69fc7cb5"
+            },
+            {
+              "file": "packages/rust/executors.json",
+              "hash": "b92c873c3e31218bde5c1662347b8f6ad4734c44"
+            },
+            {
+              "file": "packages/rust/generators.json",
+              "hash": "811bac431e65ac578daf8f7c6714cd5f56bb7288"
+            },
+            {
+              "file": "packages/rust/jest.config.js",
+              "hash": "900f3cb7566cb8abfc3c3e08a13759ac3cfb1f6c"
+            },
+            {
+              "file": "packages/rust/package.json",
+              "hash": "78b66c874adaab4419875fc4fcf109c503d85553"
+            },
+            {
+              "file": "packages/rust/project.json",
+              "hash": "55dda813615314df49f6cd335dc093c27bef48bf"
+            },
+            {
+              "file": "packages/rust/README.md",
+              "hash": "21b128e4fac9240e0b564f83aba25fa7cd4999e8"
+            },
+            {
+              "file": "packages/rust/src/executors/build/executor.spec.ts",
+              "hash": "32de13c6b7cc30a1d442728430780b8b5d9e1141"
+            },
+            {
+              "file": "packages/rust/src/executors/build/executor.ts",
+              "hash": "39569a7dbb9bd0b1002da13b783987b694d83fdc"
+            },
+            {
+              "file": "packages/rust/src/executors/build/schema.d.ts",
+              "hash": "f8247abd512051b1f257a51aaf365051f3b70d0b"
+            },
+            {
+              "file": "packages/rust/src/executors/build/schema.json",
+              "hash": "54d8d22a82146826f98630fbce5271390b6de2e2"
+            },
+            {
+              "file": "packages/rust/src/generators/binary/files/Cargo.toml__template__",
+              "hash": "08dba0992c905c324a90aa3436acc2ede751a958"
+            },
+            {
+              "file": "packages/rust/src/generators/binary/files/src/main.rs__template__",
+              "hash": "24e4cf865600f57151049eddd61a595485e7372a"
+            },
+            {
+              "file": "packages/rust/src/generators/binary/generator.spec.ts",
+              "hash": "d88f12b5e081b76323a665d684e0bd7c706a3fe6",
+              "deps": [
+                "npm:@nrwl/devkit",
+                "npm:@ltd/j-toml"
+              ]
+            },
+            {
+              "file": "packages/rust/src/generators/binary/generator.ts",
+              "hash": "baddf14f08ac7654aa2424029d911a9d12d481b4",
+              "deps": [
+                "npm:@nrwl/devkit"
+              ]
+            },
+            {
+              "file": "packages/rust/src/generators/binary/schema.d.ts",
+              "hash": "9cc19eae13395050c6386f25116899e0a0d9ace1"
+            },
+            {
+              "file": "packages/rust/src/generators/binary/schema.json",
+              "hash": "2befe7e46b684ce3b94f1406589780f807602f7e"
+            },
+            {
+              "file": "packages/rust/src/generators/init/files/Cargo.toml__template__",
+              "hash": "c4b464ff15af9ccaa7d58af30d40b66741be25e3"
+            },
+            {
+              "file": "packages/rust/src/generators/init/generator.spec.ts",
+              "hash": "fd584f451f6254f2eb11ea7b3511e1b93daa3d24",
+              "deps": [
+                "npm:@nrwl/devkit",
+                "npm:@ltd/j-toml"
+              ]
+            },
+            {
+              "file": "packages/rust/src/generators/init/generator.ts",
+              "hash": "5272f96aed4cff5f7a0ca562278d9cc9641a3670",
+              "deps": [
+                "npm:@nrwl/devkit"
+              ]
+            },
+            {
+              "file": "packages/rust/src/generators/init/schema.d.ts",
+              "hash": "bdf9706ca076d9dc624fe12a9072e4029ab57f39"
+            },
+            {
+              "file": "packages/rust/src/generators/init/schema.json",
+              "hash": "31a1da738c13c65fad9310efade031ea32e0903f"
+            },
+            {
+              "file": "packages/rust/src/generators/library/files/Cargo.toml__template__",
+              "hash": "08dba0992c905c324a90aa3436acc2ede751a958"
+            },
+            {
+              "file": "packages/rust/src/generators/library/files/src/lib.rs__template__",
+              "hash": "1b4a90c938387450422982a89aed075aa1e8c010"
+            },
+            {
+              "file": "packages/rust/src/generators/library/generator.spec.ts",
+              "hash": "1eb6ab62b6399c3323e4c067f1e9f1f3068e919b",
+              "deps": [
+                "npm:@nrwl/devkit",
+                "npm:@ltd/j-toml"
+              ]
+            },
+            {
+              "file": "packages/rust/src/generators/library/generator.ts",
+              "hash": "c2cb25c9b83cca1fcff4baeb7fcf3479b727612b",
+              "deps": [
+                "npm:@nrwl/devkit"
+              ]
+            },
+            {
+              "file": "packages/rust/src/generators/library/schema.d.ts",
+              "hash": "e2d64a8a4c8067e8848cf9d3171866a1963ceb7b"
+            },
+            {
+              "file": "packages/rust/src/generators/library/schema.json",
+              "hash": "2bdac1d19af576e720e09167adc26248946337a1"
+            },
+            {
+              "file": "packages/rust/src/graph.ts",
+              "hash": "a795fb2b53822a7b2c947a63381ba1f3743939d6",
+              "deps": [
+                "npm:@nrwl/devkit"
+              ]
+            },
+            {
+              "file": "packages/rust/src/index.ts",
+              "hash": "3c1aa56d22db73f5682640412246e44bbaeaa3ea",
+              "deps": [
+                "npm:@nrwl/devkit"
+              ]
+            },
+            {
+              "file": "packages/rust/src/models/cargo-metadata.ts",
+              "hash": "53fd7ae90aa86a12928894037f0f1fcb93f64399"
+            },
+            {
+              "file": "packages/rust/src/utils/add-to-workspace.ts",
+              "hash": "7fafdc2089ba1f4b569ee6894f9627388fabcca3",
+              "deps": [
+                "npm:@ltd/j-toml",
+                "npm:@nrwl/devkit"
+              ]
+            },
+            {
+              "file": "packages/rust/src/utils/cargo.ts",
+              "hash": "a31c558271de983dc1f2c37925427852db1c281c"
+            },
+            {
+              "file": "packages/rust/tsconfig.json",
+              "hash": "62ebbd946474cea997e774d20fffc4d585c184f3"
+            },
+            {
+              "file": "packages/rust/tsconfig.lib.json",
+              "hash": "6efdbeecb5481388fd79af80e5825e38c25bc038"
+            },
+            {
+              "file": "packages/rust/tsconfig.spec.json",
+              "hash": "682964419012751d4b6589ef625d19a11af2e4e6"
+            }
+          ]
+        }
+      },
+      "rust-e2e": {
+        "name": "rust-e2e",
+        "type": "e2e",
+        "data": {
+          "root": "e2e/rust-e2e",
+          "projectType": "application",
+          "sourceRoot": "e2e/rust-e2e/src",
+          "targets": {
+            "e2e": {
+              "executor": "@nrwl/nx-plugin:e2e",
+              "options": {
+                "target": "rust:build",
+                "jestConfig": "e2e/rust-e2e/jest.config.js"
+              }
+            }
+          },
+          "tags": [],
+          "implicitDependencies": [
+            "rust"
+          ],
+          "files": [
+            {
+              "file": "e2e/rust-e2e/jest.config.js",
+              "hash": "3ea89e952989e982b76cd3e34a61717c6f3bf8a9"
+            },
+            {
+              "file": "e2e/rust-e2e/project.json",
+              "hash": "6a9cece42ce0ee6ea8030e852bcfdbe48c15e9d8"
+            },
+            {
+              "file": "e2e/rust-e2e/tests/rust.spec.ts",
+              "hash": "6df9f0e19dbfd49607f18fee41299ad3e1d9eb83",
+              "deps": [
+                "npm:@nrwl/nx-plugin"
+              ]
+            },
+            {
+              "file": "e2e/rust-e2e/tsconfig.json",
+              "hash": "879cca47dbbaddb067a127a5a4a86735e47c4c60"
+            },
+            {
+              "file": "e2e/rust-e2e/tsconfig.spec.json",
+              "hash": "29efa430b2bdc66ba23466f95844248e171c8de4"
+            }
+          ]
+        }
+      }
+    },
+    "dependencies": {
+      "typescript-nx-imports-plugin": [],
+      "temp-rust-lib-two": [],
+      "test-rust-lib": [],
+      "test-lib": [],
+      "rust": [],
+      "rust-e2e": [
+        {
+          "source": "rust-e2e",
+          "target": "rust",
+          "type": "implicit"
+        }
+      ]
+    }
+  },
+  "affectedProjects": [],
+  "criticalPath": []
+}
