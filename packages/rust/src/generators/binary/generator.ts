@@ -9,6 +9,7 @@ import {
 } from '@nrwl/devkit';
 import * as path from 'path';
 import { addToCargoWorkspace } from '../../utils/add-to-workspace';
+import snake_case from '../../utils/snake_case';
 import init from '../init/generator';
 import { RustBinaryGeneratorSchema } from './schema';
 
@@ -23,9 +24,9 @@ function normalizeOptions(
   tree: Tree,
   options: RustBinaryGeneratorSchema
 ): NormalizedSchema {
-  const name = names(options.name).fileName;
+  const name = snake_case(options.name);
   const projectDirectory = options.directory
-    ? `${names(options.directory).fileName}/${name}`
+    ? `${snake_case(options.directory)}/${name}`
     : name;
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
   const projectRoot = `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
