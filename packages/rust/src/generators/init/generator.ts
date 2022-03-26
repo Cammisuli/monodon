@@ -2,7 +2,9 @@ import {
   formatFiles,
   generateFiles,
   getWorkspaceLayout,
+  readWorkspaceConfiguration,
   Tree,
+  updateWorkspaceConfiguration,
 } from '@nrwl/devkit';
 
 import * as path from 'path';
@@ -32,12 +34,19 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   generateFiles(tree, path.join(__dirname, 'files'), './', templateOptions);
 }
 
-export default async function (tree: Tree) {
+function includeProjectGraphPlugin(tree: Tree) {
+  const config = readWorkspaceConfiguration(tree);
+  (config.plugins ??= []).push('@monodon/rust');
+  updateWorkspaceConfiguration(tree, config);
+}
+
+export default async function init(tree: Tree) {
   if (tree.exists('./Cargo.toml')) {
     return;
   }
 
   const normalizedOptions = normalizeOptions(tree);
   addFiles(tree, normalizedOptions);
+  includeProjectGraphPlugin(tree);
   await formatFiles(tree);
 }

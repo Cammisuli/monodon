@@ -8,6 +8,9 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
+import { addToCargoWorkspace } from '../../utils/add-to-workspace';
+import snake_case from '../../utils/snake_case';
+import init from '../init/generator';
 import { RustLibraryGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends RustLibraryGeneratorSchema {
@@ -21,9 +24,9 @@ function normalizeOptions(
   tree: Tree,
   options: RustLibraryGeneratorSchema
 ): NormalizedSchema {
-  const name = names(options.name).fileName;
+  const name = snake_case(options.name);
   const projectDirectory = options.directory
-    ? `${names(options.directory).fileName}/${name}`
+    ? `${snake_case(options.directory)}/${name}`
     : name;
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
   const projectRoot = `${getWorkspaceLayout(tree).libsDir}/${projectDirectory}`;
@@ -58,12 +61,12 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
   );
 }
 
-export default async function (
+export default async function libraryGenerator(
   tree: Tree,
   options: RustLibraryGeneratorSchema
 ) {
+  await init(tree);
   const normalizedOptions = normalizeOptions(tree, options);
-  // todo:
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'library',
@@ -76,5 +79,6 @@ export default async function (
     tags: normalizedOptions.parsedTags,
   });
   addFiles(tree, normalizedOptions);
+  addToCargoWorkspace(tree, normalizedOptions.projectRoot);
   await formatFiles(tree);
 }

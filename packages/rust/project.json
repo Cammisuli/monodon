@@ -50,6 +50,13 @@
           }
         ]
       }
+    },
+    "link-plugin": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["npm link ./dist/packages/rust", "npm link @monodon/rust"],
+        "parallel": false
+      }
     }
   },
   "tags": []

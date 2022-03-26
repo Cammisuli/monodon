@@ -3,6 +3,7 @@
   "affected": {
     "defaultBase": "master"
   },
+  // "plugins": ["@monodon/rust"],
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -14,13 +15,9 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
-        "parallel": 1
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "parallel": 1,
+        "useDaemonProcess": false
       }
     }
   },
@@ -29,6 +26,12 @@
       {
         "target": "build",
         "projects": "dependencies"
+      }
+    ],
+    "link-plugin": [
+      {
+        "target": "build",
+        "projects": "self"
       }
     ]
   },

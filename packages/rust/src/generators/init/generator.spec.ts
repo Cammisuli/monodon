@@ -3,6 +3,7 @@ import TOML from '@ltd/j-toml';
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 
 import generator from './generator';
+import { readNxJson } from '@nrwl/devkit/src/generators/project-configuration';
 
 describe('init generator', () => {
   let appTree: Tree;
@@ -18,32 +19,36 @@ describe('init generator', () => {
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
       Object {
         "workspace": Object {
-          "members": Array [
-            "libs/*",
-            "apps/*",
-          ],
+          "members": Array [],
         },
       }
     `);
   });
 
-  it('should only have one member in the array if the appsDir and libsDir are the same', async () => {
-    updateJson(appTree, './nx.json', (json) => ({
-      ...json,
-      workspaceLayout: { appsDir: 'packages', libsDir: 'packages' },
-    }));
+  describe('project graph plugin inclusion', () => {
+    it('should include the project graph plugin', async () => {
+      await generator(appTree);
+      const nxJson = readNxJson(appTree);
+      expect(nxJson?.plugins).toMatchInlineSnapshot(`
+        Array [
+          "@monodon/rust",
+        ]
+      `);
+    });
 
-    await generator(appTree);
-    const cargoToml = appTree.read('./Cargo.toml')?.toString() ?? '';
-
-    expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
-      Object {
-        "workspace": Object {
-          "members": Array [
-            "packages/*",
-          ],
-        },
-      }
-    `);
+    it('should not remove previous plugins', async () => {
+      updateJson(appTree, 'nx.json', (json) => {
+        json.plugins = ['@nrwl/graph/plugin'];
+        return json;
+      });
+      await generator(appTree);
+      const nxJson = readNxJson(appTree);
+      expect(nxJson?.plugins).toMatchInlineSnapshot(`
+        Array [
+          "@nrwl/graph/plugin",
+          "@monodon/rust",
+        ]
+      `);
+    });
   });
 });
