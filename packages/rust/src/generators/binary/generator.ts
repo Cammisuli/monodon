@@ -28,7 +28,7 @@ function normalizeOptions(
   const projectDirectory = options.directory
     ? `${snake_case(options.directory)}/${name}`
     : name;
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
+  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '_');
   const projectRoot = `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())

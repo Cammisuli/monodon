@@ -6,19 +6,21 @@
     "binary": {
       "factory": "./src/generators/binary/generator",
       "schema": "./src/generators/binary/schema.json",
-      "description": "Generate a Cargo bin",
+      "description": "Generate a Rust bin with Cargo",
+      "x-type": "application",
       "aliases": ["bin"]
     },
     "init": {
       "factory": "./src/generators/init/generator",
       "schema": "./src/generators/init/schema.json",
-      "description": "initializes a cargo workspace within a Nx workspace",
+      "description": "initializes a Cargo workspace within a Nx workspace",
       "hidden": true
     },
     "library": {
       "factory": "./src/generators/library/generator",
       "schema": "./src/generators/library/schema.json",
-      "description": "Generate a Cargo library",
+      "description": "Generate a Rust library with Cargo",
+      "x-type": "library",
       "aliases": ["lib"]
     }
   }

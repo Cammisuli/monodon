@@ -64,4 +64,20 @@ describe('rust generator', () => {
       }
     `);
   });
+
+  it('should generate into a directory', async () => {
+    await generator(appTree, { ...options, directory: 'test-dir' });
+    const cargoToml =
+      appTree.read('./libs/test_dir/test_name/Cargo.toml')?.toString() ?? '';
+    expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
+      Object {
+        "dependencies": Object {},
+        "package": Object {
+          "edition": "2021",
+          "name": "test_dir_test_name",
+          "version": "0.1.0",
+        },
+      }
+    `);
+  });
 });
