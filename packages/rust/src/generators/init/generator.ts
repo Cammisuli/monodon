@@ -36,7 +36,7 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
 
 function includeProjectGraphPlugin(tree: Tree) {
   const config = readWorkspaceConfiguration(tree);
-  (config.plugins ??= []).push('@monodon/rust/graph');
+  (config.plugins ??= []).push('@monodon/rust');
   updateWorkspaceConfiguration(tree, config);
 }
 

@@ -31,7 +31,7 @@ describe('init generator', () => {
       const nxJson = readNxJson(appTree);
       expect(nxJson?.plugins).toMatchInlineSnapshot(`
         Array [
-          "@monodon/rust/graph",
+          "@monodon/rust",
         ]
       `);
     });
@@ -46,7 +46,7 @@ describe('init generator', () => {
       expect(nxJson?.plugins).toMatchInlineSnapshot(`
         Array [
           "@nrwl/graph/plugin",
-          "@monodon/rust/graph",
+          "@monodon/rust",
         ]
       `);
     });
