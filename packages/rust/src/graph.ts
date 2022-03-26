@@ -1,11 +1,12 @@
 import {
-  ProjectGraph,
-  ProjectGraphProcessorContext,
-  ProjectGraphBuilder,
   NxPlugin,
+  ProjectGraph,
+  ProjectGraphBuilder,
+  ProjectGraphProcessorContext,
   ProjectTargetConfigurator,
   TargetConfiguration,
 } from '@nrwl/devkit';
+import { appRootPath } from '@nrwl/tao/src/utils/app-root';
 import { CargoMetadata, Package } from './models/cargo-metadata';
 import { runCargoSync } from './utils/cargo';
 
@@ -19,11 +20,7 @@ export const processProjectGraph: ProjectGraphProcessor = (
     return graph;
   }
 
-  const {
-    packages: cargoPackages,
-    workspace_members: cargoMembers,
-    resolve: { nodes: cargoDeps },
-  } = JSON.parse(metadata) as CargoMetadata;
+  const { packages: cargoPackages } = JSON.parse(metadata) as CargoMetadata;
 
   const builder = new ProjectGraphBuilder(graph);
 
@@ -39,8 +36,7 @@ export const processProjectGraph: ProjectGraphProcessor = (
       for (const deps of pkg.dependencies) {
         // if the dependency is listed in nx projects, it's not an external dependency
         if (graph.nodes[deps.name]) {
-          // TODO(cammisuli): figure out the file link. Look into the targets
-          builder.addExplicitDependency(pkg.name, pkg.manifest_path, deps.name);
+          addExplicitDependency(pkg, builder, deps.name);
         } else {
           const externalDepName = `cargo:${deps.name}`;
           builder.addExternalNode({
@@ -51,11 +47,7 @@ export const processProjectGraph: ProjectGraphProcessor = (
               version: cargoPackageMap.get(deps.name)?.version ?? '0.0.0',
             },
           });
-          builder.addExplicitDependency(
-            pkg.name,
-            pkg.manifest_path,
-            externalDepName
-          );
+          addExplicitDependency(pkg, builder, externalDepName);
         }
       }
     }
@@ -64,8 +56,25 @@ export const processProjectGraph: ProjectGraphProcessor = (
   return builder.getUpdatedProjectGraph();
 };
 
+// TODO(cammisuli): provide defaults for non-workspace.json workspaces
 export const registerProjectTargets: ProjectTargetConfigurator = (
   file: string
 ): Record<string, TargetConfiguration> => {
   return {};
 };
+
+function addExplicitDependency(
+  pkg: Package,
+  builder: ProjectGraphBuilder,
+  depName: string
+) {
+  const target =
+    // pkg.targets.find((target) => target.name === pkg.name)?.src_path ??
+    pkg.manifest_path;
+
+  builder.addExplicitDependency(
+    pkg.name,
+    target.replace(`${appRootPath}/`, ''),
+    depName
+  );
+}

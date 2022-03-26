@@ -167,7 +167,11 @@
           "files": [
             {
               "file": "packages/test-rust-lib/Cargo.toml",
-              "hash": "e991e5922848d0badf4d459ff948535fd39966dc"
+              "hash": "e991e5922848d0badf4d459ff948535fd39966dc",
+              "deps": [
+                "cargo:itertools",
+                "temp-rust-lib-two"
+              ]
             },
             {
               "file": "packages/test-rust-lib/project.json",
@@ -471,7 +475,7 @@
             },
             {
               "file": "packages/rust/src/graph.ts",
-              "hash": "a795fb2b53822a7b2c947a63381ba1f3743939d6",
+              "hash": "3cd306c22e9763366c604cc6626344bf88bab096",
               "deps": [
                 "npm:@nrwl/devkit"
               ]
@@ -565,7 +569,13 @@
     "dependencies": {
       "typescript-nx-imports-plugin": [],
       "temp-rust-lib-two": [],
-      "test-rust-lib": [],
+      "test-rust-lib": [
+        {
+          "source": "test-rust-lib",
+          "target": "temp-rust-lib-two",
+          "type": "static"
+        }
+      ],
       "test-lib": [],
       "rust": [],
       "rust-e2e": [
