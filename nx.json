@@ -3,7 +3,7 @@
   "affected": {
     "defaultBase": "master"
   },
-  "plugins": ["@monodon/rust"],
+  // "plugins": ["@monodon/rust"],
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",

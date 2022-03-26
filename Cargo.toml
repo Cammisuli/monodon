@@ -1,7 +1,2 @@
-
 [workspace]
-
-members = [
-	'packages/test-rust-lib',
-	'packages/temp-rust-lib-two',
-]
+members = []
