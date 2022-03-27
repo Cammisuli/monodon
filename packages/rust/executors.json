@@ -4,17 +4,22 @@
     "build": {
       "implementation": "./src/executors/build/executor",
       "schema": "./src/executors/build/schema.json",
-      "description": "build executor"
+      "description": "Build a Rust project with Cargo"
     },
     "lint": {
       "implementation": "./src/executors/lint/executor",
       "schema": "./src/executors/lint/schema.json",
-      "description": "Lint a Rust project with clippy"
+      "description": "Lint a Rust project with Cargo clippy"
     },
     "run": {
       "implementation": "./src/executors/run/executor",
       "schema": "./src/executors/run/schema.json",
       "description": "Run a Rust project with Cargo"
+    },
+    "test": {
+      "implementation": "./src/executors/test/executor",
+      "schema": "./src/executors/test/schema.json",
+      "description": "Test a Rust project with Cargo"
     }
   }
 }
