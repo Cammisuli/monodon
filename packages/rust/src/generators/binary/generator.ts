@@ -2,51 +2,23 @@ import {
   addProjectConfiguration,
   formatFiles,
   generateFiles,
-  getWorkspaceLayout,
   names,
   offsetFromRoot,
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
 import { addToCargoWorkspace } from '../../utils/add-to-workspace';
-import snake_case from '../../utils/snake_case';
+import {
+  NormalizedSchema,
+  normalizeOptions,
+} from '../../utils/normalize-options';
 import init from '../init/generator';
 import { RustBinaryGeneratorSchema } from './schema';
 
-interface NormalizedSchema extends RustBinaryGeneratorSchema {
-  projectName: string;
-  projectRoot: string;
-  projectDirectory: string;
-  parsedTags: string[];
-}
-
-function normalizeOptions(
+function addFiles(
   tree: Tree,
-  options: RustBinaryGeneratorSchema
-): NormalizedSchema {
-  const name = snake_case(options.name);
-  const projectDirectory = options.directory
-    ? `${snake_case(options.directory)}/${name}`
-    : name;
-  const projectName = projectDirectory.replace(new RegExp('/', 'g'), '_');
-  const projectRoot = `${getWorkspaceLayout(tree).appsDir}/${projectDirectory}`;
-  const parsedTags = options.tags
-    ? options.tags.split(',').map((s) => s.trim())
-    : [];
-
-  // rust specifics
-  options.edition ??= '2021';
-
-  return {
-    ...options,
-    projectName,
-    projectRoot,
-    projectDirectory,
-    parsedTags,
-  };
-}
-
-function addFiles(tree: Tree, options: NormalizedSchema) {
+  options: NormalizedSchema & RustBinaryGeneratorSchema
+) {
   const templateOptions = {
     ...options,
     ...names(options.name),
@@ -66,7 +38,7 @@ export default async function binaryGenerator(
   options: RustBinaryGeneratorSchema
 ) {
   await init(tree);
-  const normalizedOptions = normalizeOptions(tree, options);
+  const normalizedOptions = normalizeOptions(tree, 'app', options);
   // TODO(cammisuli): change this to use the cargo builder.
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
