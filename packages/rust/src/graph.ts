@@ -15,12 +15,12 @@ export const processProjectGraph: ProjectGraphProcessor = (
   graph: ProjectGraph,
   ctx: ProjectGraphProcessorContext
 ): ProjectGraph => {
-  const metadata = runCargoSync('metadata --format-version=1');
-  if (!metadata) {
+  const { success, output } = runCargoSync('metadata --format-version=1');
+  if (!success) {
     return graph;
   }
 
-  const { packages: cargoPackages } = JSON.parse(metadata) as CargoMetadata;
+  const { packages: cargoPackages } = JSON.parse(output) as CargoMetadata;
 
   const builder = new ProjectGraphBuilder(graph);
 

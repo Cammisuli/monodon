@@ -1,9 +1,20 @@
 import { execSync } from 'child_process';
 
-export function runCargoSync(args = '') {
+interface CargoRun {
+  success: boolean;
+  output: string;
+}
+
+export function runCargoSync(args = ''): CargoRun {
   try {
-    return execSync(`cargo ${args}`, { encoding: 'utf8' });
+    return {
+      output: execSync(`cargo ${args}`, { encoding: 'utf8' }),
+      success: true,
+    };
   } catch (e) {
-    return;
+    return {
+      output: e,
+      success: false,
+    };
   }
 }
