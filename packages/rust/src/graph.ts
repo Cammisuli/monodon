@@ -15,7 +15,10 @@ export const processProjectGraph: ProjectGraphProcessor = (
   graph: ProjectGraph,
   ctx: ProjectGraphProcessorContext
 ): ProjectGraph => {
-  const { success, output } = runCargoSync('metadata --format-version=1');
+  const { success, output } = runCargoSync(
+    'metadata --format-version=1',
+    'pipe'
+  );
   if (!success) {
     return graph;
   }

@@ -1,11 +1,14 @@
 import { RunExecutorSchema } from './schema';
+import { runCargoSync } from '../../utils/cargo';
+import { ExecutorContext } from '@nrwl/devkit';
 
 export default async function runExecutor(
   options: RunExecutorSchema,
+  context: ExecutorContext
 ) {
-  console.log('Executor ran for Run', options)
-  return {
-    success: true
-  }
-}
+  const { success } = runCargoSync(`run -p ${context.projectName}`);
 
+  return {
+    success,
+  };
+}
