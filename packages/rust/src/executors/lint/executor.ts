@@ -6,8 +6,8 @@ export default async function runExecutor(
   options: LintExecutorSchema,
   context: ExecutorContext
 ) {
-  const {} = runCargoSync(`clippy -p ${context.projectName}`);
+  const { success } = runCargoSync(`clippy -p ${context.projectName}`);
   return {
-    success: true,
+    success,
   };
 }

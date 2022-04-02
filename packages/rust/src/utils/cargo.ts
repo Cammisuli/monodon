@@ -19,7 +19,7 @@ export function runCargoSync(
     };
   } catch (e) {
     return {
-      output: e,
+      output: e as string,
       success: false,
     };
   }
