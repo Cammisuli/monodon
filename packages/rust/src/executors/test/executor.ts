@@ -1,15 +1,16 @@
 import { ExecutorContext } from '@nrwl/devkit';
-import { runCargoSync } from '../../utils/cargo';
+import { buildCommand } from '../../utils/buildCommand';
+import { runCargo } from '../../utils/cargo';
 import { TestExecutorSchema } from './schema';
 
-export default async function runExecutor(
+export default async function* runExecutor(
   options: TestExecutorSchema,
   context: ExecutorContext
 ) {
-  const { success, output } = runCargoSync(`test -p ${context.projectName}`);
+  const command = buildCommand('test', options, context);
 
-  return {
-    output,
+  const { success } = await runCargo(...command);
+  yield {
     success,
   };
 }

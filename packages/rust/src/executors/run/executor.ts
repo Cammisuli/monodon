@@ -1,14 +1,18 @@
-import { RunExecutorSchema } from './schema';
-import { runCargoSync } from '../../utils/cargo';
 import { ExecutorContext } from '@nrwl/devkit';
+import { buildCommand } from '../../utils/buildCommand';
+import { runCargo } from '../../utils/cargo';
+import { RunExecutorSchema } from './schema';
 
-export default async function runExecutor(
+export default async function* runExecutor(
   options: RunExecutorSchema,
   context: ExecutorContext
 ) {
-  const { success } = runCargoSync(`run -p ${context.projectName}`);
+  // TODO(@jcammisuli): support watch command
 
-  return {
+  const command = buildCommand('run', options, context);
+
+  const { success } = await runCargo(...command);
+  yield {
     success,
   };
 }
