@@ -39,7 +39,7 @@
     },
     "all-features": {
       "type": "boolean",
-      "default": "false",
+      "default": false,
       "description": "Build all binary targets"
     },
     "bin": {

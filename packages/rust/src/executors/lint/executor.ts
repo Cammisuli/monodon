@@ -1,5 +1,5 @@
 import { ExecutorContext } from '@nrwl/devkit';
-import { buildCommand } from '../../utils/buildCommand';
+import { buildCommand } from '../../utils/build-command';
 import { runCargo } from '../../utils/cargo';
 import { LintExecutorSchema } from './schema';
 

@@ -28,6 +28,7 @@ describe('normalize options', () => {
         "projectName": "test_directory_sub_sub_two_test_name",
         "projectRoot": "apps/test_directory/sub/sub_two/test_name",
         "tags": "test-tag, test-tag-two",
+        "targetDir": "dist/target/test_directory_sub_sub_two_test_name",
       }
     `);
   });
@@ -50,6 +51,7 @@ describe('normalize options', () => {
         "projectName": "test_directory_sub_sub_two_test_name",
         "projectRoot": "libs/test_directory/sub/sub_two/test_name",
         "tags": "test-tag, test-tag-two",
+        "targetDir": "dist/target/test_directory_sub_sub_two_test_name",
       }
     `);
   });

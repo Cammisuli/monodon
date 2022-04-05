@@ -6,6 +6,7 @@ export interface NormalizedSchema {
   projectRoot: string;
   projectDirectory: string;
   parsedTags: string[];
+  targetDir: string;
 }
 
 export function normalizeOptions<
@@ -35,6 +36,7 @@ export function normalizeOptions<
 
   // rust specifics
   options.edition ??= '2021';
+  const targetDir = `dist/target/${projectName}`;
 
   return {
     ...options,
@@ -42,5 +44,6 @@ export function normalizeOptions<
     projectRoot,
     projectDirectory,
     parsedTags,
+    targetDir,
   };
 }
