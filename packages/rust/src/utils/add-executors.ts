@@ -64,10 +64,5 @@ export function addLintExecutor(
     options: {
       ...additionalOptions,
     },
-    configurations: {
-      release: {
-        release: true,
-      },
-    },
   };
 }

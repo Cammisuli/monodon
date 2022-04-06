@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import {
   ChildProcess,
   execSync,
@@ -21,6 +22,7 @@ let childProcess: ChildProcess | null;
 export async function runCargo(
   ...args: string[]
 ): Promise<{ success: boolean }> {
+  console.log(chalk.dim(`> cargo ${args.join(' ')}`));
   return new Promise((resolve, reject) => {
     childProcess = spawn('cargo', [...args, '--color', 'always'], {
       cwd: process.cwd(),
