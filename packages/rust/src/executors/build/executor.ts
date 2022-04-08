@@ -1,6 +1,6 @@
 import { ExecutorContext } from '@nrwl/devkit';
 import { buildCommand } from '../../utils/build-command';
-import { runCargo } from '../../utils/cargo';
+import { cargoCommand } from '../../utils/cargo';
 import { BuildExecutorSchema } from './schema';
 
 export default async function* runExecutor(
@@ -9,7 +9,7 @@ export default async function* runExecutor(
 ): AsyncGenerator<{ success: boolean }> {
   const command = buildCommand('build', options, context);
 
-  const { success } = await runCargo(...command);
+  const { success } = await cargoCommand(...command);
   yield {
     success,
   };

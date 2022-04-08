@@ -19,7 +19,7 @@ interface RunCargoOptions {
 
 let childProcess: ChildProcess | null;
 
-export async function runCargo(
+export async function cargoCommand(
   ...args: string[]
 ): Promise<{ success: boolean }> {
   console.log(chalk.dim(`> cargo ${args.join(' ')}`));
@@ -55,7 +55,36 @@ export async function runCargo(
   });
 }
 
-export function runCargoSync(
+export function cargoRunCommand(
+  ...args: string[]
+): Promise<{ success: boolean }> {
+  console.log(chalk.dim(`> cargo ${args.join(' ')}`));
+  return new Promise((resolve, reject) => {
+    childProcess = spawn('cargo', [...args, '--color', 'always'], {
+      cwd: process.cwd(),
+      stdio: ['inherit', 'inherit', 'inherit'],
+    });
+
+    // Ensure the child process is killed when the parent exits
+    process.on('exit', () => childProcess?.kill());
+    process.on('SIGTERM', () => childProcess?.kill());
+
+    childProcess.on('error', (err) => {
+      reject({ success: false });
+    });
+
+    childProcess.on('exit', (code) => {
+      childProcess = null;
+      if (code === 0) {
+        resolve({ success: true });
+      } else {
+        reject({ success: false });
+      }
+    });
+  });
+}
+
+export function cargoCommandSync(
   args = '',
   options?: Partial<RunCargoOptions>
 ): CargoRun {
