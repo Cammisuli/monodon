@@ -3,7 +3,6 @@
   "affected": {
     "defaultBase": "master"
   },
-  // "plugins": ["@monodon/rust"],
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -15,7 +14,12 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
         "accessToken": "ZTY5ODM4MGMtNTcxNi00OGFiLWIwY2EtYTQxYzNmZTZjYWM2fHJlYWQtd3JpdGU="
       }
     }
