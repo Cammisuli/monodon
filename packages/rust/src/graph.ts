@@ -8,19 +8,21 @@ import {
 } from '@nrwl/devkit';
 import { appRootPath } from '@nrwl/tao/src/utils/app-root';
 import { CargoMetadata, Package } from './models/cargo-metadata';
-import { runCargoSync } from './utils/cargo';
+import { cargoCommandSync } from './utils/cargo';
 
 type ProjectGraphProcessor = NonNullable<NxPlugin['processProjectGraph']>;
 export const processProjectGraph: ProjectGraphProcessor = (
   graph: ProjectGraph,
   ctx: ProjectGraphProcessorContext
 ): ProjectGraph => {
-  const metadata = runCargoSync('metadata --format-version=1');
-  if (!metadata) {
+  const { success, output } = cargoCommandSync('metadata --format-version=1', {
+    stdio: 'pipe',
+  });
+  if (!success) {
     return graph;
   }
 
-  const { packages: cargoPackages } = JSON.parse(metadata) as CargoMetadata;
+  const { packages: cargoPackages } = JSON.parse(output) as CargoMetadata;
 
   const builder = new ProjectGraphBuilder(graph);
 

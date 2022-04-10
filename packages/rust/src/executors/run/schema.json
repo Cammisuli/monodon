@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "Run executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "release": {
+      "type": "boolean",
+      "default": false
+    },
+    "target": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "string"
+    },
+    "target-dir": {
+      "type": "string"
+    },
+    "toolchain": {
+      "type": "string",
+      "enum": ["stable", "beta", "nightly"],
+      "default": "stable"
+    },
+    "features": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Features of workspace members may be enabled with package-name/feature-name syntax. Array of names is supported"
+    },
+    "all-features": {
+      "type": "boolean",
+      "default": false,
+      "description": "Build all binary targets"
+    },
+    "bin": {
+      "type": "string",
+      "description": "Run the specified binary"
+    },
+    "example": {
+      "type": "string",
+      "description": "Run the specified example"
+    }
+  },
+  "required": []
+}

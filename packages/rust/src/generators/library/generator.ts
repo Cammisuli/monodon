@@ -7,6 +7,12 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
+import {
+  addBuildExecutor,
+  addLintExecutor,
+  addRunExecutor,
+  addTestExecutor,
+} from '../../utils/add-executors';
 import { addToCargoWorkspace } from '../../utils/add-to-workspace';
 import {
   NormalizedSchema,
@@ -45,9 +51,9 @@ export default async function libraryGenerator(
     projectType: 'library',
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
-      build: {
-        executor: '@monodon/rust:build',
-      },
+      build: addBuildExecutor({ 'target-dir': normalizedOptions.targetDir }),
+      test: addTestExecutor({ 'target-dir': normalizedOptions.targetDir }),
+      lint: addLintExecutor({ 'target-dir': normalizedOptions.targetDir }),
     },
     tags: normalizedOptions.parsedTags,
   });

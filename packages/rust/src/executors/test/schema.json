@@ -1,10 +1,18 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "title": "Build executor",
+  "title": "Test executor",
   "description": "",
   "type": "object",
   "properties": {
+    "no-run": {
+      "type": "boolean",
+      "default": false
+    },
+    "no-fail-fast": {
+      "type": "boolean",
+      "default": false
+    },
     "release": {
       "type": "boolean",
       "default": false

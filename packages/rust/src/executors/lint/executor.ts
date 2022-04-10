@@ -1,13 +1,13 @@
 import { ExecutorContext } from '@nrwl/devkit';
 import { buildCommand } from '../../utils/build-command';
 import { cargoCommand } from '../../utils/cargo';
-import { BuildExecutorSchema } from './schema';
+import { LintExecutorSchema } from './schema';
 
 export default async function* runExecutor(
-  options: BuildExecutorSchema,
+  options: LintExecutorSchema,
   context: ExecutorContext
-): AsyncGenerator<{ success: boolean }> {
-  const command = buildCommand('build', options, context);
+) {
+  const command = buildCommand('clippy', options, context);
 
   const { success } = await cargoCommand(...command);
   yield {

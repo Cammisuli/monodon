@@ -7,6 +7,12 @@ import {
   Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
+import {
+  addBuildExecutor,
+  addTestExecutor,
+  addLintExecutor,
+  addRunExecutor,
+} from '../../utils/add-executors';
 import { addToCargoWorkspace } from '../../utils/add-to-workspace';
 import {
   NormalizedSchema,
@@ -39,15 +45,15 @@ export default async function binaryGenerator(
 ) {
   await init(tree);
   const normalizedOptions = normalizeOptions(tree, 'app', options);
-  // TODO(cammisuli): change this to use the cargo builder.
   addProjectConfiguration(tree, normalizedOptions.projectName, {
     root: normalizedOptions.projectRoot,
     projectType: 'application',
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
-      build: {
-        executor: '@monodon/rust:build',
-      },
+      build: addBuildExecutor({ 'target-dir': normalizedOptions.targetDir }),
+      test: addTestExecutor({ 'target-dir': normalizedOptions.targetDir }),
+      lint: addLintExecutor({ 'target-dir': normalizedOptions.targetDir }),
+      run: addRunExecutor({ 'target-dir': normalizedOptions.targetDir }),
     },
     tags: normalizedOptions.parsedTags,
   });
