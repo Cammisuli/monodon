@@ -9,5 +9,3 @@ const nxPlugin: NxPlugin = {
 };
 
 export = nxPlugin;
-
-// this is a comment
