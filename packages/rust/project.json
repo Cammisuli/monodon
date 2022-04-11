@@ -25,6 +25,7 @@
         "outputPath": "dist/packages/rust",
         "tsConfig": "packages/rust/tsconfig.lib.json",
         "packageJson": "packages/rust/package.json",
+        "buildableProjectDepsInPackageJsonType": "dependencies",
         "main": "packages/rust/src/index.ts",
         "assets": [
           "packages/rust/*.md",
