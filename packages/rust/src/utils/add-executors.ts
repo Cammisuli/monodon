@@ -14,7 +14,7 @@ export function addBuildExecutor(
       ...additionalOptions,
     },
     configurations: {
-      release: {
+      production: {
         release: true,
       },
     },
@@ -31,7 +31,7 @@ export function addTestExecutor(
       ...additionalOptions,
     },
     configurations: {
-      release: {
+      production: {
         release: true,
       },
     },
@@ -48,7 +48,7 @@ export function addRunExecutor(
       ...additionalOptions,
     },
     configurations: {
-      release: {
+      production: {
         release: true,
       },
     },
