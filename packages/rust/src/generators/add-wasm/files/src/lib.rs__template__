@@ -1,0 +1,33 @@
+mod utils;
+
+use wasm_bindgen::prelude::*;
+<% if (useWebSys) { %>
+use web_sys::window;
+<% } %>
+
+// When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
+// allocator.
+#[cfg(feature = "wee_alloc")]
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
+<% if (!useWebSys) { %>
+#[wasm_bindgen]
+extern {
+    fn alert(s: &str);
+}
+
+#[wasm_bindgen]
+pub fn greet() {
+    alert("Hello, <%= projectName %>!");
+}
+<% } %>
+
+<% if (useWebSys) { %>
+#[wasm_bindgen]
+pub fn greet() -> Result<(), JsValue> {
+    window()
+        .ok_or("no window")?
+        .alert_with_message("Hello, world!")
+}
+<% } %>

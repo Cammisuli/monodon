@@ -1,5 +1,5 @@
 export interface AddWasmGeneratorSchema {
-    name: string;
-    tags?: string;
-    directory?: string;
+  project: string;
+  useWebSys: boolean;
+  generateDefaultLib: boolean;
 }

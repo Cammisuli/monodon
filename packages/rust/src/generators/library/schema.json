@@ -29,6 +29,11 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "wasm": {
+      "type": "boolean",
+      "description": "Adds wasm support to the generated library",
+      "default": false
     }
   },
   "required": ["name"]

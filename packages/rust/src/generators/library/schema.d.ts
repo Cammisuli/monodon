@@ -3,4 +3,5 @@ export interface RustLibraryGeneratorSchema {
   edition?: '2015' | '2018' | '2021';
   tags?: string;
   directory?: string;
+  wasm?: boolean;
 }
