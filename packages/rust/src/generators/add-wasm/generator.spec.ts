@@ -27,13 +27,11 @@ describe('add-wasm generator', () => {
 
       use wasm_bindgen::prelude::*;
 
-
       // When the \`wee_alloc\` feature is enabled, use \`wee_alloc\` as the global
       // allocator.
       #[cfg(feature = \\"wee_alloc\\")]
       #[global_allocator]
       static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
-
 
       #[wasm_bindgen]
       extern {
@@ -44,9 +42,6 @@ describe('add-wasm generator', () => {
       pub fn greet() {
           alert(\\"Hello, !\\");
       }
-
-
-
       "
     `);
 
@@ -91,9 +86,7 @@ describe('add-wasm generator', () => {
       "mod utils;
 
       use wasm_bindgen::prelude::*;
-
       use web_sys::window;
-
 
       // When the \`wee_alloc\` feature is enabled, use \`wee_alloc\` as the global
       // allocator.
@@ -101,16 +94,12 @@ describe('add-wasm generator', () => {
       #[global_allocator]
       static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
-
-
-
       #[wasm_bindgen]
       pub fn greet() -> Result<(), JsValue> {
           window()
               .ok_or(\\"no window\\")?
               .alert_with_message(\\"Hello, world!\\")
       }
-
       "
     `);
 
