@@ -20,6 +20,11 @@
       "implementation": "./src/executors/test/executor",
       "schema": "./src/executors/test/schema.json",
       "description": "Test a Rust project with Cargo"
+    },
+    "wasm-pack": {
+      "implementation": "./src/executors/wasm/executor",
+      "schema": "./src/executors/wasm/schema.json",
+      "description": "Builds a Cargo project using wasm-pack"
     }
   }
 }

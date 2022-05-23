@@ -1,11 +1,6 @@
 import chalk from 'chalk';
-import {
-  ChildProcess,
-  execSync,
-  ProcessEnvOptions,
-  spawn,
-  StdioOptions,
-} from 'child_process';
+import { ChildProcess, execSync, spawn, StdioOptions } from 'child_process';
+import { runProcess } from './run-process';
 
 interface CargoRun {
   success: boolean;
@@ -17,42 +12,13 @@ interface RunCargoOptions {
   env: NodeJS.ProcessEnv | undefined;
 }
 
-let childProcess: ChildProcess | null;
+export let childProcess: ChildProcess | null;
 
 export async function cargoCommand(
   ...args: string[]
 ): Promise<{ success: boolean }> {
   console.log(chalk.dim(`> cargo ${args.join(' ')}`));
-  return new Promise((resolve, reject) => {
-    childProcess = spawn('cargo', [...args, '--color', 'always'], {
-      cwd: process.cwd(),
-      env: {
-        ...process.env,
-        RUSTC_WRAPPER: '',
-      },
-      stdio: ['pipe'],
-    });
-
-    // cargo outputs to stderr instead of stdout. Redirect to stdout.
-    childProcess.stderr?.pipe(process.stdout);
-
-    // Ensure the child process is killed when the parent exits
-    process.on('exit', () => childProcess?.kill());
-    process.on('SIGTERM', () => childProcess?.kill());
-
-    childProcess.on('error', (err) => {
-      reject({ success: false });
-    });
-
-    childProcess.on('exit', (code) => {
-      childProcess = null;
-      if (code === 0) {
-        resolve({ success: true });
-      } else {
-        reject({ success: false });
-      }
-    });
-  });
+  return runProcess('cargo', ...args);
 }
 
 export function cargoRunCommand(

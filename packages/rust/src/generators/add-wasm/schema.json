@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "AddWasm",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project",
+      "$default": { "$source": "projectName", "index": 0 }
+    },
+    "useWebSys": {
+      "type": "boolean",
+      "default": true,
+      "description": "Use the web sys package"
+    },
+    "generateDefaultLib": {
+      "type": "boolean",
+      "default": false,
+      "description": "Generates a default lib that contains wasm code. This will over write the existing lib.rs file."
+    }
+  },
+  "required": ["project"]
+}
