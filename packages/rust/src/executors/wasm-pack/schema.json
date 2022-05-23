@@ -4,6 +4,20 @@
   "title": "Wasm Pack executor",
   "description": "",
   "type": "object",
-  "properties": {},
+  "properties": {
+    "release": {
+      "type": "boolean",
+      "default": false
+    },
+    "target": {
+      "type": "string",
+      "enum": ["bundler", "nodejs", "web", "no-module"],
+      "default": "bundler"
+    },
+    "output": {
+      "type": "string",
+      "default": "pkg"
+    }
+  },
   "required": []
 }

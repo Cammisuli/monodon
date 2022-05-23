@@ -1,1 +1,5 @@
-export interface WasmExecutorSchema {} // eslint-disable-line
+export interface WasmExecutorSchema {
+  output: string;
+  target: string;
+  release: boolean;
+}
