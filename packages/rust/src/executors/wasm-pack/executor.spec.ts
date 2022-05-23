@@ -1,7 +1,7 @@
-import { WasmExecutorSchema } from './schema';
+import { WasmPackExecutorSchema } from './schema';
 import executor from './executor';
 
-const options: WasmExecutorSchema = {};
+const options: WasmPackExecutorSchema = {};
 
 describe('Wasm Executor', () => {
   it('can run', async () => {

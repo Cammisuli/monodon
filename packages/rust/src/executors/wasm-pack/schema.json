@@ -14,7 +14,7 @@
       "enum": ["bundler", "nodejs", "web", "no-module"],
       "default": "bundler"
     },
-    "output": {
+    "target-dir": {
       "type": "string",
       "default": "pkg"
     }

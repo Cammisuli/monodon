@@ -5,11 +5,13 @@ import {
   offsetFromRoot,
   readProjectConfiguration,
   Tree,
+  updateProjectConfiguration,
 } from '@nrwl/devkit';
 import * as path from 'path';
 import { parseCargoToml, stringifyCargoToml } from '../../utils/toml';
 import { AddWasmGeneratorSchema } from './schema';
 import TOML from '@ltd/j-toml';
+import { addWasmPackExecutor } from '../../utils/add-executors';
 
 interface NormalizedSchema extends AddWasmGeneratorSchema {
   projectName: string;
@@ -105,6 +107,17 @@ function updateCargo(tree: Tree, options: NormalizedSchema) {
   );
 }
 
+function updateBuildTarget(tree: Tree, options: NormalizedSchema) {
+  const configuration = readProjectConfiguration(tree, options.projectName);
+  configuration.targets ??= {};
+  configuration.targets.build = addWasmPackExecutor({
+    'target-dir': `dist/target/wasm/${options.projectName}`,
+    release: false,
+    target: 'bundler',
+  });
+  updateProjectConfiguration(tree, options.projectName, configuration);
+}
+
 export default async function wasmGenerator(
   tree: Tree,
   options: AddWasmGeneratorSchema
@@ -112,5 +125,6 @@ export default async function wasmGenerator(
   const normalizedOptions = normalizeOptions(tree, options);
   addFiles(tree, normalizedOptions);
   updateCargo(tree, normalizedOptions);
+  updateBuildTarget(tree, normalizedOptions);
   await formatFiles(tree);
 }
