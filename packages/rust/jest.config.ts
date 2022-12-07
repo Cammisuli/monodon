@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'typescript-nx-imports-plugin',
+/* eslint-disable */
+export default {
+  displayName: 'rust',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +12,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/packages/typescript-nx-imports-plugin',
+  coverageDirectory: '../../coverage/packages/rust',
 };

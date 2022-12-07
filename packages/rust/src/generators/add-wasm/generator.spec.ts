@@ -1,5 +1,5 @@
 import { Tree } from '@nrwl/devkit';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+import { createTreeWithEmptyV1Workspace } from '@nrwl/devkit/testing';
 import libraryGenerator from '../library/generator';
 import generator from './generator';
 import { AddWasmGeneratorSchema } from './schema';
@@ -13,7 +13,7 @@ describe('add-wasm generator', () => {
   };
 
   beforeEach(async () => {
-    appTree = createTreeWithEmptyWorkspace();
+    appTree = createTreeWithEmptyV1Workspace();
     await libraryGenerator(appTree, {
       name: 'test_lib',
     });

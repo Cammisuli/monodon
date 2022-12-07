@@ -1,5 +1,6 @@
 {
-  "root": "packages/rust",
+  "name": "rust",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/rust/src",
   "projectType": "library",
   "targets": {
@@ -12,9 +13,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/rust"],
+      "outputs": ["{workspaceRoot}/coverage/packages/rust"],
       "options": {
-        "jestConfig": "packages/rust/jest.config.js",
+        "jestConfig": "packages/rust/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -53,7 +54,7 @@
       }
     },
     "link-plugin": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": ["npm link ./dist/packages/rust", "npm link @monodon/rust"],
         "parallel": false
