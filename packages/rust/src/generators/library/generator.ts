@@ -18,6 +18,7 @@ import {
   NormalizedSchema,
   normalizeOptions,
 } from '../../utils/normalize-options';
+import wasmGenerator from '../add-wasm/generator';
 import init from '../init/generator';
 
 import { RustLibraryGeneratorSchema } from './schema';
@@ -59,5 +60,14 @@ export default async function libraryGenerator(
   });
   addFiles(tree, normalizedOptions);
   addToCargoWorkspace(tree, normalizedOptions.projectRoot);
+
+  if (options.wasm) {
+    await wasmGenerator(tree, {
+      generateDefaultLib: true,
+      useWebSys: true,
+      project: normalizedOptions.projectName,
+    });
+  }
+
   await formatFiles(tree);
 }

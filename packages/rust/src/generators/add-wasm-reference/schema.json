@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/schema",
   "cli": "nx",
-  "$id": "Library",
+  "$id": "AddWasmReference",
   "title": "",
   "type": "object",
   "properties": {
@@ -14,26 +14,15 @@
       },
       "x-prompt": "What name would you like to use?"
     },
-    "edition": {
-      "type": "string",
-      "description": "The edition of Rust to use for this binary (default is 2021)",
-      "default": "2021",
-      "enum": ["2015", "2018", "2021"]
-    },
     "tags": {
       "type": "string",
       "description": "Add tags to the project (used for linting)",
       "alias": "t"
-    },
+    }, 
     "directory": {
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
-    },
-    "wasm": {
-      "type": "boolean",
-      "description": "Adds wasm support to the generated library",
-      "default": false
     }
   },
   "required": ["name"]

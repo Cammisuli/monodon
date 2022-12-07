@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "title": "Wasm Pack executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "release": {
+      "type": "boolean",
+      "default": false
+    },
+    "target": {
+      "type": "string",
+      "enum": ["bundler", "nodejs", "web", "no-module"],
+      "default": "bundler"
+    },
+    "target-dir": {
+      "type": "string",
+      "default": "pkg"
+    }
+  },
+  "required": []
+}
