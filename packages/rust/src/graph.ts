@@ -5,8 +5,8 @@ import {
   ProjectGraphProcessorContext,
   ProjectTargetConfigurator,
   TargetConfiguration,
+  workspaceRoot,
 } from '@nrwl/devkit';
-import { appRootPath } from '@nrwl/tao/src/utils/app-root';
 import { CargoMetadata, Package } from './models/cargo-metadata';
 import { cargoCommandSync } from './utils/cargo';
 
@@ -76,7 +76,7 @@ function addExplicitDependency(
 
   builder.addExplicitDependency(
     pkg.name,
-    target.replace(`${appRootPath}/`, ''),
+    target.replace(`${workspaceRoot}/`, ''),
     depName
   );
 }
