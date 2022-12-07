@@ -8,9 +8,7 @@
       "schema": "./src/generators/binary/schema.json",
       "description": "Generate a Rust bin with Cargo",
       "x-type": "application",
-      "aliases": [
-        "bin"
-      ]
+      "aliases": ["bin"]
     },
     "init": {
       "factory": "./src/generators/init/generator",
@@ -23,19 +21,25 @@
       "schema": "./src/generators/library/schema.json",
       "description": "Generate a Rust library with Cargo",
       "x-type": "library",
-      "aliases": [
-        "lib"
-      ]
+      "aliases": ["lib"]
     },
     "add-wasm": {
       "factory": "./src/generators/add-wasm/generator",
       "schema": "./src/generators/add-wasm/schema.json",
-      "description": "Adds wasm support to a Cargo project"
+      "description": "Adds wasm support to a Cargo project",
+      "hidden": true
     },
     "add-wasm-reference": {
       "factory": "./src/generators/add-wasm-reference/generator",
       "schema": "./src/generators/add-wasm-reference/schema.json",
-      "description": "Adds wasm support to an existing JavaScript/TypeScript project"
+      "description": "Adds wasm support to an existing JavaScript/TypeScript project",
+      "hidden": true
+    },
+    "preset": {
+      "factory": "./src/generators/preset/generator",
+      "schema": "./src/generators/preset/schema.json",
+      "description": "preset generator",
+      "hidden": true
     }
   }
 }
