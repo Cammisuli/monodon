@@ -52,13 +52,6 @@
           }
         ]
       }
-    },
-    "link-plugin": {
-      "executor": "nx:run-commands",
-      "options": {
-        "commands": ["npm link ./dist/packages/rust", "npm link @monodon/rust"],
-        "parallel": false
-      }
     }
   },
   "tags": []
