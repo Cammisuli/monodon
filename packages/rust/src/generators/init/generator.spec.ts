@@ -1,6 +1,6 @@
 import { Tree, updateJson } from '@nrwl/devkit';
 import TOML from '@ltd/j-toml';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+import { createTreeWithEmptyV1Workspace } from '@nrwl/devkit/testing';
 
 import generator from './generator';
 import { readNxJson } from '@nrwl/devkit/src/generators/project-configuration';
@@ -9,7 +9,7 @@ describe('init generator', () => {
   let appTree: Tree;
 
   beforeEach(() => {
-    appTree = createTreeWithEmptyWorkspace();
+    appTree = createTreeWithEmptyV1Workspace();
   });
 
   it('should run successfully', async () => {

@@ -1,5 +1,6 @@
 {
-  "root": "packages/typescript-nx-imports-plugin",
+  "name": "typescript-nx-imports-plugin",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/typescript-nx-imports-plugin/src",
   "projectType": "library",
   "targets": {
@@ -12,9 +13,11 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/typescript-nx-imports-plugin"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/typescript-nx-imports-plugin"
+      ],
       "options": {
-        "jestConfig": "packages/typescript-nx-imports-plugin/jest.config.js",
+        "jestConfig": "packages/typescript-nx-imports-plugin/jest.config.ts",
         "passWithNoTests": true
       }
     },

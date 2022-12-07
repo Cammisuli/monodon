@@ -1,5 +1,6 @@
 {
-  "root": "packages/test-lib",
+  "name": "test-lib",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/test-lib/src",
   "projectType": "library",
   "targets": {
@@ -12,9 +13,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/test-lib"],
+      "outputs": ["{workspaceRoot}/coverage/packages/test-lib"],
       "options": {
-        "jestConfig": "packages/test-lib/jest.config.js",
+        "jestConfig": "packages/test-lib/jest.config.ts",
         "passWithNoTests": true
       }
     }
