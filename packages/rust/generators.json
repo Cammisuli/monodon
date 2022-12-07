@@ -36,6 +36,11 @@
       "factory": "./src/generators/add-wasm-reference/generator",
       "schema": "./src/generators/add-wasm-reference/schema.json",
       "description": "Adds wasm support to an existing JavaScript/TypeScript project"
+    },
+    "preset": {
+      "factory": "./src/generators/preset/generator",
+      "schema": "./src/generators/preset/schema.json",
+      "description": "preset generator"
     }
   }
 }
