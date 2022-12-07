@@ -40,7 +40,7 @@ describe('add-wasm generator', () => {
 
       #[wasm_bindgen]
       pub fn greet() {
-          alert(\\"Hello, !\\");
+          alert(\\"Hello, test_lib!\\");
       }
       "
     `);

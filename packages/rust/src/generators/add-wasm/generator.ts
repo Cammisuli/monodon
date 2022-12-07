@@ -24,7 +24,7 @@ function normalizeOptions(
 ): NormalizedSchema {
   const project = readProjectConfiguration(tree, options.project);
 
-  const projectName = project.name ?? '';
+  const projectName = project.name ?? options.project ?? '';
   const projectRoot = project.root;
 
   return {
