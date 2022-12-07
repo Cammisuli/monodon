@@ -14,15 +14,11 @@
           "packages/rust/package.json"
         ]
       },
-      "outputs": [
-        "{options.outputFile}"
-      ]
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/packages/rust"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/packages/rust"],
       "options": {
         "jestConfig": "packages/rust/jest.config.ts",
         "passWithNoTests": true
@@ -30,9 +26,7 @@
     },
     "build": {
       "executor": "@nrwl/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/rust",
         "tsConfig": "packages/rust/tsconfig.lib.json",
@@ -62,6 +56,13 @@
             "output": "."
           }
         ]
+      }
+    },
+    "version": {
+      "executor": "@jscutlery/semver:version",
+      "options": {
+        "preset": "conventional",
+        "postTargets": ["rust:build"]
       }
     }
   },
