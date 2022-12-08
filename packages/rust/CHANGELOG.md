@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.2.1](https://github.com/Cammisuli/monodon/compare/rust-0.2.0...rust-0.2.1) (2022-12-08)
+
+
+### Bug Fixes
+
+* **rust:** use execSync ([a053278](https://github.com/Cammisuli/monodon/commit/a05327892805d5944dcdc493ec7d6ee6fbc23ecf))
+
 ## [0.2.0](https://github.com/Cammisuli/monodon/compare/rust-0.1.0...rust-0.2.0) (2022-12-07)
 
 
