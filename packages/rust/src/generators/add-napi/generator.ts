@@ -1,24 +1,20 @@
-import TOML from '@ltd/j-toml';
 import {
-  addProjectConfiguration,
+  ProjectConfiguration,
+  Tree,
   formatFiles,
   generateFiles,
   getProjects,
   getWorkspaceLayout,
-  logger,
   names,
-  offsetFromRoot,
-  ProjectConfiguration,
-  Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
-import { AddNapiGeneratorSchema } from './schema';
 import {
   modifyCargoNestedTable,
   modifyCargoTable,
   parseCargoTomlWithTree,
   stringifyCargoToml,
 } from '../../utils/toml';
+import { AddNapiGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends AddNapiGeneratorSchema {
   projectName: string;
