@@ -1,17 +1,21 @@
+import TOML from '@ltd/j-toml';
 import {
+  Tree,
   formatFiles,
   generateFiles,
-  logger,
   offsetFromRoot,
   readProjectConfiguration,
-  Tree,
   updateProjectConfiguration,
 } from '@nrwl/devkit';
 import * as path from 'path';
-import { parseCargoToml, stringifyCargoToml } from '../../utils/toml';
-import { AddWasmGeneratorSchema } from './schema';
-import TOML from '@ltd/j-toml';
 import { addWasmPackExecutor } from '../../utils/add-executors';
+import {
+  modifyCargoNestedTable,
+  modifyCargoTable,
+  parseCargoTomlWithTree,
+  stringifyCargoToml,
+} from '../../utils/toml';
+import { AddWasmGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends AddWasmGeneratorSchema {
   projectName: string;
@@ -53,49 +57,41 @@ function addFiles(tree: Tree, options: NormalizedSchema) {
 }
 
 function updateCargo(tree: Tree, options: NormalizedSchema) {
-  const cargoTomlString = tree
-    .read(options.projectRoot + '/Cargo.toml')
-    ?.toString();
-  if (!cargoTomlString) {
-    logger.error(`Cannot find a Cargo.toml file in the ${options.projectName}`);
-    throw new Error();
-  }
+  const cargoToml = parseCargoTomlWithTree(
+    tree,
+    options.projectRoot,
+    options.projectName
+  );
 
-  const cargoToml = parseCargoToml(cargoTomlString);
+  modifyCargoTable(cargoToml, 'lib', 'crate-type', ['cdylib', 'rlib']);
 
-  cargoToml['lib'] ??= TOML.Section({});
-  cargoToml['lib']['crate-type'] = ['cdylib', 'rlib'];
+  modifyCargoTable(cargoToml, 'feature', 'default', [
+    'console_error_panic_hook',
+  ]);
 
-  cargoToml['feature'] ??= TOML.Section({});
-  cargoToml['feature']['default'] = ['console_error_panic_hook'];
+  modifyCargoTable(cargoToml, 'dependencies', 'wasm-bindgen', '0.2');
 
-  cargoToml.dependencies ??= TOML.Section({});
-
-  cargoToml.dependencies['wasm-bindgen'] = '0.2';
   if (options.useWebSys) {
-    cargoToml.dependencies['js-sys'] = '0.3';
-    cargoToml.dependencies['web-sys'] = TOML.inline({
+    modifyCargoTable(cargoToml, 'dependencies', 'js-sys', '0.3');
+    modifyCargoTable(cargoToml, 'dependencies', 'web-sys', {
       version: '0.3',
       features: ['Window'],
     });
   }
 
-  cargoToml.dependencies['console_error_panic_hook'] = TOML.inline({
+  modifyCargoTable(cargoToml, 'dependencies', 'console_error_panic_hook', {
     version: '0.1.6',
     optional: true,
   });
 
-  cargoToml.dependencies['wee_alloc'] = TOML.inline({
+  modifyCargoTable(cargoToml, 'dependencies', 'wee_alloc', {
     version: '0.4',
     optional: true,
   });
 
-  cargoToml['dev-dependencies'] ??= TOML.Section({});
+  modifyCargoTable(cargoToml, 'dev-dependencies', 'wasm-bindgen-test', '0.3');
 
-  cargoToml['dev-dependencies']['wasm-bindgen-test'] = '0.3';
-
-  cargoToml.profile ??= {};
-  cargoToml.profile['release'] = TOML.Section({
+  modifyCargoNestedTable(cargoToml, 'profile', 'release', {
     [TOML.commentFor('opt-level')]:
       'Tell `rustc` to optimize for small code size.',
     'opt-level': 's',
