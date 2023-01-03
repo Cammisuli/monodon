@@ -43,4 +43,7 @@ describe('add-napi generator', () => {
       "
     `);
   });
+
+
+  it('should ')
 });

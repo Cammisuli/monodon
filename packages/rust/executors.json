@@ -25,6 +25,11 @@
       "implementation": "./src/executors/wasm-pack/executor",
       "schema": "./src/executors/wasm-pack/schema.json",
       "description": "Builds a Cargo project using wasm-pack"
+    },
+    "napi": {
+      "implementation": "./src/executors/napi/executor",
+      "schema": "./src/executors/napi/schema.json",
+      "description": "Wrapper to run the napi-cli"
     }
   }
 }

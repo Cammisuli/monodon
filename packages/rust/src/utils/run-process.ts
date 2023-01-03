@@ -5,7 +5,7 @@ export function runProcess(
   ...args: string[]
 ): { success: boolean } | PromiseLike<{ success: boolean }> {
   return new Promise((resolve) => {
-    execSync(processCmd + ' ' + args.join(' ') + ' --color always', {
+    execSync(processCmd + ' ' + args.join(' '), {
       cwd: process.cwd(),
       env: {
         ...process.env,

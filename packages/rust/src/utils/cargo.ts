@@ -18,6 +18,7 @@ export async function cargoCommand(
   ...args: string[]
 ): Promise<{ success: boolean }> {
   console.log(chalk.dim(`> cargo ${args.join(' ')}`));
+  args.push('--color', 'always');
   return runProcess('cargo', ...args);
 }
 

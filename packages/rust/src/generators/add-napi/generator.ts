@@ -1,11 +1,14 @@
 import {
   ProjectConfiguration,
   Tree,
+  ensurePackage,
   formatFiles,
   generateFiles,
   getProjects,
   getWorkspaceLayout,
   names,
+  offsetFromRoot,
+  updateProjectConfiguration,
 } from '@nrwl/devkit';
 import * as path from 'path';
 import {
@@ -15,11 +18,13 @@ import {
   stringifyCargoToml,
 } from '../../utils/toml';
 import { AddNapiGeneratorSchema } from './schema';
+import { NAPI_VERSION } from '../../utils/versions';
 
 interface NormalizedSchema extends AddNapiGeneratorSchema {
   projectName: string;
   projectRoot: string;
   packageName: string;
+  offsetFromRoot: string;
 }
 
 export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
@@ -31,6 +36,28 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options, project);
   addFiles(tree, normalizedOptions);
   updateCargo(tree, normalizedOptions);
+  await ensurePackage(tree, '@napi-api/cli', NAPI_VERSION, { dev: true });
+  updateProjectConfiguration(tree, normalizedOptions.projectName, {
+    ...project,
+    targets: {
+      ...project.targets,
+      napi: {
+        executor: '@monodon/rust:napi',
+        options: {
+          dist:
+            normalizedOptions.offsetFromRoot +
+            '/dist/' +
+            normalizedOptions.projectName,
+          jsFile: 'index.js',
+        },
+        configurations: {
+          production: {
+            release: true,
+          },
+        },
+      },
+    },
+  });
   await formatFiles(tree);
 }
 
@@ -47,6 +74,7 @@ function normalizeOptions(
     projectName,
     projectRoot: project.root,
     packageName,
+    offsetFromRoot: offsetFromRoot(project.root),
   };
 }
 
