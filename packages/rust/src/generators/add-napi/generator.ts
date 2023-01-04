@@ -140,7 +140,7 @@ function updateTsConfig(tree: Tree, options: NormalizedSchema) {
     }
 
     c.paths[options.packageName] = [
-      joinPathFragments(options.projectRoot, 'index.js'),
+      joinPathFragments(options.projectRoot, 'index.d.ts'),
     ];
 
     return json;
