@@ -1,16 +1,15 @@
 import {
+  Tree,
   addProjectConfiguration,
   formatFiles,
   generateFiles,
   names,
   offsetFromRoot,
-  Tree,
 } from '@nrwl/devkit';
 import * as path from 'path';
 import {
   addBuildExecutor,
   addLintExecutor,
-  addRunExecutor,
   addTestExecutor,
 } from '../../utils/add-executors';
 import { addToCargoWorkspace } from '../../utils/add-to-workspace';
@@ -19,6 +18,7 @@ import {
   normalizeOptions,
 } from '../../utils/normalize-options';
 import wasmGenerator from '../add-wasm/generator';
+import napiGenerator from '../add-napi/generator';
 import init from '../init/generator';
 
 import { RustLibraryGeneratorSchema } from './schema';
@@ -69,5 +69,10 @@ export default async function libraryGenerator(
     });
   }
 
+  if (options.napi) {
+    await napiGenerator(tree, {
+      project: normalizedOptions.projectName,
+    });
+  }
   await formatFiles(tree);
 }

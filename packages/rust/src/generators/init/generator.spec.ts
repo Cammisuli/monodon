@@ -21,6 +21,11 @@ describe('init generator', () => {
 
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
       Object {
+        "profile": Object {
+          "release": Object {
+            "lto": true,
+          },
+        },
         "workspace": Object {
           "members": Array [],
         },

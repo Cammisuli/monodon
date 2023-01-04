@@ -1,0 +1,17 @@
+{
+  "name": "<%= packageName %>-darwin-arm64",
+  "version": "0.0.0",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "main": "<%= projectName %>.darwin-arm64.node",
+  "files": [
+    "<%= projectName %>.darwin-arm64.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  }
+}

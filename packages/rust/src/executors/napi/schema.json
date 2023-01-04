@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "cli": "nx",
+  "title": "Napi executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "dist": {
+      "type": "string"
+    },
+    "jsFile": {
+      "type": "string"
+    },
+    "release": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": ["dist", "jsFile"]
+}
