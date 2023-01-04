@@ -37,13 +37,9 @@ describe('add-napi generator', () => {
 
       [build-dependencies]
       napi-build = '2.0.1'
-
-      [profile.release]
-      lto = true
       "
     `);
   });
 
-
-  it('should ')
+  it('should ');
 });

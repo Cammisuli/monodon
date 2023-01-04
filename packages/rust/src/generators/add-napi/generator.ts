@@ -6,19 +6,20 @@ import {
   generateFiles,
   getProjects,
   getWorkspaceLayout,
+  joinPathFragments,
   names,
   offsetFromRoot,
+  updateJson,
   updateProjectConfiguration,
 } from '@nrwl/devkit';
 import * as path from 'path';
 import {
-  modifyCargoNestedTable,
   modifyCargoTable,
   parseCargoTomlWithTree,
   stringifyCargoToml,
 } from '../../utils/toml';
-import { AddNapiGeneratorSchema } from './schema';
 import { NAPI_VERSION } from '../../utils/versions';
+import { AddNapiGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends AddNapiGeneratorSchema {
   projectName: string;
@@ -36,7 +37,9 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options, project);
   addFiles(tree, normalizedOptions);
   updateCargo(tree, normalizedOptions);
-  await ensurePackage(tree, '@napi-api/cli', NAPI_VERSION, { dev: true });
+  await ensurePackage(tree, '@napi-rs/cli', NAPI_VERSION, { dev: true });
+  updateGitIgnore(tree);
+  updateTsConfig(tree, normalizedOptions);
   updateProjectConfiguration(tree, normalizedOptions.projectName, {
     ...project,
     targets: {
@@ -44,11 +47,8 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
       napi: {
         executor: '@monodon/rust:napi',
         options: {
-          dist:
-            normalizedOptions.offsetFromRoot +
-            '/dist/' +
-            normalizedOptions.projectName,
-          jsFile: 'index.js',
+          dist: normalizedOptions.projectRoot,
+          jsFile: normalizedOptions.projectRoot + '/index.js',
         },
         configurations: {
           production: {
@@ -68,7 +68,9 @@ function normalizeOptions(
 ): NormalizedSchema {
   const { npmScope } = getWorkspaceLayout(tree);
   const projectName = project.name ?? options.project;
-  const packageName = npmScope ? `@${npmScope}/${projectName}` : projectName;
+  const packageName = npmScope
+    ? `@${npmScope}/${names(projectName).fileName}`
+    : projectName;
   return {
     ...options,
     projectName,
@@ -108,12 +110,37 @@ function updateCargo(tree: Tree, options: NormalizedSchema) {
   modifyCargoTable(cargoToml, 'dependencies', 'napi-derive', '2.9.3');
   modifyCargoTable(cargoToml, 'build-dependencies', 'napi-build', '2.0.1');
 
-  // [profile.release]
-  // lto = true
-  modifyCargoNestedTable(cargoToml, 'profile', 'release', { lto: true });
-
   tree.write(
     options.projectRoot + '/Cargo.toml',
     stringifyCargoToml(cargoToml)
   );
+}
+
+function updateGitIgnore(tree: Tree) {
+  if (!tree.exists('.gitignore')) {
+    return;
+  }
+
+  let gitIgnore = tree.read('.gitignore')?.toString() ?? '';
+  gitIgnore += '\n*.node';
+  tree.write('.gitignore', gitIgnore);
+}
+
+function updateTsConfig(tree: Tree, options: NormalizedSchema) {
+  updateJson(tree, 'tsconfig.base.json', (json) => {
+    const c = json.compilerOptions;
+    c.paths = c.paths || {};
+
+    if (c.paths[options.packageName]) {
+      throw new Error(
+        `You already have a library using the import path "${options.packageName}". Make sure to specify a unique one.`
+      );
+    }
+
+    c.paths[options.packageName] = [
+      joinPathFragments(options.projectRoot, 'index.js'),
+    ];
+
+    return json;
+  });
 }

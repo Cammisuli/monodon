@@ -1,2 +1,5 @@
 [workspace]
 members = []
+
+[profile.release]
+lto = true
