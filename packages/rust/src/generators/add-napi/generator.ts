@@ -4,6 +4,7 @@ import {
   ensurePackage,
   formatFiles,
   generateFiles,
+  getPackageManagerCommand,
   getProjects,
   getWorkspaceLayout,
   joinPathFragments,
@@ -20,6 +21,7 @@ import {
 } from '../../utils/toml';
 import { NAPI_VERSION } from '../../utils/versions';
 import { AddNapiGeneratorSchema } from './schema';
+import { runProcess } from '../../utils/run-process';
 
 interface NormalizedSchema extends AddNapiGeneratorSchema {
   projectName: string;

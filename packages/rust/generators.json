@@ -49,6 +49,11 @@
       "factory": "./src/generators/add-napi/generator",
       "schema": "./src/generators/add-napi/schema.json",
       "description": "Generates support for napi-rs"
+    },
+    "create-napi-npm-dirs": {
+      "factory": "./src/generators/create-napi-npm-dirs/generator",
+      "schema": "./src/generators/create-napi-npm-dirs/schema.json",
+      "description": "Generates npm package directories for a NAPI project"
     }
   }
 }
