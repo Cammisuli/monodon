@@ -4,7 +4,6 @@ import {
   ensurePackage,
   formatFiles,
   generateFiles,
-  getPackageManagerCommand,
   getProjects,
   getWorkspaceLayout,
   joinPathFragments,
@@ -13,6 +12,7 @@ import {
   updateJson,
   updateProjectConfiguration,
 } from '@nrwl/devkit';
+import { getRootTsConfigPathInTree } from '@nrwl/workspace/src/utilities/typescript';
 import * as path from 'path';
 import {
   modifyCargoTable,
@@ -21,7 +21,6 @@ import {
 } from '../../utils/toml';
 import { NAPI_VERSION } from '../../utils/versions';
 import { AddNapiGeneratorSchema } from './schema';
-import { runProcess } from '../../utils/run-process';
 
 interface NormalizedSchema extends AddNapiGeneratorSchema {
   projectName: string;
@@ -129,7 +128,13 @@ function updateGitIgnore(tree: Tree) {
 }
 
 function updateTsConfig(tree: Tree, options: NormalizedSchema) {
-  updateJson(tree, 'tsconfig.base.json', (json) => {
+  const tsConfig = getRootTsConfigPathInTree(tree);
+
+  if (!tsConfig) {
+    return;
+  }
+
+  updateJson(tree, tsConfig, (json) => {
     const c = json.compilerOptions;
     c.paths = c.paths || {};
 
