@@ -53,6 +53,7 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
         },
         configurations: {
           production: {
+            dist: `dist/${normalizedOptions.projectName}`,
             release: true,
           },
         },

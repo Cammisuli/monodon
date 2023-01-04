@@ -1,4 +1,4 @@
-import { Tree } from '@nrwl/devkit';
+import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 
 import libraryGenerator from '../library/generator';
@@ -41,5 +41,39 @@ describe('add-napi generator', () => {
     `);
   });
 
-  it('should ');
+  it('should update the base tsconfig file', async () => {
+    await generator(appTree, options);
+    expect(JSON.parse(appTree.read('tsconfig.base.json')?.toString() ?? ''))
+      .toMatchInlineSnapshot(`
+      Object {
+        "compilerOptions": Object {
+          "paths": Object {
+            "@proj/test": Array [
+              "test/index.d.ts",
+            ],
+          },
+        },
+      }
+    `);
+  });
+
+  it('should update a project', async () => {
+    await generator(appTree, options);
+    const project = readProjectConfiguration(appTree, 'test');
+    expect(project.targets?.napi).toMatchInlineSnapshot(`
+      Object {
+        "configurations": Object {
+          "production": Object {
+            "dist": "dist/test",
+            "release": true,
+          },
+        },
+        "executor": "@monodon/rust:napi",
+        "options": Object {
+          "dist": "test",
+          "jsFile": "test/index.js",
+        },
+      }
+    `);
+  });
 });
