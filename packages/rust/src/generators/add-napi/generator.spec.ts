@@ -5,6 +5,14 @@ import libraryGenerator from '../library/generator';
 import generator from './generator';
 import { AddNapiGeneratorSchema } from './schema';
 
+jest.mock('@nrwl/devkit', (): typeof import('@nrwl/devkit') => {
+  const originalModule = jest.requireActual('@nrwl/devkit');
+  return {
+    ...originalModule,
+    ensurePackage: jest.fn(),
+  };
+});
+
 describe('add-napi generator', () => {
   let appTree: Tree;
   const options: AddNapiGeneratorSchema = { project: 'test' };
