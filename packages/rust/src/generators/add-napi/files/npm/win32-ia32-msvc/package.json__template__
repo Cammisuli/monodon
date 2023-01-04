@@ -1,0 +1,17 @@
+{
+  "name": "<%= packageName %>-win32-ia32-msvc",
+  "version": "0.0.0",
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "ia32"
+  ],
+  "main": "<%= projectName %>.win32-ia32-msvc.node",
+  "files": [
+    "<%= projectName %>.win32-ia32-msvc.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  }
+}

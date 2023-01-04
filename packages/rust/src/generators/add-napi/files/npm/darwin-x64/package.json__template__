@@ -1,0 +1,17 @@
+{
+  "name": "<%= packageName %>-darwin-x64",
+  "version": "0.0.0",
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "<%= projectName %>.darwin-x64.node",
+  "files": [
+    "<%= projectName %>.darwin-x64.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  }
+}

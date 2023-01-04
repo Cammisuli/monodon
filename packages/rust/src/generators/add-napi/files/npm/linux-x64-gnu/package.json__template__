@@ -1,0 +1,20 @@
+{
+  "name": "<%= packageName %>-linux-x64-gnu",
+  "version": "0.0.0",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "<%= projectName %>.linux-x64-gnu.node",
+  "files": [
+    "<%= projectName %>.linux-x64-gnu.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  },
+  "libc": [
+    "glibc"
+  ]
+}
