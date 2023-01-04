@@ -33,6 +33,12 @@
     "wasm": {
       "type": "boolean",
       "description": "Adds wasm support to the generated library",
+      "default": false,
+      "hidden": "true"
+    },
+    "napi": {
+      "type": "boolean",
+      "description": "Adds napi support to the generated library",
       "default": false
     }
   },

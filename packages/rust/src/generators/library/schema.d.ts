@@ -4,4 +4,5 @@ export interface RustLibraryGeneratorSchema {
   tags?: string;
   directory?: string;
   wasm?: boolean;
+  napi?: boolean;
 }
