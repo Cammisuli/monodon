@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.3.0](https://github.com/Cammisuli/monodon/compare/rust-0.2.1...rust-0.3.0) (2023-01-04)
+
+
+### Features
+
+* **rust:** add napi-rs ([#9](https://github.com/Cammisuli/monodon/issues/9)) ([dcc7813](https://github.com/Cammisuli/monodon/commit/dcc7813d7b179d0af69423f44d5012e31cc2445f))
+
 ## [0.2.1](https://github.com/Cammisuli/monodon/compare/rust-0.2.0...rust-0.2.1) (2022-12-08)
 
 
