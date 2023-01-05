@@ -27,9 +27,11 @@ export function normalizeOptions<
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '_');
 
   const { appsDir, libsDir } = getWorkspaceLayout(tree);
-  const projectRoot = `${
-    type === 'app' ? appsDir : libsDir
-  }/${projectDirectory}`;
+  let baseDir = '';
+  if (appsDir && libsDir) {
+    baseDir = (type === 'app' ? appsDir : libsDir) + '/';
+  }
+  const projectRoot = `${baseDir}${projectDirectory}`;
   const parsedTags = options.tags
     ? options.tags.split(',').map((s) => s.trim())
     : [];
