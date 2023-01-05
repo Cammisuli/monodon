@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.4.0](https://github.com/Cammisuli/monodon/compare/rust-0.3.0...rust-0.4.0) (2023-01-05)
+
+
+### Features
+
+* **rust:** add cargo config ([#10](https://github.com/Cammisuli/monodon/issues/10)) ([9fc7137](https://github.com/Cammisuli/monodon/commit/9fc713754636b6c190e36a6b01d884b912383245))
+
 ## [0.3.0](https://github.com/Cammisuli/monodon/compare/rust-0.2.1...rust-0.3.0) (2023-01-04)
 
 
