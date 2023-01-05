@@ -1,4 +1,4 @@
-import { Tree } from '@nrwl/devkit';
+import { Tree, updateJson } from '@nrwl/devkit';
 import { createTreeWithEmptyV1Workspace } from '@nrwl/devkit/testing';
 import { normalizeOptions } from './normalize-options';
 
@@ -52,6 +52,31 @@ describe('normalize options', () => {
         "projectRoot": "libs/test_directory/sub/sub_two/test_name",
         "tags": "test-tag, test-tag-two",
         "targetDir": "dist/target/test_directory_sub_sub_two_test_name",
+      }
+    `);
+  });
+
+  it('should handle empty appsDir or libsDir', () => {
+    updateJson(appTree, 'nx.json', (json) => {
+      json.workspaceLayout = {
+        appsDir: '',
+        libsDir: '',
+      };
+      return json;
+    });
+    const options = normalizeOptions(appTree, 'lib', {
+      name: 'test-name',
+    });
+
+    expect(options).toMatchInlineSnapshot(`
+      Object {
+        "edition": "2021",
+        "name": "test-name",
+        "parsedTags": Array [],
+        "projectDirectory": "test_name",
+        "projectName": "test_name",
+        "projectRoot": "test_name",
+        "targetDir": "dist/target/test_name",
       }
     `);
   });
