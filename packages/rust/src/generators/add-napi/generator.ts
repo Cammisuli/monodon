@@ -45,7 +45,7 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
     ...project,
     targets: {
       ...project.targets,
-      napi: {
+      build: {
         executor: '@monodon/rust:napi',
         options: {
           dist: normalizedOptions.projectRoot,
