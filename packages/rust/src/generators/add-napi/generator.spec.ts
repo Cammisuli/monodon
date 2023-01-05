@@ -68,7 +68,7 @@ describe('add-napi generator', () => {
   it('should update a project', async () => {
     await generator(appTree, options);
     const project = readProjectConfiguration(appTree, 'test');
-    expect(project.targets?.napi).toMatchInlineSnapshot(`
+    expect(project.targets?.build).toMatchInlineSnapshot(`
       Object {
         "configurations": Object {
           "production": Object {
