@@ -15,6 +15,9 @@
     "release": {
       "type": "boolean",
       "default": false
+    },
+    "target": {
+      "type": "string"
     }
   },
   "required": ["dist", "jsFile"]

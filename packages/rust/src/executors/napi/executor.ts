@@ -15,6 +15,11 @@ export default async function runExecutor(
     args.push('--release');
   }
 
+  if (options.target) {
+    args.push('--target');
+    args.push(options.target);
+  }
+
   args.push('--platform');
 
   const projectRoot =
@@ -30,8 +35,8 @@ export default async function runExecutor(
   args.push('--cargo-cwd');
   args.push(projectRoot);
 
-  args.push('--js')
-  args.push(options.jsFile)
+  args.push('--js');
+  args.push(options.jsFile);
 
   args.push(options.dist);
 
