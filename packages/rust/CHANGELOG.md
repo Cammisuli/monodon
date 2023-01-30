@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.4.3](https://github.com/Cammisuli/monodon/compare/rust-0.4.2...rust-0.4.3) (2023-01-30)
+
+
+### Bug Fixes
+
+* **rust:** do not include toolchain +stable by default ([c5f2e30](https://github.com/Cammisuli/monodon/commit/c5f2e30c385153fb87e07442f0276189f84bbd0b))
+
 ## [0.4.2](https://github.com/Cammisuli/monodon/compare/rust-0.4.1...rust-0.4.2) (2023-01-30)
 
 
