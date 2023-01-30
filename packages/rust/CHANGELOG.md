@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.4.2](https://github.com/Cammisuli/monodon/compare/rust-0.4.1...rust-0.4.2) (2023-01-30)
+
+
+### Bug Fixes
+
+* **rust:** add nrwl/devkit dep and set outputCapture to pipe for tests ([df38115](https://github.com/Cammisuli/monodon/commit/df3811520bb53a681e8330ffbc7d54df6fdbcd54))
+
 ## [0.4.1](https://github.com/Cammisuli/monodon/compare/rust-0.4.0...rust-0.4.1) (2023-01-19)
 
 
