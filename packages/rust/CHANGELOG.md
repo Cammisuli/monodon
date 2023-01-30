@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [0.4.4](https://github.com/Cammisuli/monodon/compare/rust-0.4.3...rust-0.4.4) (2023-01-30)
+
+
+### Bug Fixes
+
+* **rust:** skip trying to build on vercel ([d855cb2](https://github.com/Cammisuli/monodon/commit/d855cb2ac917bed9666177afe4ac08686c57d6e9))
+
 ## [0.4.3](https://github.com/Cammisuli/monodon/compare/rust-0.4.2...rust-0.4.3) (2023-01-30)
 
 
