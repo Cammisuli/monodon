@@ -7,6 +7,11 @@ export function runProcess(
 ): { success: boolean } | PromiseLike<{ success: boolean }> {
   const targetDir = joinPathFragments(workspaceRoot, 'dist', 'cargo');
   return new Promise((resolve) => {
+    if (process.env.VERCEL) {
+      // Vercel doesnt have support for cargo atm, so auto success builds
+      return resolve({ success: true });
+    }
+
     execSync(processCmd + ' ' + args.join(' '), {
       cwd: process.cwd(),
       env: {
