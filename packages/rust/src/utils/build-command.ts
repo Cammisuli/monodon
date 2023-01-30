@@ -8,7 +8,7 @@ export function buildCommand(
 ): string[] {
   const args = [];
 
-  if (options.toolchain) {
+  if (options.toolchain && options.toolchain !== 'stable') {
     args.push(`+${options.toolchain}`);
   }
 
