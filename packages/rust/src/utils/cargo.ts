@@ -29,6 +29,9 @@ export function cargoRunCommand(
   return new Promise((resolve, reject) => {
     childProcess = spawn('cargo', [...args, '--color', 'always'], {
       cwd: process.cwd(),
+      windowsHide: true,
+      detached: true,
+      shell: false,
       stdio: ['inherit', 'inherit', 'inherit'],
     });
 
@@ -67,6 +70,7 @@ export function cargoCommandSync(
     return {
       output: execSync(`cargo ${args}`, {
         encoding: 'utf8',
+        windowsHide: true,
         stdio: normalizedOptions.stdio,
         env: normalizedOptions.env,
       }),

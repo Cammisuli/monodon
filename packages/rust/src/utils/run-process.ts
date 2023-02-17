@@ -20,6 +20,7 @@ export function runProcess(
         CARGO_TARGET_DIR: targetDir,
         CARGO_BUILD_TARGET_DIR: targetDir,
       },
+      windowsHide: true,
       stdio: ['inherit', 'inherit', 'inherit'],
     });
     resolve({ success: true });
