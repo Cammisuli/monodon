@@ -1,12 +1,101 @@
-# rust
+# @monodon/rust
 
-This library was generated with [Nx](https://nx.dev).
+A Nx plugin that adds support for Cargo and Rust in your Nx workspace.
 
-## Running unit tests
+## Getting Started
 
-Run `nx test rust` to execute the unit tests via [Jest](https://jestjs.io).
+### Prerequisites 
+The following tools need to be installed on your system to take full advantage of `@monodon/rust`
+* Node (LTS)
+* Rust / Cargo via [https://rustup.rs](https://rustup.rs)
 
-## TODO
+### Install with `npx create-nx-workspace` preset
+To bootstrap a new workspace with `@monodon/rust` installed and ready, run:
 
-- [ ] Generate scaffolding for web and client
-- [ ] Builder for calling cargo directly - maybe with a rust call (maybe use neon or webassembly)
+```shell
+npx create-nx-workspace --preset=@monodon/rust
+```
+
+### Installation in already set up workspace
+Use your favourite package manager to install in your project:
+
+```shell
+yarn add -D @monodon/rust
+```
+
+```shell
+npm install -D @monodon/rust
+```
+
+```shell
+pnpm add -D @monodon/rust
+```
+
+#### Initialization 
+
+After installing, you can run any of the project generators (binary, library) to have @monodon/rust set up Cargo in your workspace.
+
+## Generators
+Use Nx Console to see the full list of options for each generator. 
+
+### `@monodon/rust:binary`
+Creates a Rust binary application to be run independently.
+
+> Create a new binary:
+> ```shell
+> nx generate @monodon/rust:binary my-rust-app 
+> ```
+
+### `@monodon/rust:library`
+Creates a Rust library that can be used in binaries, or compiled to be used for napi. 
+
+> Create a new library:
+> ```shell
+> nx generate @monodon/rust:library my-rust-lib
+> ```
+
+> Create a new library with napi:
+> ```shell
+> nx generate @monodon/rust:library my-rust-node-lib --napi
+> ```
+
+#### Napi
+Generating a library with the `--napi` flag will set up the project to be built with it. 
+But because generators operate on a virtual tree before committing to the file system, we cannot auto generate the npm directory for you. This is a manual step:
+
+To generate the napi npm folders, run:
+```shell
+nx g @monodon/rust:create-napi-npm-dirs my-rust-node-lib
+```
+
+
+## Executors
+All the executors support these additional properties:
+* toolchain: (e.g. `--toolchain='stable' | 'beta' | 'nightly'`); 
+  * Uses `stable` by default
+* target (e.g. `--target=aarch64-apple-darwin`); 
+* profile (e.g. `--profile=dev`) 
+  * [Cargo profiles](https://doc.rust-lang.org/cargo/reference/profiles.html)
+* release
+* target-dir 
+* features (e.g. `--features=bmp`)
+  * [Cargo features](https://doc.rust-lang.org/cargo/reference/features.html)
+* all-features
+
+### `@monodon/rust:build`
+Runs cargo to build the project
+> Not supported with napi
+
+### `@monodon/rust:lint`
+Runs cargo clippy to link the project
+
+### `@monodon/rust:napi`
+Runs the napi cli to build the project
+
+### `@monodon/rust:run`
+Runs `cargo run` for the project
+> Not supported with napi
+ 
+### `@monodon/rust:test`
+Runs `cargo test` for the project
+
