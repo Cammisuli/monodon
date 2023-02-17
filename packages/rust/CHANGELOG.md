@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.0.0](https://github.com/Cammisuli/monodon/compare/rust-0.4.4...rust-1.0.0) (2023-02-17)
+
+
+### Bug Fixes
+
+* **rust:** do not spawn cmd windows on Windows ([a0922bc](https://github.com/Cammisuli/monodon/commit/a0922bc110c2c756a83c6bc7fcada661ccb819df))
+
 ## [0.4.4](https://github.com/Cammisuli/monodon/compare/rust-0.4.3...rust-0.4.4) (2023-01-30)
 
 
