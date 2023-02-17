@@ -2,7 +2,8 @@
  <img width="256px" src="./assets/monodon.png" /> 
 </p>
 <div align="center">
-# Monodon 
+
+# Monodon
 
 **A collection of utilities and plugins for the Nx ecosystem** 
 </div>
