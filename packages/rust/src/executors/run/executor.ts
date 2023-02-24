@@ -7,8 +7,6 @@ export default async function* runExecutor(
   options: RunExecutorSchema,
   context: ExecutorContext
 ) {
-  // TODO(@jcammisuli): support watch command
-
   const command = buildCommand('run', options, context);
 
   const { success } = await cargoRunCommand(...command);
