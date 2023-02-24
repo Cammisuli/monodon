@@ -1,8 +1,5 @@
-import TOML from '@ltd/j-toml';
-import { Tree } from '@nrwl/devkit';
+import { Tree, logger } from '@nrwl/devkit';
 import { parseCargoToml, stringifyCargoToml } from './toml';
-
-export type TomlTable = ReturnType<typeof TOML.parse>;
 
 export function addToCargoWorkspace(tree: Tree, projectPath: string) {
   const cargoTomlString = tree.read('./Cargo.toml')?.toString();
@@ -21,7 +18,11 @@ export function addToCargoWorkspace(tree: Tree, projectPath: string) {
     throw new Error('Cargo.toml workspace section does not contain members');
   }
 
-  workspace.members = members.concat([projectPath]);
+  if (members.includes(projectPath)) {
+    logger.info(`${projectPath} already exists in the Cargo.toml members`);
+  } else {
+    workspace.members = members.concat([projectPath]);
+  }
 
   const newCargoToml = stringifyCargoToml(cargoToml);
   tree.write('./Cargo.toml', newCargoToml);
