@@ -911,10 +911,10 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@ltd/j-toml@^1.24.0":
-  version "1.24.0"
-  resolved "https://registry.npmjs.org/@ltd/j-toml/-/j-toml-1.24.0.tgz"
-  integrity sha512-XWEvSNLJ2YeCvlNDd/DQfTMldJqBZWX8+RKgPMY2i3MShqsB9XvtY2UfHqcuPb+eRrNO1WR7w4xlNfzCzop+Ig==
+"@ltd/j-toml@1.38.0":
+  version "1.38.0"
+  resolved "https://registry.yarnpkg.com/@ltd/j-toml/-/j-toml-1.38.0.tgz#00d19f6d65ac5dac39bc64f97a545f47e9ebefc4"
+  integrity sha512-lYtBcmvHustHQtg4X7TXUu1Xa/tbLC3p2wLvgQI+fWVySguVZJF60Snxijw5EiohumxZbR10kWYFFebh1zotiw==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
