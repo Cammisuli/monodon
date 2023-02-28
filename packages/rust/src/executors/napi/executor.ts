@@ -24,7 +24,7 @@ export default async function runExecutor(
 
   const projectRoot =
     context.projectGraph?.nodes[context.projectName ?? ''].data.root;
-  const projectJson = join(projectRoot, 'package.json');
+  const projectJson = join(projectRoot ?? '.', 'package.json');
   if (!fileExists(projectJson)) {
     throw new Error(`Could not find package.json at ${projectJson}`);
   }
@@ -32,8 +32,10 @@ export default async function runExecutor(
   args.push('-c');
   args.push(projectJson);
 
-  args.push('--cargo-cwd');
-  args.push(projectRoot);
+  if (typeof projectRoot == 'string') {
+    args.push('--cargo-cwd');
+    args.push(projectRoot);
+  }
 
   args.push('--js');
   args.push(options.jsFile);
