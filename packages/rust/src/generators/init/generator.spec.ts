@@ -1,6 +1,6 @@
 import TOML from '@ltd/j-toml';
 import { readJson, Tree, updateJson } from '@nrwl/devkit';
-import { createTreeWithEmptyV1Workspace } from '@nrwl/devkit/testing';
+import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 
 import generator from './generator';
 
@@ -12,7 +12,7 @@ describe('init generator', () => {
   let appTree: Tree;
 
   beforeEach(() => {
-    appTree = createTreeWithEmptyV1Workspace();
+    appTree = createTreeWithEmptyWorkspace();
   });
 
   it('should run successfully', async () => {
@@ -20,14 +20,14 @@ describe('init generator', () => {
     const cargoToml = appTree.read('./Cargo.toml')?.toString() ?? '';
 
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
-      Object {
-        "profile": Object {
-          "release": Object {
+      {
+        "profile": {
+          "release": {
             "lto": true,
           },
         },
-        "workspace": Object {
-          "members": Array [],
+        "workspace": {
+          "members": [],
         },
       }
     `);
@@ -38,7 +38,7 @@ describe('init generator', () => {
       await generator(appTree);
       const nxJson = readNxJson(appTree);
       expect(nxJson?.plugins).toMatchInlineSnapshot(`
-        Array [
+        [
           "@monodon/rust",
         ]
       `);
@@ -52,7 +52,7 @@ describe('init generator', () => {
       await generator(appTree);
       const nxJson = readNxJson(appTree);
       expect(nxJson?.plugins).toMatchInlineSnapshot(`
-        Array [
+        [
           "@nrwl/graph/plugin",
           "@monodon/rust",
         ]
