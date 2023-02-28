@@ -1,7 +1,5 @@
 import {
-  ProjectConfiguration,
-  Tree,
-  ensurePackage,
+  addDependenciesToPackageJson,
   formatFiles,
   generateFiles,
   getProjects,
@@ -9,10 +7,11 @@ import {
   joinPathFragments,
   names,
   offsetFromRoot,
+  ProjectConfiguration,
+  Tree,
   updateJson,
   updateProjectConfiguration,
 } from '@nrwl/devkit';
-import { getRootTsConfigPathInTree } from '@nrwl/workspace/src/utilities/typescript';
 import * as path from 'path';
 import {
   modifyCargoTable,
@@ -21,6 +20,7 @@ import {
 } from '../../utils/toml';
 import { NAPI_VERSION } from '../../utils/versions';
 import { AddNapiGeneratorSchema } from './schema';
+import { getRootTsConfigPathInTree } from '@nrwl/js';
 
 interface NormalizedSchema extends AddNapiGeneratorSchema {
   projectName: string;
@@ -38,7 +38,11 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options, project);
   addFiles(tree, normalizedOptions);
   updateCargo(tree, normalizedOptions);
-  await ensurePackage(tree, '@napi-rs/cli', NAPI_VERSION, { dev: true });
+  const addPackage = addDependenciesToPackageJson(
+    tree,
+    {},
+    { '@napi-rs/cli': NAPI_VERSION }
+  );
   updateGitIgnore(tree);
   updateTsConfig(tree, normalizedOptions);
   updateProjectConfiguration(tree, normalizedOptions.projectName, {
@@ -49,7 +53,7 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
         executor: '@monodon/rust:napi',
         options: {
           dist: normalizedOptions.projectRoot,
-          jsFile: normalizedOptions.projectRoot + '/index.js',
+          jsFile: 'index.js',
         },
         configurations: {
           production: {
@@ -61,6 +65,10 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
     },
   });
   await formatFiles(tree);
+
+  return async () => {
+    await addPackage();
+  };
 }
 
 function normalizeOptions(

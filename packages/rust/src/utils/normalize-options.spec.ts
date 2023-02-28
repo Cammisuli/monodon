@@ -1,12 +1,12 @@
 import { Tree, updateJson } from '@nrwl/devkit';
-import { createTreeWithEmptyV1Workspace } from '@nrwl/devkit/testing';
+import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { normalizeOptions } from './normalize-options';
 
 describe('normalize options', () => {
   let appTree: Tree;
 
   beforeEach(() => {
-    appTree = createTreeWithEmptyV1Workspace();
+    appTree = createTreeWithEmptyWorkspace();
   });
 
   it('should normalize options for an app', () => {
@@ -16,17 +16,17 @@ describe('normalize options', () => {
       tags: 'test-tag, test-tag-two',
     });
     expect(options).toMatchInlineSnapshot(`
-      Object {
+      {
         "directory": "test-directory/sub/sub-two",
         "edition": "2021",
         "name": "test-name",
-        "parsedTags": Array [
+        "parsedTags": [
           "test-tag",
           "test-tag-two",
         ],
         "projectDirectory": "test_directory/sub/sub_two/test_name",
         "projectName": "test_directory_sub_sub_two_test_name",
-        "projectRoot": "apps/test_directory/sub/sub_two/test_name",
+        "projectRoot": "./test_directory/sub/sub_two/test_name",
         "tags": "test-tag, test-tag-two",
         "targetDir": "dist/target/test_directory_sub_sub_two_test_name",
       }
@@ -39,17 +39,17 @@ describe('normalize options', () => {
       tags: 'test-tag, test-tag-two',
     });
     expect(options).toMatchInlineSnapshot(`
-      Object {
+      {
         "directory": "test-directory/sub/sub-two",
         "edition": "2021",
         "name": "test-name",
-        "parsedTags": Array [
+        "parsedTags": [
           "test-tag",
           "test-tag-two",
         ],
         "projectDirectory": "test_directory/sub/sub_two/test_name",
         "projectName": "test_directory_sub_sub_two_test_name",
-        "projectRoot": "libs/test_directory/sub/sub_two/test_name",
+        "projectRoot": "./test_directory/sub/sub_two/test_name",
         "tags": "test-tag, test-tag-two",
         "targetDir": "dist/target/test_directory_sub_sub_two_test_name",
       }
@@ -69,10 +69,10 @@ describe('normalize options', () => {
     });
 
     expect(options).toMatchInlineSnapshot(`
-      Object {
+      {
         "edition": "2021",
         "name": "test-name",
-        "parsedTags": Array [],
+        "parsedTags": [],
         "projectDirectory": "test_name",
         "projectName": "test_name",
         "projectRoot": "test_name",

@@ -1,5 +1,5 @@
 import { Tree } from '@nrwl/devkit';
-import { createTreeWithEmptyV1Workspace } from '@nrwl/devkit/testing';
+import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import libraryGenerator from '../library/generator';
 import generator from './generator';
 import { AddWasmGeneratorSchema } from './schema';
@@ -13,7 +13,7 @@ describe('add-wasm generator', () => {
   };
 
   beforeEach(async () => {
-    appTree = createTreeWithEmptyV1Workspace();
+    appTree = createTreeWithEmptyWorkspace();
     await libraryGenerator(appTree, {
       name: 'test_lib',
     });
@@ -21,7 +21,7 @@ describe('add-wasm generator', () => {
 
   it('should add wasm to an existing library', async () => {
     await generator(appTree, options);
-    const lib = appTree.read('./libs/test_lib/src/lib.rs')?.toString();
+    const lib = appTree.read('./test_lib/src/lib.rs')?.toString();
     expect(lib).toMatchInlineSnapshot(`
       "mod utils;
 
@@ -29,7 +29,7 @@ describe('add-wasm generator', () => {
 
       // When the \`wee_alloc\` feature is enabled, use \`wee_alloc\` as the global
       // allocator.
-      #[cfg(feature = \\"wee_alloc\\")]
+      #[cfg(feature = "wee_alloc")]
       #[global_allocator]
       static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
@@ -40,13 +40,12 @@ describe('add-wasm generator', () => {
 
       #[wasm_bindgen]
       pub fn greet() {
-          alert(\\"Hello, test_lib!\\");
+          alert("Hello, test_lib!");
       }
       "
     `);
 
-    const cargoString =
-      appTree.read('./libs/test_lib/Cargo.toml')?.toString() ?? '';
+    const cargoString = appTree.read('./test_lib/Cargo.toml')?.toString() ?? '';
     expect(cargoString).toMatchInlineSnapshot(`
       "
       [package]
@@ -81,7 +80,7 @@ describe('add-wasm generator', () => {
 
   it('should add wasm to an existing library with webSys', async () => {
     await generator(appTree, { ...options, useWebSys: true });
-    const lib = appTree.read('./libs/test_lib/src/lib.rs')?.toString();
+    const lib = appTree.read('./test_lib/src/lib.rs')?.toString();
     expect(lib).toMatchInlineSnapshot(`
       "mod utils;
 
@@ -90,21 +89,20 @@ describe('add-wasm generator', () => {
 
       // When the \`wee_alloc\` feature is enabled, use \`wee_alloc\` as the global
       // allocator.
-      #[cfg(feature = \\"wee_alloc\\")]
+      #[cfg(feature = "wee_alloc")]
       #[global_allocator]
       static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
       #[wasm_bindgen]
       pub fn greet() -> Result<(), JsValue> {
           window()
-              .ok_or(\\"no window\\")?
-              .alert_with_message(\\"Hello, world!\\")
+              .ok_or("no window")?
+              .alert_with_message("Hello, world!")
       }
       "
     `);
 
-    const cargoString =
-      appTree.read('./libs/test_lib/Cargo.toml')?.toString() ?? '';
+    const cargoString = appTree.read('./test_lib/Cargo.toml')?.toString() ?? '';
     expect(cargoString).toMatchInlineSnapshot(`
       "
       [package]

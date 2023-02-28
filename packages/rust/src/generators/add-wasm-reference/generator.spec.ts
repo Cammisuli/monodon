@@ -1,4 +1,4 @@
-import { createTreeWithEmptyV1Workspace } from '@nrwl/devkit/testing';
+import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
 import { Tree, readProjectConfiguration } from '@nrwl/devkit';
 
 import generator from './generator';
@@ -9,7 +9,7 @@ describe('add-wasm-reference generator', () => {
   const options: AddWasmReferenceGeneratorSchema = { name: 'test' };
 
   beforeEach(() => {
-    appTree = createTreeWithEmptyV1Workspace();
+    appTree = createTreeWithEmptyWorkspace();
   });
 
   it('should run successfully', async () => {
