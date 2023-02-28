@@ -5,6 +5,7 @@ import {
   generateFiles,
   names,
   offsetFromRoot,
+  GeneratorCallback,
 } from '@nrwl/devkit';
 import * as path from 'path';
 import {
@@ -61,6 +62,7 @@ export default async function libraryGenerator(
   addFiles(tree, normalizedOptions);
   addToCargoWorkspace(tree, normalizedOptions.projectRoot);
 
+  const tasks: GeneratorCallback[] = [];
   if (options.wasm) {
     await wasmGenerator(tree, {
       generateDefaultLib: true,
@@ -70,9 +72,17 @@ export default async function libraryGenerator(
   }
 
   if (options.napi) {
-    await napiGenerator(tree, {
-      project: normalizedOptions.projectName,
-    });
+    tasks.push(
+      await napiGenerator(tree, {
+        project: normalizedOptions.projectName,
+      })
+    );
   }
   await formatFiles(tree);
+
+  return async () => {
+    for (const task of tasks) {
+      await task();
+    }
+  };
 }
