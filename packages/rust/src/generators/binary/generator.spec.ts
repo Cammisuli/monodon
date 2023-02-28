@@ -36,9 +36,17 @@ describe('rust generator', () => {
 
   it('should create a project with a specified edition', async () => {
     await generator(appTree, { ...options, edition: '2018' });
-    const cargoToml =
-      appTree.read('./apps/test_name/Cargo.toml')?.toString() ?? '';
-    expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`{}`);
+    const cargoToml = appTree.read('./test_name/Cargo.toml')?.toString() ?? '';
+    expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
+      {
+        "dependencies": {},
+        "package": {
+          "edition": "2018",
+          "name": "test_name",
+          "version": "0.1.0",
+        },
+      }
+    `);
   });
 
   it('should add a project to the main Cargo.toml workspace members', async () => {
@@ -63,7 +71,16 @@ describe('rust generator', () => {
   it('should generate into a directory', async () => {
     await generator(appTree, { ...options, directory: 'test-dir' });
     const cargoToml =
-      appTree.read('./apps/test_dir/test_name/Cargo.toml')?.toString() ?? '';
-    expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`{}`);
+      appTree.read('./test_dir/test_name/Cargo.toml')?.toString() ?? '';
+    expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
+      {
+        "dependencies": {},
+        "package": {
+          "edition": "2021",
+          "name": "test_dir_test_name",
+          "version": "0.1.0",
+        },
+      }
+    `);
   });
 });
