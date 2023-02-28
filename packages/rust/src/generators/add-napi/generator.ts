@@ -11,6 +11,7 @@ import {
   offsetFromRoot,
   updateJson,
   updateProjectConfiguration,
+  addDependenciesToPackageJson,
 } from '@nrwl/devkit';
 import * as path from 'path';
 import {
@@ -38,7 +39,11 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
   const normalizedOptions = normalizeOptions(tree, options, project);
   addFiles(tree, normalizedOptions);
   updateCargo(tree, normalizedOptions);
-  ensurePackage('@napi-rs/cli', NAPI_VERSION);
+  const addPackage = addDependenciesToPackageJson(
+    tree,
+    {},
+    { '@napi-rs/cli': NAPI_VERSION }
+  );
   updateGitIgnore(tree);
   updateTsConfig(tree, normalizedOptions);
   updateProjectConfiguration(tree, normalizedOptions.projectName, {
@@ -61,6 +66,10 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
     },
   });
   await formatFiles(tree);
+
+  return async () => {
+    await addPackage();
+  };
 }
 
 function normalizeOptions(
