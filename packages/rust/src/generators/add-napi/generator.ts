@@ -1,7 +1,5 @@
 import {
-  ProjectConfiguration,
-  Tree,
-  ensurePackage,
+  addDependenciesToPackageJson,
   formatFiles,
   generateFiles,
   getProjects,
@@ -9,9 +7,10 @@ import {
   joinPathFragments,
   names,
   offsetFromRoot,
+  ProjectConfiguration,
+  Tree,
   updateJson,
   updateProjectConfiguration,
-  addDependenciesToPackageJson,
 } from '@nrwl/devkit';
 import * as path from 'path';
 import {
@@ -54,7 +53,7 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
         executor: '@monodon/rust:napi',
         options: {
           dist: normalizedOptions.projectRoot,
-          jsFile: normalizedOptions.projectRoot + '/index.js',
+          jsFile: 'index.js',
         },
         configurations: {
           production: {
