@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.1.0](https://github.com/Cammisuli/monodon/compare/rust-1.0.0...rust-1.1.0) (2023-02-28)
+
+
+### Features
+
+* update nx to 15.8.0 ([#15](https://github.com/Cammisuli/monodon/issues/15)) ([de3e4b8](https://github.com/Cammisuli/monodon/commit/de3e4b8aada8e3ca4fa30f019bfb65e43a82747b))
+
+
+### Bug Fixes
+
+* **rust:** kill child process on SIGINT ([#13](https://github.com/Cammisuli/monodon/issues/13)) ([918ca30](https://github.com/Cammisuli/monodon/commit/918ca30562c4df4b0d2854b18ec311072ec7ff61))
+* **rust:** update deprecated toml package version ([#14](https://github.com/Cammisuli/monodon/issues/14)) ([b19b3d7](https://github.com/Cammisuli/monodon/commit/b19b3d71889583ab03304a9f339d38f33eb14524))
+
 ## [1.0.0](https://github.com/Cammisuli/monodon/compare/rust-0.4.4...rust-1.0.0) (2023-02-17)
 
 
