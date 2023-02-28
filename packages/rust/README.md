@@ -60,14 +60,7 @@ Creates a Rust library that can be used in binaries, or compiled to be used for 
 > ```
 
 #### Napi
-Generating a library with the `--napi` flag will set up the project to be built with it. 
-But because generators operate on a virtual tree before committing to the file system, we cannot auto generate the npm directory for you. This is a manual step:
-
-To generate the napi npm folders, run:
-```shell
-nx g @monodon/rust:create-napi-npm-dirs my-rust-node-lib
-```
-
+Generating a library with the `--napi` flag will set up the project to be built with it.
 
 ## Executors
 All the executors support these additional properties:
