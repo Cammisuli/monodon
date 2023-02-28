@@ -79,7 +79,7 @@ describe('add-napi generator', () => {
         "executor": "@monodon/rust:napi",
         "options": {
           "dist": "test",
-          "jsFile": "test/index.js",
+          "jsFile": "index.js",
         },
       }
     `);
