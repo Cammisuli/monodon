@@ -41,14 +41,16 @@ export const processProjectGraph: ProjectGraphProcessor = (
           addExplicitDependency(pkg, builder, deps.name);
         } else {
           const externalDepName = `cargo:${deps.name}`;
-          builder.addExternalNode({
-            type: 'cargo' as any,
-            name: externalDepName as any,
-            data: {
-              packageName: deps.name,
-              version: cargoPackageMap.get(deps.name)?.version ?? '0.0.0',
-            },
-          });
+          if (!graph.externalNodes?.[externalDepName]) {
+            builder.addExternalNode({
+              type: 'cargo' as any,
+              name: externalDepName as any,
+              data: {
+                packageName: deps.name,
+                version: cargoPackageMap.get(deps.name)?.version ?? '0.0.0',
+              },
+            });
+          }
           addExplicitDependency(pkg, builder, externalDepName);
         }
       }
