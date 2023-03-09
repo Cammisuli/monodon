@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.1.1](https://github.com/Cammisuli/monodon/compare/rust-1.1.0...rust-1.1.1) (2023-03-09)
+
+
+### Bug Fixes
+
+* **rust:** handle existing external nodes ([#16](https://github.com/Cammisuli/monodon/issues/16)) ([e93da1d](https://github.com/Cammisuli/monodon/commit/e93da1db5decc68d7424945b329a92e78e072fe1))
+
 ## [1.1.0](https://github.com/Cammisuli/monodon/compare/rust-1.0.0...rust-1.1.0) (2023-02-28)
 
 
