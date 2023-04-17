@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.1.2](https://github.com/Cammisuli/monodon/compare/rust-1.1.1...rust-1.1.2) (2023-04-17)
+
+
+### Bug Fixes
+
+* **rust:** normalize path and use `addStaticDependency` ([0029fc6](https://github.com/Cammisuli/monodon/commit/0029fc6e5735dad6ffef71807c51df21bafabd38))
+
 ## [1.1.1](https://github.com/Cammisuli/monodon/compare/rust-1.1.0...rust-1.1.1) (2023-03-09)
 
 
