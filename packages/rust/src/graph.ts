@@ -74,11 +74,13 @@ function addExplicitDependency(
 ) {
   const target =
     // pkg.targets.find((target) => target.name === pkg.name)?.src_path ??
-    pkg.manifest_path;
+    pkg.manifest_path.replace(/\\/g, '/');
 
-  builder.addExplicitDependency(
+  const workspaceRootClean = workspaceRoot.replace(/\\/g, '/');
+
+  builder.addStaticDependency(
     pkg.name,
-    target.replace(`${workspaceRoot}/`, ''),
-    depName
+    depName,
+    target.replace(`${workspaceRootClean}/`, '')
   );
 }
