@@ -27,6 +27,7 @@
     "prepare": "husky install"
   },
   "private": true,
+  "packageManager": "yarn@1.22.19",
   "dependencies": {
     "@ltd/j-toml": "1.38.0",
     "chalk": "^4.1.2",
