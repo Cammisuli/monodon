@@ -6,7 +6,7 @@ import {
   offsetFromRoot,
   readProjectConfiguration,
   updateProjectConfiguration,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import * as path from 'path';
 import { addWasmPackExecutor } from '../../utils/add-executors';
 import {

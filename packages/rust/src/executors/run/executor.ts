@@ -1,4 +1,4 @@
-import { ExecutorContext } from '@nrwl/devkit';
+import { ExecutorContext } from '@nx/devkit';
 import { buildCommand } from '../../utils/build-command';
 import { cargoRunCommand } from '../../utils/cargo';
 import { RunExecutorSchema } from './schema';

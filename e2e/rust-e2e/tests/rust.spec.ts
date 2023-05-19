@@ -4,7 +4,7 @@ import {
   readJson,
   runNxCommandAsync,
   uniq,
-} from '@nrwl/nx-plugin/testing';
+} from '@nx/plugin/testing';
 describe('rust e2e', () => {
   it('should create rust', async () => {
     const plugin = uniq('rust');

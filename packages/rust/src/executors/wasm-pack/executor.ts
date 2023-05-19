@@ -1,4 +1,4 @@
-import { ExecutorContext } from '@nrwl/devkit';
+import { ExecutorContext } from '@nx/devkit';
 import { buildCommand } from '../../utils/build-command';
 import { runProcess } from '../../utils/run-process';
 import { WasmPackExecutorSchema } from './schema';

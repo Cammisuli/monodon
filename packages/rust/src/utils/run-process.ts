@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { joinPathFragments, workspaceRoot } from '@nrwl/devkit';
+import { joinPathFragments, workspaceRoot } from '@nx/devkit';
 
 export function runProcess(
   processCmd: string,

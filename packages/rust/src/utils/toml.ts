@@ -1,6 +1,6 @@
 import TOML from '@ltd/j-toml';
 import { CargoToml } from '../models/cargo.toml';
-import { Tree, logger } from '@nrwl/devkit';
+import { Tree, logger } from '@nx/devkit';
 
 export function parseCargoTomlWithTree(
   tree: Tree,

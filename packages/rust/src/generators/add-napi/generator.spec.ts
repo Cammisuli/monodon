@@ -1,12 +1,12 @@
-import { Tree, readProjectConfiguration } from '@nrwl/devkit';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+import { Tree, readProjectConfiguration } from '@nx/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 
 import libraryGenerator from '../library/generator';
 import generator from './generator';
 import { AddNapiGeneratorSchema } from './schema';
 
-jest.mock('@nrwl/devkit', (): typeof import('@nrwl/devkit') => {
-  const originalModule = jest.requireActual('@nrwl/devkit');
+jest.mock('@nx/devkit', (): typeof import('@nx/devkit') => {
+  const originalModule = jest.requireActual('@nx/devkit');
   return {
     ...originalModule,
     ensurePackage: jest.fn(),

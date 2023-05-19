@@ -1,4 +1,4 @@
-import { TargetConfiguration } from '@nrwl/devkit';
+import { TargetConfiguration } from '@nx/devkit';
 import { BuildExecutorSchema } from '../executors/build/schema';
 import { LintExecutorSchema } from '../executors/lint/schema';
 import { RunExecutorSchema } from '../executors/run/schema';

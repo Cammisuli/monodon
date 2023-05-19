@@ -3,7 +3,7 @@
 //   return { runCargoSync: jest.fn(() => ({ output: 'output', success: true })) };
 // });
 
-import {} from '@nrwl/devkit/testing';
+import {} from '@nx/devkit/testing';
 import { BuildExecutorSchema } from './schema';
 
 const options: BuildExecutorSchema = {};

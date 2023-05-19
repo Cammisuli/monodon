@@ -5,7 +5,7 @@ import {
   getPackageManagerCommand,
   getProjects,
   joinPathFragments,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import { CreateNapiNpmDirsGeneratorSchema } from './schema';
 import { runProcess } from '../../utils/run-process';
 

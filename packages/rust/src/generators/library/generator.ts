@@ -6,7 +6,7 @@ import {
   names,
   offsetFromRoot,
   GeneratorCallback,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import * as path from 'path';
 import {
   addBuildExecutor,

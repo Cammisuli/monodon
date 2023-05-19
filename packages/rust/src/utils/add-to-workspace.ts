@@ -1,4 +1,4 @@
-import { Tree, logger } from '@nrwl/devkit';
+import { Tree, logger } from '@nx/devkit';
 import { parseCargoToml, stringifyCargoToml } from './toml';
 
 export function addToCargoWorkspace(tree: Tree, projectPath: string) {

@@ -5,7 +5,7 @@ import {
   readWorkspaceConfiguration,
   Tree,
   updateWorkspaceConfiguration,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 
 import * as path from 'path';
 
