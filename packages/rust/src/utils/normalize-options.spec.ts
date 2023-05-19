@@ -16,11 +16,11 @@ describe('normalize options', () => {
       tags: 'test-tag, test-tag-two',
     });
     expect(options).toMatchInlineSnapshot(`
-      {
+      Object {
         "directory": "test-directory/sub/sub-two",
         "edition": "2021",
         "name": "test-name",
-        "parsedTags": [
+        "parsedTags": Array [
           "test-tag",
           "test-tag-two",
         ],
@@ -39,11 +39,11 @@ describe('normalize options', () => {
       tags: 'test-tag, test-tag-two',
     });
     expect(options).toMatchInlineSnapshot(`
-      {
+      Object {
         "directory": "test-directory/sub/sub-two",
         "edition": "2021",
         "name": "test-name",
-        "parsedTags": [
+        "parsedTags": Array [
           "test-tag",
           "test-tag-two",
         ],
@@ -69,10 +69,10 @@ describe('normalize options', () => {
     });
 
     expect(options).toMatchInlineSnapshot(`
-      {
+      Object {
         "edition": "2021",
         "name": "test-name",
-        "parsedTags": [],
+        "parsedTags": Array [],
         "projectDirectory": "test_name",
         "projectName": "test_name",
         "projectRoot": "test_name",

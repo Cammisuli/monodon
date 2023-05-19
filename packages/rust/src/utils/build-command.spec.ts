@@ -12,7 +12,7 @@ describe('build command', () => {
   it('should build a command for cargo with no arguments', () => {
     const command = buildCommand('run', {}, context);
     expect(command).toMatchInlineSnapshot(`
-      [
+      Array [
         "run",
         "-p",
         "project",
@@ -27,7 +27,7 @@ describe('build command', () => {
       context
     );
     expect(command).toMatchInlineSnapshot(`
-      [
+      Array [
         "+beta",
         "run",
         "--all-features",
@@ -43,7 +43,7 @@ describe('build command', () => {
     it('false arguments should not be present', () => {
       const command = buildCommand('run', { release: false }, context);
       expect(command).toMatchInlineSnapshot(`
-        [
+        Array [
           "run",
           "-p",
           "project",
@@ -54,7 +54,7 @@ describe('build command', () => {
     it('true arguments should be present', () => {
       const command = buildCommand('run', { release: true }, context);
       expect(command).toMatchInlineSnapshot(`
-        [
+        Array [
           "run",
           "--release",
           "-p",
@@ -74,7 +74,7 @@ describe('build command', () => {
         context
       );
       expect(command).toMatchInlineSnapshot(`
-        [
+        Array [
           "run",
           "--features",
           "foo",
