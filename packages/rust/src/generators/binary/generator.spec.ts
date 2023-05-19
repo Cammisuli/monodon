@@ -1,5 +1,5 @@
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nrwl/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { Tree, readProjectConfiguration } from '@nx/devkit';
 import TOML from '@ltd/j-toml';
 import generator from './generator';
 import { RustBinaryGeneratorSchema } from './schema';
@@ -23,9 +23,9 @@ describe('rust generator', () => {
     const cargoToml = appTree.read('./test_name/Cargo.toml')?.toString() ?? '';
     expect(cargoToml.length).toBeGreaterThan(0);
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
-      {
-        "dependencies": {},
-        "package": {
+      Object {
+        "dependencies": Object {},
+        "package": Object {
           "edition": "2021",
           "name": "test_name",
           "version": "0.1.0",
@@ -38,9 +38,9 @@ describe('rust generator', () => {
     await generator(appTree, { ...options, edition: '2018' });
     const cargoToml = appTree.read('./test_name/Cargo.toml')?.toString() ?? '';
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
-      {
-        "dependencies": {},
-        "package": {
+      Object {
+        "dependencies": Object {},
+        "package": Object {
           "edition": "2018",
           "name": "test_name",
           "version": "0.1.0",
@@ -53,14 +53,14 @@ describe('rust generator', () => {
     await generator(appTree, options);
     const cargoToml = appTree.read('Cargo.toml')?.toString() ?? '';
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
-      {
-        "profile": {
-          "release": {
+      Object {
+        "profile": Object {
+          "release": Object {
             "lto": true,
           },
         },
-        "workspace": {
-          "members": [
+        "workspace": Object {
+          "members": Array [
             "./test_name",
           ],
         },
@@ -73,9 +73,9 @@ describe('rust generator', () => {
     const cargoToml =
       appTree.read('./test_dir/test_name/Cargo.toml')?.toString() ?? '';
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
-      {
-        "dependencies": {},
-        "package": {
+      Object {
+        "dependencies": Object {},
+        "package": Object {
           "edition": "2021",
           "name": "test_dir_test_name",
           "version": "0.1.0",

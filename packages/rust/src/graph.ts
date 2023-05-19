@@ -6,7 +6,7 @@ import {
   ProjectTargetConfigurator,
   TargetConfiguration,
   workspaceRoot,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import { CargoMetadata, Package } from './models/cargo-metadata';
 import { cargoCommandSync } from './utils/cargo';
 

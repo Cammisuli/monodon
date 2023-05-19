@@ -68,14 +68,14 @@ export class NxImportsPlugin {
     return filteredExternalFiles;
   }
 
-  decorate(languageService: ts.LanguageService) {
+  decorate(languageService: ts_module.LanguageService) {
     this.logger?.log('decorate');
     if ((languageService as any)[isNxImportPlugin]) {
       // Already decorated
       return;
     }
 
-    const intercept: Partial<ts.LanguageService> = Object.create(null);
+    const intercept: Partial<ts_module.LanguageService> = Object.create(null);
 
     const oldGetCompletionsAtPosition =
       languageService.getCompletionsAtPosition.bind(languageService);
@@ -96,7 +96,7 @@ export class NxImportsPlugin {
     return new Proxy(languageService, {
       get: (
         target: any,
-        property: keyof ts.LanguageService & typeof isNxImportPlugin
+        property: keyof ts_module.LanguageService & typeof isNxImportPlugin
       ) => {
         if (property === isNxImportPlugin) {
           return true;

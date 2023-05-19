@@ -1,4 +1,4 @@
-import { ExecutorContext } from '@nrwl/devkit';
+import { ExecutorContext } from '@nx/devkit';
 import { BaseOptions } from '../models/base-options';
 
 export function buildCommand(

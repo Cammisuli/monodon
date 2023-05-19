@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "title": "Wasm Pack executor",
   "description": "",
   "type": "object",
@@ -11,7 +10,12 @@
     },
     "target": {
       "type": "string",
-      "enum": ["bundler", "nodejs", "web", "no-module"],
+      "enum": [
+        "bundler",
+        "nodejs",
+        "web",
+        "no-module"
+      ],
       "default": "bundler"
     },
     "target-dir": {

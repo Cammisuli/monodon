@@ -1,6 +1,5 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "cli": "nx",
   "$id": "Library",
   "title": "",
   "type": "object",
@@ -18,7 +17,11 @@
       "type": "string",
       "description": "The edition of Rust to use for this binary (default is 2021)",
       "default": "2021",
-      "enum": ["2015", "2018", "2021"]
+      "enum": [
+        "2015",
+        "2018",
+        "2021"
+      ]
     },
     "tags": {
       "type": "string",
@@ -42,5 +45,7 @@
       "default": false
     }
   },
-  "required": ["name"]
+  "required": [
+    "name"
+  ]
 }

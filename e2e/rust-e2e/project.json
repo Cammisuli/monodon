@@ -5,11 +5,12 @@
   "sourceRoot": "e2e/rust-e2e/src",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/nx-plugin:e2e",
+      "executor": "@nx/jest:jest",
       "options": {
-        "target": "rust:build",
-        "jestConfig": "e2e/rust-e2e/jest.config.js"
-      }
+        "jestConfig": "e2e/rust-e2e/jest.config.js",
+        "runInBand": true
+      },
+      "dependsOn": ["rust:build"]
     }
   },
   "tags": [],

@@ -1,4 +1,4 @@
-import { ExecutorContext, getPackageManagerCommand } from '@nrwl/devkit';
+import { ExecutorContext, getPackageManagerCommand } from '@nx/devkit';
 import { NapiExecutorSchema } from './schema';
 import { runProcess } from '../../utils/run-process';
 import { join } from 'path';

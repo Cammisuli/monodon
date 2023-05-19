@@ -1,6 +1,6 @@
 import TOML from '@ltd/j-toml';
-import { readJson, Tree, updateJson } from '@nrwl/devkit';
-import { createTreeWithEmptyWorkspace } from '@nrwl/devkit/testing';
+import { readJson, Tree, updateJson } from '@nx/devkit';
+import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 
 import generator from './generator';
 
@@ -20,14 +20,14 @@ describe('init generator', () => {
     const cargoToml = appTree.read('./Cargo.toml')?.toString() ?? '';
 
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
-      {
-        "profile": {
-          "release": {
+      Object {
+        "profile": Object {
+          "release": Object {
             "lto": true,
           },
         },
-        "workspace": {
-          "members": [],
+        "workspace": Object {
+          "members": Array [],
         },
       }
     `);
@@ -38,7 +38,7 @@ describe('init generator', () => {
       await generator(appTree);
       const nxJson = readNxJson(appTree);
       expect(nxJson?.plugins).toMatchInlineSnapshot(`
-        [
+        Array [
           "@monodon/rust",
         ]
       `);
@@ -52,7 +52,7 @@ describe('init generator', () => {
       await generator(appTree);
       const nxJson = readNxJson(appTree);
       expect(nxJson?.plugins).toMatchInlineSnapshot(`
-        [
+        Array [
           "@nrwl/graph/plugin",
           "@monodon/rust",
         ]

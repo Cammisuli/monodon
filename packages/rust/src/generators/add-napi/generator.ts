@@ -11,7 +11,7 @@ import {
   Tree,
   updateJson,
   updateProjectConfiguration,
-} from '@nrwl/devkit';
+} from '@nx/devkit';
 import * as path from 'path';
 import {
   modifyCargoTable,
@@ -20,7 +20,7 @@ import {
 } from '../../utils/toml';
 import { NAPI_VERSION } from '../../utils/versions';
 import { AddNapiGeneratorSchema } from './schema';
-import { getRootTsConfigPathInTree } from '@nrwl/js';
+import { getRootTsConfigPathInTree } from '@nx/js';
 
 interface NormalizedSchema extends AddNapiGeneratorSchema {
   projectName: string;

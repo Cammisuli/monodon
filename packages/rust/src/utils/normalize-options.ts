@@ -1,4 +1,4 @@
-import { getWorkspaceLayout, Tree } from '@nrwl/devkit';
+import { getWorkspaceLayout, Tree } from '@nx/devkit';
 import snake_case from './snake_case';
 
 export interface NormalizedSchema {
