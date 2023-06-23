@@ -2,9 +2,9 @@ import {
   formatFiles,
   generateFiles,
   getWorkspaceLayout,
-  readWorkspaceConfiguration,
+  readNxJson,
   Tree,
-  updateWorkspaceConfiguration,
+  updateNxJson,
 } from '@nx/devkit';
 
 import * as path from 'path';
@@ -41,9 +41,12 @@ target-dir = 'dist/target'
 }
 
 function includeProjectGraphPlugin(tree: Tree) {
-  const config = readWorkspaceConfiguration(tree);
+  const config = readNxJson(tree);
+  if (!config) {
+    return;
+  }
   (config.plugins ??= []).push('@monodon/rust');
-  updateWorkspaceConfiguration(tree, config);
+  updateNxJson(tree, config);
 }
 
 export default async function init(tree: Tree) {

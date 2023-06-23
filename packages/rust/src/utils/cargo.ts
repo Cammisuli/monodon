@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import { ChildProcess, execSync, spawn, StdioOptions } from 'child_process';
 import { runProcess } from './run-process';
+import { CargoMetadata } from '../models/cargo-metadata';
 
 interface CargoRun {
   success: boolean;
@@ -83,4 +84,16 @@ export function cargoCommandSync(
       success: false,
     };
   }
+}
+
+export function cargoMetadata(): CargoMetadata | null {
+  const output = cargoCommandSync('metadata --format-version=1', {
+    stdio: 'pipe',
+  });
+
+  if (!output.success) {
+    return null;
+  }
+
+  return JSON.parse(output.output) as CargoMetadata;
 }

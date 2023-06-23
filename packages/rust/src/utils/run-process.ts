@@ -1,11 +1,16 @@
 import { execSync } from 'child_process';
 import { joinPathFragments, workspaceRoot } from '@nx/devkit';
+import { cargoMetadata } from './cargo';
 
 export function runProcess(
   processCmd: string,
   ...args: string[]
 ): { success: boolean } | PromiseLike<{ success: boolean }> {
-  const targetDir = joinPathFragments(workspaceRoot, 'dist', 'cargo');
+  const metadata = cargoMetadata();
+  const targetDir =
+    metadata?.target_directory ??
+    joinPathFragments(workspaceRoot, 'dist', 'cargo');
+
   return new Promise((resolve) => {
     if (process.env.VERCEL) {
       // Vercel doesnt have support for cargo atm, so auto success builds
