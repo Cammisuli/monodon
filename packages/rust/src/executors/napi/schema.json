@@ -17,10 +17,11 @@
     },
     "target": {
       "type": "string"
+    },
+    "zig": {
+      "type": "boolean",
+      "default": false
     }
   },
-  "required": [
-    "dist",
-    "jsFile"
-  ]
+  "required": ["dist", "jsFile"]
 }

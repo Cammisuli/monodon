@@ -42,5 +42,9 @@ export default async function runExecutor(
 
   args.push(options.dist);
 
+  if (options.zig) {
+    args.push('--zig');
+  }
+
   return runProcess(command, ...args);
 }

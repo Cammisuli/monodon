@@ -3,4 +3,5 @@ export interface NapiExecutorSchema {
   jsFile: string;
   release?: boolean;
   target?: string;
+  zig?: boolean;
 }

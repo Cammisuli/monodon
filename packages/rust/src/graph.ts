@@ -7,22 +7,20 @@ import {
   TargetConfiguration,
   workspaceRoot,
 } from '@nx/devkit';
-import { CargoMetadata, Package } from './models/cargo-metadata';
-import { cargoCommandSync } from './utils/cargo';
+import { Package } from './models/cargo-metadata';
+import { cargoMetadata } from './utils/cargo';
 
 type ProjectGraphProcessor = NonNullable<NxPlugin['processProjectGraph']>;
 export const processProjectGraph: ProjectGraphProcessor = (
   graph: ProjectGraph,
   ctx: ProjectGraphProcessorContext
 ): ProjectGraph => {
-  const { success, output } = cargoCommandSync('metadata --format-version=1', {
-    stdio: 'pipe',
-  });
-  if (!success) {
+  const metadata = cargoMetadata();
+  if (!metadata) {
     return graph;
   }
 
-  const { packages: cargoPackages } = JSON.parse(output) as CargoMetadata;
+  const { packages: cargoPackages } = metadata;
 
   const builder = new ProjectGraphBuilder(graph);
 
