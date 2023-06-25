@@ -1,5 +1,5 @@
 import { ExecutorContext } from '@nx/devkit';
-import { buildCommand } from '../../utils/build-command';
+import { buildCommand, buildWasmPackCommand } from '../../utils/build-command';
 import { runProcess } from '../../utils/run-process';
 import { WasmPackExecutorSchema } from './schema';
 
@@ -12,7 +12,7 @@ export default async function runExecutor(
   context: ExecutorContext
 ) {
   const wasmPackOptions = wasmPackArgs(options);
-  const args = buildCommand('build', wasmPackOptions, context);
+  const args = buildWasmPackCommand('build', wasmPackOptions, context);
   return runWasmPack(...args);
 }
 
