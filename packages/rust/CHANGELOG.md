@@ -2,6 +2,18 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.2.0](https://github.com/Cammisuli/monodon/compare/rust-1.1.2...rust-1.2.0) (2023-06-30)
+
+
+### Features
+
+* **rust:** add zig flag for the napi executor ([#21](https://github.com/Cammisuli/monodon/issues/21)) ([ac3a876](https://github.com/Cammisuli/monodon/commit/ac3a876f7a74fbbee90285ada58cf8999afe884c))
+
+
+### Bug Fixes
+
+* **rust:** update monodon/rust dependencies to 16.4.1 ([0f1e47d](https://github.com/Cammisuli/monodon/commit/0f1e47d67f6619ecfeb473b33b2d0562822952b1))
+
 ## [1.1.2](https://github.com/Cammisuli/monodon/compare/rust-1.1.1...rust-1.1.2) (2023-04-17)
 
 
