@@ -9,8 +9,5 @@
   "license": "MIT",
   "private": false,
   "generators": "./generators.json",
-  "executors": "./executors.json",
-  "dependencies": {
-    "@nx/devkit": "15.3.0"
-  }
+  "executors": "./executors.json"
 }

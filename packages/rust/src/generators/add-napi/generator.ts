@@ -137,6 +137,10 @@ function updateGitIgnore(tree: Tree) {
 }
 
 function updateTsConfig(tree: Tree, options: NormalizedSchema) {
+  if (!tree.exists('tsconfig.base.json')) {
+    return;
+  }
+
   const tsConfig = getRootTsConfigPathInTree(tree);
 
   if (!tsConfig) {

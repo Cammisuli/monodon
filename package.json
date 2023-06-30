@@ -24,21 +24,29 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "local-registry": "nx run monodon:local-registry"
   },
   "private": true,
   "packageManager": "yarn@1.22.19",
   "dependencies": {
     "@ltd/j-toml": "1.38.0",
+    "@nx/devkit": "16.4.1",
+    "@nx/js": "16.4.1",
     "chalk": "^4.1.2",
     "tslib": "^2.0.0",
-    "@nx/devkit": "16.4.1",
-    "@nx/js": "16.4.1"
+    "verdaccio": "^5.25.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.3.0",
     "@jscutlery/semver": "^2.29.0",
+    "@nx/eslint-plugin": "16.4.1",
+    "@nx/jest": "16.4.1",
+    "@nx/linter": "16.4.1",
+    "@nx/node": "16.4.1",
+    "@nx/plugin": "16.4.1",
+    "@nx/workspace": "16.4.1",
     "@swc-node/register": "^1.4.2",
     "@swc/core": "^1.2.173",
     "@types/jest": "29.4.0",
@@ -52,18 +60,11 @@
     "jest": "29.4.3",
     "jsonc-eslint-parser": "^2.1.0",
     "nx": "16.4.1",
+    "nx-cloud": "16.0.5",
     "prettier": "2.8.0",
     "ts-jest": "29.1.0",
     "ts-node": "10.9.1",
     "tslib": "^2.0.0",
-    "typescript": "5.1.6",
-    "nx-cloud": "16.0.5",
-    "@nx/workspace": "16.4.1",
-    "@nx/linter": "16.4.1",
-    "@nx/eslint-plugin": "16.4.1",
-    "@nx/plugin": "16.4.1",
-    "@nx/jest": "16.4.1",
-    "@nx/node": "16.4.1"
+    "typescript": "5.1.6"
   }
 }
-
