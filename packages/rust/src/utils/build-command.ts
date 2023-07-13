@@ -44,7 +44,7 @@ export function buildCommand(
   context: ExecutorContext
 ): string[] {
   const args = prebuildCommand(baseCommand, options);
-  args.push('-p', getProjectPath(context));
+  args.push('-p', context.projectName);
   return args;
 }
 
