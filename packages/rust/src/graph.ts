@@ -9,8 +9,8 @@ import {
 } from '@nx/devkit';
 import { Package } from './models/cargo-metadata';
 import { cargoMetadata } from './utils/cargo';
+import { ProjectGraphProcessor } from 'nx/src/config/project-graph';
 
-type ProjectGraphProcessor = NonNullable<NxPlugin['processProjectGraph']>;
 export const processProjectGraph: ProjectGraphProcessor = (
   graph: ProjectGraph,
   ctx: ProjectGraphProcessorContext
