@@ -5,7 +5,7 @@ on:
       - main
   pull_request:
 env:
-  node_version: 14
+  node_version: 18
 
 jobs:
   checks:
