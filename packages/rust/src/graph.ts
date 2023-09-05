@@ -5,24 +5,27 @@ import {
   ProjectGraphProcessorContext,
   ProjectTargetConfigurator,
   TargetConfiguration,
+  createProjectFileMapUsingProjectGraph,
   workspaceRoot,
 } from '@nx/devkit';
 import { Package } from './models/cargo-metadata';
 import { cargoMetadata } from './utils/cargo';
 import { ProjectGraphProcessor } from 'nx/src/config/project-graph';
 
-export const processProjectGraph: ProjectGraphProcessor = (
+
+export const processProjectGraph: ProjectGraphProcessor = async (
   graph: ProjectGraph,
   ctx: ProjectGraphProcessorContext
-): ProjectGraph => {
+): Promise<ProjectGraph> => {
   const metadata = cargoMetadata();
   if (!metadata) {
     return graph;
   }
 
   const { packages: cargoPackages } = metadata;
+  const fileMap = await createProjectFileMapUsingProjectGraph(graph);
 
-  const builder = new ProjectGraphBuilder(graph);
+  const builder = new ProjectGraphBuilder(graph, fileMap);
 
   const cargoPackageMap = cargoPackages.reduce((acc, p) => {
     if (!acc.has(p.name)) {
