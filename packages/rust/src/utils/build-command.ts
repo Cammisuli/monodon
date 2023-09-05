@@ -1,10 +1,9 @@
 import { ExecutorContext } from '@nx/devkit';
 import { BaseOptions } from '../models/base-options';
 
-export function buildCommand(
+function prebuildCommand(
   baseCommand: string,
   options: BaseOptions,
-  context: ExecutorContext
 ): string[] {
   const args = [];
 
@@ -32,8 +31,29 @@ export function buildCommand(
       args.push(`--${key}`, value);
     }
   }
+  return args;
+}
 
+function getProjectPath(context: ExecutorContext) {
+  return context.projectsConfigurations!/*is here 16+*/.projects[context.projectName!/*has to be here for it all to work*/].root;
+}
+
+export function buildCommand(
+  baseCommand: string,
+  options: BaseOptions,
+  context: ExecutorContext
+): string[] {
+  const args = prebuildCommand(baseCommand, options);
   args.push('-p', context.projectName);
+  return args;
+}
 
+export function buildWasmPackCommand(
+  baseCommand: string,
+  options: BaseOptions,
+  context: ExecutorContext
+): string[] {
+  const args = prebuildCommand(baseCommand, options);
+  args.push(getProjectPath(context));
   return args;
 }
