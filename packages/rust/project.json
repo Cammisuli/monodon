@@ -20,8 +20,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/packages/rust"],
       "options": {
-        "jestConfig": "packages/rust/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/rust/jest.config.ts"
       }
     },
     "build": {

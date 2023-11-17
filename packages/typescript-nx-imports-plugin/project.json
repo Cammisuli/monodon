@@ -17,8 +17,7 @@
         "{workspaceRoot}/coverage/packages/typescript-nx-imports-plugin"
       ],
       "options": {
-        "jestConfig": "packages/typescript-nx-imports-plugin/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/typescript-nx-imports-plugin/jest.config.ts"
       }
     },
     "build": {
