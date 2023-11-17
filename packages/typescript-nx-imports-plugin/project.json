@@ -29,8 +29,7 @@
         "tsConfig": "packages/typescript-nx-imports-plugin/tsconfig.lib.json",
         "packageJson": "packages/typescript-nx-imports-plugin/package.json",
         "main": "packages/typescript-nx-imports-plugin/src/index.ts",
-        "assets": ["packages/typescript-nx-imports-plugin/*.md"],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/typescript-nx-imports-plugin/*.md"]
       }
     },
     "version": {
