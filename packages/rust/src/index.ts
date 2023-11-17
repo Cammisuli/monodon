@@ -1,11 +1,10 @@
 import { NxPlugin } from '@nx/devkit';
-import { processProjectGraph, registerProjectTargets } from './graph';
+import { createDependencies, createNodes } from './graph';
 
 const nxPlugin: NxPlugin = {
   name: '@monodon/rust',
-  processProjectGraph,
-  projectFilePatterns: ['Cargo.toml'],
-  registerProjectTargets,
+  createDependencies,
+  createNodes,
 };
 
 export = nxPlugin;
