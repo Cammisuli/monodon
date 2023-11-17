@@ -22,7 +22,6 @@
     "@jscutlery/semver": "^2.29.0",
     "@nx/eslint-plugin": "17.1.2",
     "@nx/jest": "17.1.2",
-    "@nx/linter": "17.1.2",
     "@nx/node": "17.1.2",
     "@nx/plugin": "17.1.2",
     "@nx/workspace": "17.1.2",
@@ -44,6 +43,7 @@
     "ts-node": "10.9.1",
     "tslib": "^2.0.0",
     "typescript": "5.2.2",
-    "verdaccio": "^5.25.0"
+    "verdaccio": "^5.25.0",
+    "@nx/eslint": "17.1.2"
   }
 }
