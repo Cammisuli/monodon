@@ -33,7 +33,9 @@ export function buildCommand(
     }
   }
 
-  args.push('-p', context.projectName);
+  if (!args.includes("--package") && !args.includes("-p")) {
+    args.push("-p", context.projectName);
+  }
 
   return args;
 }
