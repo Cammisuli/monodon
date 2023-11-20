@@ -1,25 +1,18 @@
 import {
   CreateDependencies,
   CreateNodes,
-  NxPlugin,
   ProjectConfiguration,
-  ProjectGraph,
-  ProjectGraphBuilder,
-  ProjectGraphProcessorContext,
-  ProjectTargetConfigurator,
   RawProjectGraphDependency,
-  TargetConfiguration,
-  workspaceRoot,
+  workspaceRoot
 } from '@nx/devkit';
-import { Package } from './models/cargo-metadata';
-import { cargoMetadata } from './utils/cargo';
 import {
   DependencyType,
-  ProjectGraphExternalNode,
-  ProjectGraphProcessor,
+  ProjectGraphExternalNode
 } from 'nx/src/config/project-graph';
-import { isExternal } from 'util/types';
 import { dirname, relative } from 'path';
+import { isExternal } from 'util/types';
+import { Package } from './models/cargo-metadata';
+import { cargoMetadata } from './utils/cargo';
 
 export const createNodes: CreateNodes = [
   '*/**/Cargo.toml',
