@@ -22,3 +22,4 @@ jobs:
           node_version: ${{ env.node_version }}
       - run: yarn nx affected --target=build,test,lint --parallel --max-parallel=3
       - run: yarn nx affected --target=e2e --parallel
+      - run: yarn nx-cloud stop-all-agents
