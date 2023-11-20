@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { ChildProcess, execSync, spawn, StdioOptions } from 'child_process';
 import { runProcess } from './run-process';
-import { CargoMetadata } from '../models/cargo-metadata';
+import { CargoMetadata, Dependency, Package } from '../models/cargo-metadata';
 
 interface CargoRun {
   success: boolean;
@@ -96,4 +96,8 @@ export function cargoMetadata(): CargoMetadata | null {
   }
 
   return JSON.parse(output.output) as CargoMetadata;
+}
+
+export function isExternal(packageOrDep: Package | Dependency) {
+  return packageOrDep.source?.startsWith('registry+') ?? false;
 }

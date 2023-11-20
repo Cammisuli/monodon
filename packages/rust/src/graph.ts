@@ -1,84 +1,122 @@
 import {
-  NxPlugin,
-  ProjectGraph,
-  ProjectGraphBuilder,
-  ProjectGraphProcessorContext,
-  ProjectTargetConfigurator,
-  TargetConfiguration,
-  workspaceRoot,
+  CreateDependencies,
+  CreateNodes,
+  ProjectConfiguration,
+  RawProjectGraphDependency,
+  workspaceRoot
 } from '@nx/devkit';
+import {
+  DependencyType,
+  ProjectGraphExternalNode
+} from 'nx/src/config/project-graph';
+import { dirname, relative } from 'path';
+import { isExternal } from 'util/types';
 import { Package } from './models/cargo-metadata';
 import { cargoMetadata } from './utils/cargo';
-import { ProjectGraphProcessor } from 'nx/src/config/project-graph';
 
-export const processProjectGraph: ProjectGraphProcessor = (
-  graph: ProjectGraph,
-  ctx: ProjectGraphProcessorContext
-): ProjectGraph => {
+export const createNodes: CreateNodes = [
+  '*/**/Cargo.toml',
+  (projectFile, opts, ctx) => {
+    const metadata = cargoMetadata();
+    if (!metadata) {
+      return {};
+    }
+
+    const { packages: cargoPackages } = metadata;
+
+    const externalNodes: Record<string, ProjectGraphExternalNode> = {};
+    const projects: Record<string, ProjectConfiguration> = {};
+
+    const cargoPackageMap = cargoPackages.reduce((acc, p) => {
+      if (!acc.has(p.name)) {
+        acc.set(p.name, p);
+      }
+      return acc;
+    }, new Map<string, Package>());
+
+    for (const pkg of cargoPackages) {
+      if (!isExternal(pkg)) {
+        const root = dirname(relative(ctx.workspaceRoot, pkg.manifest_path));
+        projects[root] = {
+          root,
+          name: pkg.name,
+          // TODO(cammisuli): provide defaults for non-project.json workspaces
+          targets: {},
+        };
+      }
+      for (const dep of pkg.dependencies) {
+        if (isExternal(dep)) {
+          const externalDepName = `cargo:${dep.name}`;
+          if (!externalNodes?.[externalDepName]) {
+            externalNodes[externalDepName] = {
+              type: 'cargo' as any,
+              name: externalDepName as any,
+              data: {
+                packageName: dep.name,
+                version: cargoPackageMap.get(dep.name)?.version ?? '0.0.0',
+              },
+            };
+          }
+        }
+      }
+    }
+
+    return {
+      externalNodes,
+    };
+  },
+];
+
+export const createDependencies: CreateDependencies = (
+  _,
+  { projects, externalNodes }
+) => {
   const metadata = cargoMetadata();
   if (!metadata) {
-    return graph;
+    return [];
   }
 
   const { packages: cargoPackages } = metadata;
 
-  const builder = new ProjectGraphBuilder(graph);
-
-  const cargoPackageMap = cargoPackages.reduce((acc, p) => {
-    if (!acc.has(p.name)) {
-      acc.set(p.name, p);
-    }
-    return acc;
-  }, new Map<string, Package>());
+  const dependencies: RawProjectGraphDependency[] = [];
 
   for (const pkg of cargoPackages) {
-    if (graph.nodes[pkg.name]) {
+    if (projects[pkg.name]) {
       for (const deps of pkg.dependencies) {
         // if the dependency is listed in nx projects, it's not an external dependency
-        if (graph.nodes[deps.name]) {
-          addExplicitDependency(pkg, builder, deps.name);
+        if (projects[deps.name]) {
+          dependencies.push(getStaticDependency(pkg, deps.name));
         } else {
           const externalDepName = `cargo:${deps.name}`;
-          if (!graph.externalNodes?.[externalDepName]) {
-            builder.addExternalNode({
-              type: 'cargo' as any,
-              name: externalDepName as any,
-              data: {
-                packageName: deps.name,
-                version: cargoPackageMap.get(deps.name)?.version ?? '0.0.0',
-              },
+          if (externalDepName in (externalNodes ?? {})) {
+            dependencies.push({
+              source: pkg.name,
+              target: externalDepName,
+              type: DependencyType.static,
             });
           }
-          addExplicitDependency(pkg, builder, externalDepName);
         }
       }
     }
   }
 
-  return builder.getUpdatedProjectGraph();
+  return dependencies;
 };
 
-// TODO(cammisuli): provide defaults for non-workspace.json workspaces
-export const registerProjectTargets: ProjectTargetConfigurator = (
-  file: string
-): Record<string, TargetConfiguration> => {
-  return {};
-};
-
-function addExplicitDependency(
+function getStaticDependency(
   pkg: Package,
-  builder: ProjectGraphBuilder,
   depName: string
-) {
+): RawProjectGraphDependency {
   const target =
     // pkg.targets.find((target) => target.name === pkg.name)?.src_path ??
     pkg.manifest_path.replace(/\\/g, '/');
 
   const workspaceRootClean = workspaceRoot.replace(/\\/g, '/');
 
-  builder.addStaticDependency(
-    pkg.name,
-    depName,
-    target.replace(`${workspaceRootClean}/`, '')
-  );
+  return {
+    type: DependencyType.static,
+    source: pkg.name,
+    target: depName,
+    sourceFile: target.replace(`${workspaceRootClean}/`, ''),
+  };
 }

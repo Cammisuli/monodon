@@ -21,6 +21,7 @@ import {
 import { NAPI_VERSION } from '../../utils/versions';
 import { AddNapiGeneratorSchema } from './schema';
 import { getRootTsConfigPathInTree } from '@nx/js';
+import { getNpmScope } from '@nx/js/src/utils/package-json/get-npm-scope';
 
 interface NormalizedSchema extends AddNapiGeneratorSchema {
   projectName: string;
@@ -76,7 +77,7 @@ function normalizeOptions(
   options: AddNapiGeneratorSchema,
   project: ProjectConfiguration
 ): NormalizedSchema {
-  const { npmScope } = getWorkspaceLayout(tree);
+  const npmScope = getNpmScope(tree);
   const projectName = project.name ?? options.project;
   const packageName = npmScope
     ? `@${npmScope}/${names(projectName).fileName}`

@@ -5,7 +5,7 @@
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["packages/typescript-nx-imports-plugin/**/*.ts"]
@@ -17,8 +17,7 @@
         "{workspaceRoot}/coverage/packages/typescript-nx-imports-plugin"
       ],
       "options": {
-        "jestConfig": "packages/typescript-nx-imports-plugin/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "packages/typescript-nx-imports-plugin/jest.config.ts"
       }
     },
     "build": {
@@ -29,8 +28,7 @@
         "tsConfig": "packages/typescript-nx-imports-plugin/tsconfig.lib.json",
         "packageJson": "packages/typescript-nx-imports-plugin/package.json",
         "main": "packages/typescript-nx-imports-plugin/src/index.ts",
-        "assets": ["packages/typescript-nx-imports-plugin/*.md"],
-        "updateBuildableProjectDepsInPackageJson": true
+        "assets": ["packages/typescript-nx-imports-plugin/*.md"]
       }
     },
     "version": {
