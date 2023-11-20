@@ -28,6 +28,7 @@ describe('init generator', () => {
         },
         "workspace": Object {
           "members": Array [],
+          "resolver": "2",
         },
       }
     `);

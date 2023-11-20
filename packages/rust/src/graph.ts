@@ -3,16 +3,15 @@ import {
   CreateNodes,
   ProjectConfiguration,
   RawProjectGraphDependency,
-  workspaceRoot
+  workspaceRoot,
 } from '@nx/devkit';
 import {
   DependencyType,
-  ProjectGraphExternalNode
+  ProjectGraphExternalNode,
 } from 'nx/src/config/project-graph';
 import { dirname, relative } from 'path';
-import { isExternal } from 'util/types';
 import { Package } from './models/cargo-metadata';
-import { cargoMetadata } from './utils/cargo';
+import { cargoMetadata, isExternal } from './utils/cargo';
 
 export const createNodes: CreateNodes = [
   '*/**/Cargo.toml',
@@ -62,6 +61,7 @@ export const createNodes: CreateNodes = [
     }
 
     return {
+      projects,
       externalNodes,
     };
   },
@@ -85,15 +85,15 @@ export const createDependencies: CreateDependencies = (
       for (const deps of pkg.dependencies) {
         // if the dependency is listed in nx projects, it's not an external dependency
         if (projects[deps.name]) {
-          dependencies.push(getStaticDependency(pkg, deps.name));
+          dependencies.push(
+            createDependency(pkg, deps.name, DependencyType.static)
+          );
         } else {
           const externalDepName = `cargo:${deps.name}`;
           if (externalDepName in (externalNodes ?? {})) {
-            dependencies.push({
-              source: pkg.name,
-              target: externalDepName,
-              type: DependencyType.static,
-            });
+            dependencies.push(
+              createDependency(pkg, externalDepName, DependencyType.static)
+            );
           }
         }
       }
@@ -103,18 +103,15 @@ export const createDependencies: CreateDependencies = (
   return dependencies;
 };
 
-function getStaticDependency(
+function createDependency(
   pkg: Package,
-  depName: string
+  depName: string,
+  type: DependencyType
 ): RawProjectGraphDependency {
-  const target =
-    // pkg.targets.find((target) => target.name === pkg.name)?.src_path ??
-    pkg.manifest_path.replace(/\\/g, '/');
-
+  const target = pkg.manifest_path.replace(/\\/g, '/');
   const workspaceRootClean = workspaceRoot.replace(/\\/g, '/');
-
   return {
-    type: DependencyType.static,
+    type,
     source: pkg.name,
     target: depName,
     sourceFile: target.replace(`${workspaceRootClean}/`, ''),

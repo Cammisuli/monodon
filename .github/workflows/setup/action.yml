@@ -4,7 +4,7 @@ inputs:
   node_version: # id of input
     description: 'Version of node to use'
     required: true
-    default: '18'
+    default: '20'
 
 runs:
   using: 'composite'
@@ -14,6 +14,8 @@ runs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ inputs.node_version}}
+    - name: Install
+      uses: dtolnay/rust-toolchain@stable
     - uses: actions/cache@v2
       id: workspace-cache
       with:

@@ -63,6 +63,7 @@ describe('rust generator', () => {
           "members": Array [
             "./test_name",
           ],
+          "resolver": "2",
         },
       }
     `);
