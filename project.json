@@ -3,7 +3,10 @@
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "targets": {
     "local-registry": {
-      "executor": "@nx/js:verdaccio"
+      "executor": "@nx/js:verdaccio",
+      "options": {
+        "config": ".verdaccio/config.yml"
+      }
     }
   }
 }

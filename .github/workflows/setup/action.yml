@@ -4,16 +4,18 @@ inputs:
   node_version: # id of input
     description: 'Version of node to use'
     required: true
-    default: '18'
+    default: '20'
 
 runs:
   using: 'composite'
   steps:
     - name: Derive appropriate SHAs for base and head for `nx affected` commands
-      uses: nrwl/nx-set-shas@v2
+      uses: nrwl/nx-set-shas@v3
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ inputs.node_version}}
+    - name: Install
+      uses: dtolnay/rust-toolchain@stable
     - uses: actions/cache@v2
       id: workspace-cache
       with:
@@ -22,4 +24,6 @@ runs:
         restore-keys: |
           ${{ runner.os }}-${{ inputs.node_version }}-workspace-
     - run: yarn install --frozen-lockfile
+      shell: bash
+    - run: git branch --track main origin/main
       shell: bash

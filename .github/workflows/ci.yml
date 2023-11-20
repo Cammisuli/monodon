@@ -5,18 +5,20 @@ on:
       - main
   pull_request:
 env:
-  node_version: 18
+  node_version: 20
 
 jobs:
   checks:
     runs-on: ubuntu-latest
+    env:
+      NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+      NX_VERBOSE_LOGGING: 'true'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: ./.github/workflows/setup
         with:
           node_version: ${{ env.node_version }}
-      - run: yarn nx affected --target=build --parallel --max-parallel=3
-      - run: yarn nx affected --target=test --parallel --max-parallel=3
-      - run: yarn nx affected --target=lint --parallel --max-parallel=3
+      - run: yarn nx affected --target=build,test,lint --parallel --max-parallel=3
+      - run: yarn nx affected --target=e2e --parallel

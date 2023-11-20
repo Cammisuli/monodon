@@ -6,14 +6,20 @@
   "targets": {
     "e2e": {
       "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "e2e/rust-e2e/jest.config.js",
-        "runInBand": true,
-        "passWithNoTests": false
+        "jestConfig": "e2e/rust-e2e/jest.config.ts",
+        "runInBand": true
       },
-      "dependsOn": ["rust:build"]
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["e2e/rust-e2e/**/*.ts"]
+      }
     }
   },
-  "tags": [],
   "implicitDependencies": ["rust"]
 }
