@@ -2,6 +2,19 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.3.0](https://github.com/Cammisuli/monodon/compare/rust-1.2.0...rust-1.3.0) (2023-11-20)
+
+
+### Features
+
+* **rust:** add option to change package name ([#28](https://github.com/Cammisuli/monodon/issues/28)) ([2447dd0](https://github.com/Cammisuli/monodon/commit/2447dd01e69759963b2f9b6d5b66f7a2263ca8b3))
+* **rust:** move to nx plugin v2 ([#27](https://github.com/Cammisuli/monodon/issues/27)) ([7ad56a7](https://github.com/Cammisuli/monodon/commit/7ad56a7113405e8e5a9facecd0152e7940ce548b))
+
+
+### Bug Fixes
+
+* **rust:** make sure that the project graph is populated properly for nx ([#30](https://github.com/Cammisuli/monodon/issues/30)) ([13973c9](https://github.com/Cammisuli/monodon/commit/13973c90a65a08b70d2b6f439cf1ff403c7071ea))
+
 ## [1.2.0](https://github.com/Cammisuli/monodon/compare/rust-1.1.2...rust-1.2.0) (2023-06-30)
 
 
