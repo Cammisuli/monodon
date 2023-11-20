@@ -25,5 +25,3 @@ runs:
           ${{ runner.os }}-${{ inputs.node_version }}-workspace-
     - run: yarn install --frozen-lockfile
       shell: bash
-    - run: git branch --track main origin/main
-      shell: bash
