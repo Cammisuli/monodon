@@ -2,6 +2,13 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.3.1](https://github.com/Cammisuli/monodon/compare/rust-1.3.0...rust-1.3.1) (2023-11-20)
+
+
+### Bug Fixes
+
+* **rust:** increase buffer size for cargo commands ([16ef0cd](https://github.com/Cammisuli/monodon/commit/16ef0cdfe1a65492ab7429540fee0c9493d22250))
+
 ## [1.3.0](https://github.com/Cammisuli/monodon/compare/rust-1.2.0...rust-1.3.0) (2023-11-20)
 
 
