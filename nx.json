@@ -43,5 +43,6 @@
       "!{projectRoot}/src/test-setup.[jt]s"
     ]
   },
-  "nxCloudAccessToken": "NzcyM2FlMTMtMjU2MS00NTE0LWFjNzQtNmU0OGU5YjExNzVlfHJlYWQ="
+  "nxCloudAccessToken": "NzcyM2FlMTMtMjU2MS00NTE0LWFjNzQtNmU0OGU5YjExNzVlfHJlYWQ=",
+  "plugins": ["@monodon/rust"]
 }
