@@ -17,6 +17,7 @@
       }
     },
     "test": {
+      "cache": true,
       "executor": "@monodon/rust:test",
       "outputs": ["{options.target-dir}"],
       "options": {
