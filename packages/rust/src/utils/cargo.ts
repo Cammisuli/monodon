@@ -75,6 +75,7 @@ export function cargoCommandSync(
         windowsHide: true,
         stdio: normalizedOptions.stdio,
         env: normalizedOptions.env,
+        maxBuffer: 1024 * 1024 * 10
       }),
       success: true,
     };
