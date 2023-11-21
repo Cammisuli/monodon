@@ -5,7 +5,10 @@
   "scripts": {
     "nx": "nx",
     "prepare": "husky install",
-    "local-registry": "nx run monodon:local-registry"
+    "local-registry": "nx run monodon:local-registry",
+    "build": "nx run rust:build",
+    "test": "nx run rust:test",
+    "e2e": "nx run rust-e2e:e2e"
   },
   "private": true,
   "packageManager": "yarn@1.22.19",
