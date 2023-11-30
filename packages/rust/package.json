@@ -9,5 +9,13 @@
   "license": "MIT",
   "private": false,
   "generators": "./generators.json",
-  "executors": "./executors.json"
+  "executors": "./executors.json",
+  "dependencies": {
+    "@nx/devkit": "17.1.2",
+    "nx": "17.1.2",
+    "@nx/js": "17.1.2",
+    "@ltd/j-toml": "1.38.0",
+    "chalk": "^4.1.2",
+    "tslib": "^2.0.0"
+  }
 }
