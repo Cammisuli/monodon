@@ -3,6 +3,7 @@ import {
   CreateNodes,
   ProjectConfiguration,
   RawProjectGraphDependency,
+  normalizePath,
   workspaceRoot,
 } from '@nx/devkit';
 import {
@@ -35,7 +36,7 @@ export const createNodes: CreateNodes = [
 
     for (const pkg of cargoPackages) {
       if (!isExternal(pkg)) {
-        const root = dirname(relative(ctx.workspaceRoot, pkg.manifest_path));
+        const root = normalizePath(dirname(relative(ctx.workspaceRoot, pkg.manifest_path)));
         projects[root] = {
           root,
           name: pkg.name,
