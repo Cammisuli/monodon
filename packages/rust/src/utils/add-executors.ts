@@ -22,6 +22,18 @@ export function addBuildExecutor(
   };
 }
 
+export function addCheckExecutor(
+  additionalOptions?: BuildExecutorSchema
+): TargetConfiguration {
+  return {
+    executor: '@monodon/rust:check',
+    outputs: ['{options.target-dir}'],
+    options: {
+      ...additionalOptions,
+    },
+  };
+}
+
 export function addTestExecutor(
   additionalOptions?: TestExecutorSchema
 ): TargetConfiguration {

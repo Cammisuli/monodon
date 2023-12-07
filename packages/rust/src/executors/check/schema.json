@@ -1,0 +1,138 @@
+{
+  "version": 2,
+  "outputCapture": "direct-nodejs",
+  "$schema": "http://json-schema.org/schema",
+  "title": "Check executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "release": {
+      "type": "boolean",
+      "default": false
+    },
+    "target": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "string"
+    },
+    "target-dir": {
+      "type": "string"
+    },
+    "toolchain": {
+      "type": "string",
+      "enum": [
+        "stable",
+        "beta",
+        "nightly"
+      ],
+      "default": "stable"
+    },
+    "features": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Features of workspace members may be enabled with package-name/feature-name syntax. Array of names is supported"
+    },
+    "all-features": {
+      "type": "boolean",
+      "default": false,
+      "description": "Check all binary targets"
+    },
+    "lib": {
+      "type": "boolean",
+      "description": "Check the package's library",
+      "default": false
+    },
+    "bin": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Check the specified binary. Array of names or common Unix glob patterns is supported"
+    },
+    "bins": {
+      "type": "boolean",
+      "default": false,
+      "description": "Check all binary targets"
+    },
+    "example": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Check the specified example. Array of names or common Unix glob patterns is supported"
+    },
+    "examples": {
+      "type": "boolean",
+      "default": false,
+      "description": "Check all example targets"
+    },
+    "test": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Check the specified test. Array of names or common Unix glob patterns is supported"
+    },
+    "tests": {
+      "type": "boolean",
+      "default": false,
+      "description": "Check all test targets"
+    },
+    "bench": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Check the specified bench. Array of names or common Unix glob patterns is supported"
+    },
+    "benches": {
+      "type": "boolean",
+      "default": false,
+      "description": "Check all targets in benchmark mode that have the bench = true manifest flag set. By default this includes the library and binaries built as benchmarks, and bench targets. Be aware that this will also build any required dependencies, so the lib target may be built twice (once as a benchmark, and once as a dependency for binaries, benchmarks, etc.). Targets may be enabled or disabled by setting the bench flag in the manifest settings for the target."
+    },
+    "all-targets": {
+      "type": "boolean",
+      "default": false,
+      "description": "Check all test targets"
+    }
+  },
+  "required": []
+}

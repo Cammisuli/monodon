@@ -9,7 +9,7 @@ import {
 } from '@nx/devkit';
 import * as path from 'path';
 import {
-  addBuildExecutor,
+  addCheckExecutor,
   addLintExecutor,
   addTestExecutor,
 } from '../../utils/add-executors';
@@ -53,7 +53,7 @@ export default async function libraryGenerator(
     projectType: 'library',
     sourceRoot: `${normalizedOptions.projectRoot}/src`,
     targets: {
-      build: addBuildExecutor({ 'target-dir': normalizedOptions.targetDir }),
+      build: addCheckExecutor({ 'target-dir': normalizedOptions.targetDir }),
       test: addTestExecutor({ 'target-dir': normalizedOptions.targetDir }),
       lint: addLintExecutor({ 'target-dir': normalizedOptions.targetDir }),
     },
