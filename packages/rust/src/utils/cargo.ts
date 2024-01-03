@@ -100,5 +100,9 @@ export function cargoMetadata(): CargoMetadata | null {
 }
 
 export function isExternal(packageOrDep: Package | Dependency) {
-  return packageOrDep.source?.startsWith('registry+') ?? false;
+  return (
+    (packageOrDep.source?.startsWith('registry+') ||
+      packageOrDep.source?.startsWith('git+')) ??
+    false
+  );
 }
