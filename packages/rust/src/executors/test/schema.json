@@ -55,6 +55,11 @@
       "default": false,
       "description": "Build all binary targets"
     },
+    "no-default-features": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disable all default features"
+    },
     "lib": {
       "type": "boolean",
       "description": "Build the package's library",
