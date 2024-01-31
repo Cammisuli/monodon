@@ -1,20 +1,20 @@
 {
-  "affected": {
-    "defaultBase": "main"
-  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "nxCloudAccessToken": "NzcyM2FlMTMtMjU2MS00NTE0LWFjNzQtNmU0OGU5YjExNzVlfHJlYWQ=",
   "workspaceLayout": {
     "appsDir": "e2e",
     "libsDir": "packages"
   },
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "release": {
+    "projects": ["rust"],
+    "version": {
+      "conventionalCommits": true
+    }
+  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"],
-      "cache": true
-    },
-    "lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
       "cache": true
     },
     "@nx/jest:jest": {
@@ -29,6 +29,10 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/eslint:lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "cache": true
     }
   },
   "namedInputs": {
@@ -42,6 +46,5 @@
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/src/test-setup.[jt]s"
     ]
-  },
-  "nxCloudAccessToken": "NzcyM2FlMTMtMjU2MS00NTE0LWFjNzQtNmU0OGU5YjExNzVlfHJlYWQ="
+  }
 }

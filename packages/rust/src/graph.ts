@@ -36,12 +36,19 @@ export const createNodes: CreateNodes = [
 
     for (const pkg of cargoPackages) {
       if (!isExternal(pkg)) {
-        const root = normalizePath(dirname(relative(ctx.workspaceRoot, pkg.manifest_path)));
+        const root = normalizePath(
+          dirname(relative(ctx.workspaceRoot, pkg.manifest_path))
+        );
         projects[root] = {
           root,
           name: pkg.name,
           // TODO(cammisuli): provide defaults for non-project.json workspaces
           targets: {},
+          release: {
+            version: {
+              generator: '@monodon/rust:release-version',
+            },
+          },
         };
       }
       for (const dep of pkg.dependencies) {

@@ -3,11 +3,11 @@ import {
   formatFiles,
   generateFiles,
   getProjects,
-  getWorkspaceLayout,
   joinPathFragments,
   names,
   offsetFromRoot,
   ProjectConfiguration,
+  readJson,
   Tree,
   updateJson,
   updateProjectConfiguration,
@@ -20,8 +20,6 @@ import {
 } from '../../utils/toml';
 import { NAPI_VERSION } from '../../utils/versions';
 import { AddNapiGeneratorSchema } from './schema';
-import { getRootTsConfigPathInTree } from '@nx/js';
-import { getNpmScope } from '@nx/js/src/utils/package-json/get-npm-scope';
 
 interface NormalizedSchema extends AddNapiGeneratorSchema {
   projectName: string;
@@ -89,6 +87,27 @@ function normalizeOptions(
     packageName,
     offsetFromRoot: offsetFromRoot(project.root),
   };
+}
+
+/**
+ * Read the npm scope that a workspace should use by default
+ */
+function getNpmScope(tree: Tree) {
+  const { name } = tree.exists('package.json')
+    ? readJson(tree, 'package.json')
+    : { name: null };
+  if (name?.startsWith('@')) {
+    return name.split('/')[0].substring(1);
+  }
+}
+
+function getRootTsConfigPathInTree(tree: Tree) {
+  for (const path of ['tsconfig.base.json', 'tsconfig.json']) {
+    if (tree.exists(path)) {
+      return path;
+    }
+  }
+  return 'tsconfig.base.json';
 }
 
 function addFiles(tree: Tree, options: NormalizedSchema) {
