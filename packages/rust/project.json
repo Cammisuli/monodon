@@ -47,10 +47,6 @@
           }
         ]
       }
-    },
-    "publish": {
-      "command": "node tools/scripts/publish.mjs rust {args.ver} {args.tag}",
-      "dependsOn": ["build"]
     }
   },
   "tags": []

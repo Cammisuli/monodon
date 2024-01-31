@@ -6,7 +6,8 @@
     "libsDir": "packages"
   },
   "release": {
-    "projects": ["rust"],
+    "projects": ["rust", "typescript-nx-imports-plugin"],
+    "projectsRelationship": "independent",
     "version": {
       "conventionalCommits": true
     }
