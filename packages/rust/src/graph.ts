@@ -44,6 +44,11 @@ export const createNodes: CreateNodes = [
           name: pkg.name,
           // TODO(cammisuli): provide defaults for non-project.json workspaces
           targets: {},
+          release: {
+            version: {
+              generator: '@monodon/rust:release-version',
+            },
+          },
         };
       }
       for (const dep of pkg.dependencies) {

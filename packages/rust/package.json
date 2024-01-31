@@ -11,11 +11,11 @@
   "generators": "./generators.json",
   "executors": "./executors.json",
   "dependencies": {
-    "@nx/devkit": "17.1.2",
-    "nx": "17.1.2",
-    "@nx/js": "17.1.2",
+    "@nx/devkit": "17.3.1",
     "@ltd/j-toml": "1.38.0",
     "chalk": "^4.1.2",
+    "nx": "17.3.1",
+    "semver": "7.5.4",
     "tslib": "^2.0.0"
   }
 }

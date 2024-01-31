@@ -6,10 +6,7 @@
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/typescript-nx-imports-plugin/**/*.ts"]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -29,12 +26,6 @@
         "packageJson": "packages/typescript-nx-imports-plugin/package.json",
         "main": "packages/typescript-nx-imports-plugin/src/index.ts",
         "assets": ["packages/typescript-nx-imports-plugin/*.md"]
-      }
-    },
-    "version": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "preset": "conventional"
       }
     }
   },

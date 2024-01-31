@@ -10,13 +10,13 @@ runs:
   using: 'composite'
   steps:
     - name: Derive appropriate SHAs for base and head for `nx affected` commands
-      uses: nrwl/nx-set-shas@v3
-    - uses: actions/setup-node@v1
+      uses: nrwl/nx-set-shas@v4
+    - uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node_version}}
     - name: Install
       uses: dtolnay/rust-toolchain@stable
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: workspace-cache
       with:
         path: node_modules
