@@ -14,8 +14,19 @@ export function buildCommand(
 
   args.push(baseCommand);
 
+  // flags after '-- ' should be passed to binaries after any other option
+  let argstobinaries = ['--'];
   for (const [key, value] of Object.entries(options)) {
     if (key === 'toolchain') {
+      continue;
+    }
+    if (key === '-- --test-threads' && value === 0) {
+      // -- --test-threads=0 comes from schema default to avoid setting thread number if not rquested
+      continue;
+    }
+    if (key.startsWith('-- ') ) {
+      // use '-- ' only once, save argument to append to the end of args
+      argstobinaries.push(key.substring(3), value);
       continue;
     }
 
@@ -35,6 +46,9 @@ export function buildCommand(
 
   if (!args.includes("--package")) {
     args.push("-p", context.projectName);
+  }
+  if (argstobinaries.length > 1) {
+    args.push(...argstobinaries);
   }
 
   return args;
