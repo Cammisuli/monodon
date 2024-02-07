@@ -15,7 +15,7 @@ export function buildCommand(
   args.push(baseCommand);
 
   // flags after '-- ' should be passed to binaries after any other option
-  let argstobinaries = ['--'];
+  const argstobinaries = ['--'];
   for (const [key, value] of Object.entries(options)) {
     if (key === 'toolchain') {
       continue;
