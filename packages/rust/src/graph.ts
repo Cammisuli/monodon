@@ -35,8 +35,10 @@ export const createNodes: CreateNodes = [
     }, new Map<string, Package>());
 
     for (const pkg of cargoPackages) {
-      if (!isExternal(pkg)) {
-        const root = normalizePath(dirname(relative(ctx.workspaceRoot, pkg.manifest_path)));
+      if (!isExternal(pkg, ctx.workspaceRoot)) {
+        const root = normalizePath(
+          dirname(relative(ctx.workspaceRoot, pkg.manifest_path))
+        );
         projects[root] = {
           root,
           name: pkg.name,
@@ -45,7 +47,7 @@ export const createNodes: CreateNodes = [
         };
       }
       for (const dep of pkg.dependencies) {
-        if (isExternal(dep)) {
+        if (isExternal(dep, ctx.workspaceRoot)) {
           const externalDepName = `cargo:${dep.name}`;
           if (!externalNodes?.[externalDepName]) {
             externalNodes[externalDepName] = {
