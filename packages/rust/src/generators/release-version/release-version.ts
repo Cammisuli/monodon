@@ -9,6 +9,7 @@ import {
   workspaceRoot,
 } from '@nx/devkit';
 import chalk from 'chalk';
+import { execSync } from 'node:child_process';
 import { relative } from 'node:path';
 import { IMPLICIT_DEFAULT_RELEASE_GROUP } from 'nx/src/command-line/release/config/config';
 import {
@@ -140,14 +141,6 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       const cargoTomlContents = tree.read(cargoTomlPath)!.toString('utf-8');
       const data = parseCargoToml(cargoTomlContents);
       const pkg = data.package;
-
-      // const data = execSync(
-      //   `cargo metadata --no-deps --format-version=1 --manifest-path=${cargoTomlPath}`
-      // )
-      //   .toString()
-      //   .trim();
-
-      // const json = JSON.parse(data);
 
       log(
         `🔍 Reading data for crate "${pkg.name}" from ${workspaceRelativeCargoTomlPath}`
@@ -477,7 +470,16 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
     return {
       data: versionData,
       callback: async () => {
-        return [];
+        const updatedPackages: string[] = [];
+        Object.entries(versionData).forEach(([projectName, versionData]) => {
+          if (versionData.newVersion) {
+            updatedPackages.push(projectName);
+          }
+        });
+        execSync(`cargo update ${updatedPackages.join(' ')}`, {
+          maxBuffer: 1024 * 1024 * 1024,
+        });
+        return hasGitDiff('Cargo.lock') ? ['Cargo.lock'] : [];
       },
     };
   } catch (e: any) {
@@ -609,4 +611,14 @@ function resolveLocalPackageDependencies(
   }
 
   return localPackageDependencies;
+}
+
+function hasGitDiff(filePath: string) {
+  try {
+    const result = execSync(`git diff --name-only "${filePath}"`).toString();
+    return result.trim() === filePath;
+  } catch (error) {
+    // Assuming any error means no diff or a problem executing git command
+    return false;
+  }
 }
