@@ -2,6 +2,21 @@
 
 This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
 
+## [1.3.3](https://github.com/Cammisuli/monodon/compare/rust-1.3.2...rust-1.3.3) (2024-02-07)
+
+
+### Bug Fixes
+
+* **rust:** Consider git and outside local source as external when building the graph ([#43](https://github.com/Cammisuli/monodon/issues/43)) ([dde9153](https://github.com/Cammisuli/monodon/commit/dde91536d63ec39b9c14238afc548552f62c560d))
+
+## [1.3.2](https://github.com/Cammisuli/monodon/compare/rust-1.3.1...rust-1.3.2) (2023-11-30)
+
+
+### Bug Fixes
+
+* **rust:** add dependencies to package.json and use new eslint rule ([1e01667](https://github.com/Cammisuli/monodon/commit/1e0166713d058d159cd13ca7fd343f7191b76a35))
+* **rust:** normalize root path ([a2f0e9e](https://github.com/Cammisuli/monodon/commit/a2f0e9ef808144d2064088f50c552043cf9fc241))
+
 ## [1.3.1](https://github.com/Cammisuli/monodon/compare/rust-1.3.0...rust-1.3.1) (2023-11-20)
 
 

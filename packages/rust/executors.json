@@ -35,6 +35,12 @@
       "implementation": "./src/executors/napi/executor",
       "schema": "./src/executors/napi/schema.json",
       "description": "Wrapper to run the napi-cli"
+    },
+    "release-publish": {
+      "implementation": "./src/executors/release-publish/executor",
+      "schema": "./src/executors/release-publish/schema.json",
+      "description": "DO NOT INVOKE DIRECTLY WITH `nx run`. Use `nx release publish` instead.",
+      "hidden": true
     }
   }
 }

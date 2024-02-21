@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+import { relative } from 'path';
 import { ChildProcess, execSync, spawn, StdioOptions } from 'child_process';
 import { runProcess } from './run-process';
 import { CargoMetadata, Dependency, Package } from '../models/cargo-metadata';
@@ -75,7 +76,7 @@ export function cargoCommandSync(
         windowsHide: true,
         stdio: normalizedOptions.stdio,
         env: normalizedOptions.env,
-        maxBuffer: 1024 * 1024 * 10
+        maxBuffer: 1024 * 1024 * 10,
       }),
       success: true,
     };
@@ -99,6 +100,15 @@ export function cargoMetadata(): CargoMetadata | null {
   return JSON.parse(output.output) as CargoMetadata;
 }
 
-export function isExternal(packageOrDep: Package | Dependency) {
-  return packageOrDep.source?.startsWith('registry+') ?? false;
+export function isExternal(
+  packageOrDep: Package | Dependency,
+  workspaceRoot: string
+) {
+  const isRegistry = packageOrDep.source?.startsWith('registry+') ?? false;
+  const isGit = packageOrDep.source?.startsWith('git+') ?? false;
+  const isOutsideWorkspace =
+    'path' in packageOrDep &&
+    relative(workspaceRoot, packageOrDep.path).startsWith('..');
+
+  return isRegistry || isGit || isOutsideWorkspace;
 }
