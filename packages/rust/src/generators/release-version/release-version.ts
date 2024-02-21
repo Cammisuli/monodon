@@ -410,6 +410,7 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
 
         // Auto (i.e.infer existing) by default
         let versionPrefix = options.versionPrefix ?? 'auto';
+        let updatedDependencyData: string | Record<string, string> = '';
 
         for (const [dependencyName, dependencyData] of Object.entries(
           dependentPkg[dependentProject.dependencyCollection] ?? {}
@@ -442,6 +443,15 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
               }
             }
           }
+          const newVersionWithPrefix = `${versionPrefix}${newVersion}`;
+          updatedDependencyData =
+            typeof dependencyData === 'string'
+              ? newVersionWithPrefix
+              : {
+                  ...dependencyData,
+                  version: newVersionWithPrefix,
+                };
+          break;
         }
 
         const cargoTomlToUpdate = joinPathFragments(
@@ -453,7 +463,7 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
           dependentPkg,
           dependentProject.dependencyCollection,
           dependentProject.target,
-          `${versionPrefix}${newVersion}`
+          updatedDependencyData
         );
 
         tree.write(cargoTomlToUpdate, stringifyCargoToml(dependentPkg));

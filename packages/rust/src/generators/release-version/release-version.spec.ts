@@ -235,7 +235,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dependencies": Object {
-            "my-lib": "1.0.0",
+            "my-lib": Object {
+              "version": "1.0.0",
+            },
           },
           "package": Object {
             "name": "project-with-dependency-on-my-pkg",
@@ -252,7 +254,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "1.0.0",
+            "my-lib": Object {
+              "version": "1.0.0",
+            },
           },
           "package": Object {
             "name": "project-with-devDependency-on-my-pkg",
@@ -321,7 +325,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
         ).toMatchInlineSnapshot(`
           Object {
             "dependencies": Object {
-              "my-lib": "0.1.0",
+              "my-lib": Object {
+                "version": "0.1.0",
+              },
             },
             "package": Object {
               "name": "project-with-dependency-on-my-pkg",
@@ -338,7 +344,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
         ).toMatchInlineSnapshot(`
           Object {
             "dev-dependencies": Object {
-              "my-lib": "0.1.0",
+              "my-lib": Object {
+                "version": "0.1.0",
+              },
             },
             "package": Object {
               "name": "project-with-devDependency-on-my-pkg",
@@ -395,7 +403,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
         ).toMatchInlineSnapshot(`
           Object {
             "dependencies": Object {
-              "my-lib": "4.5.6",
+              "my-lib": Object {
+                "version": "4.5.6",
+              },
             },
             "package": Object {
               "name": "project-with-dependency-on-my-pkg",
@@ -412,7 +422,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
         ).toMatchInlineSnapshot(`
           Object {
             "dev-dependencies": Object {
-              "my-lib": "4.5.6",
+              "my-lib": Object {
+                "version": "4.5.6",
+              },
             },
             "package": Object {
               "name": "project-with-devDependency-on-my-pkg",
@@ -492,7 +504,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
         ).toMatchInlineSnapshot(`
           Object {
             "dependencies": Object {
-              "my-lib": "9.9.9",
+              "my-lib": Object {
+                "version": "9.9.9",
+              },
             },
             "package": Object {
               "name": "project-with-dependency-on-my-pkg",
@@ -509,7 +523,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
         ).toMatchInlineSnapshot(`
           Object {
             "dev-dependencies": Object {
-              "my-lib": "9.9.9",
+              "my-lib": Object {
+                "version": "9.9.9",
+              },
             },
             "package": Object {
               "name": "project-with-devDependency-on-my-pkg",
@@ -554,7 +570,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dependencies": Object {
-            "my-lib": "8.8.8",
+            "my-lib": Object {
+              "version": "8.8.8",
+            },
           },
           "package": Object {
             "name": "project-with-dependency-on-my-pkg",
@@ -572,7 +590,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "8.8.8",
+            "my-lib": Object {
+              "version": "8.8.8",
+            },
           },
           "package": Object {
             "name": "project-with-devDependency-on-my-pkg",
@@ -670,7 +690,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dependencies": Object {
-            "my-lib": "9.9.9",
+            "my-lib": Object {
+              "version": "9.9.9",
+            },
           },
           "package": Object {
             "name": "project-with-dependency-on-my-pkg",
@@ -688,7 +710,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "9.9.9",
+            "my-lib": Object {
+              "version": "9.9.9",
+            },
           },
           "package": Object {
             "name": "project-with-devDependency-on-my-pkg",
@@ -706,7 +730,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "9.9.9",
+            "my-lib": Object {
+              "version": "9.9.9",
+            },
           },
           "package": Object {
             "name": "another-project-with-devDependency-on-my-pkg",
@@ -747,7 +773,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dependencies": Object {
-            "my-lib": "^9.9.9",
+            "my-lib": Object {
+              "version": "^9.9.9",
+            },
           },
           "package": Object {
             "name": "project-with-dependency-on-my-pkg",
@@ -764,7 +792,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "^9.9.9",
+            "my-lib": Object {
+              "version": "^9.9.9",
+            },
           },
           "package": Object {
             "name": "project-with-devDependency-on-my-pkg",
@@ -781,7 +811,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "^9.9.9",
+            "my-lib": Object {
+              "version": "^9.9.9",
+            },
           },
           "package": Object {
             "name": "another-project-with-devDependency-on-my-pkg",
@@ -822,7 +854,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dependencies": Object {
-            "my-lib": "~9.9.9",
+            "my-lib": Object {
+              "version": "~9.9.9",
+            },
           },
           "package": Object {
             "name": "project-with-dependency-on-my-pkg",
@@ -839,7 +873,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "~9.9.9",
+            "my-lib": Object {
+              "version": "~9.9.9",
+            },
           },
           "package": Object {
             "name": "project-with-devDependency-on-my-pkg",
@@ -856,7 +892,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "~9.9.9",
+            "my-lib": Object {
+              "version": "~9.9.9",
+            },
           },
           "package": Object {
             "name": "another-project-with-devDependency-on-my-pkg",
@@ -897,7 +935,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dependencies": Object {
-            "my-lib": "~9.9.9",
+            "my-lib": Object {
+              "version": "~9.9.9",
+            },
           },
           "package": Object {
             "name": "project-with-dependency-on-my-pkg",
@@ -914,7 +954,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "^9.9.9",
+            "my-lib": Object {
+              "version": "^9.9.9",
+            },
           },
           "package": Object {
             "name": "project-with-devDependency-on-my-pkg",
@@ -931,7 +973,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "9.9.9",
+            "my-lib": Object {
+              "version": "9.9.9",
+            },
           },
           "package": Object {
             "name": "another-project-with-devDependency-on-my-pkg",
@@ -972,7 +1016,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dependencies": Object {
-            "my-lib": "~9.9.9",
+            "my-lib": Object {
+              "version": "~9.9.9",
+            },
           },
           "package": Object {
             "name": "project-with-dependency-on-my-pkg",
@@ -989,7 +1035,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "^9.9.9",
+            "my-lib": Object {
+              "version": "^9.9.9",
+            },
           },
           "package": Object {
             "name": "project-with-devDependency-on-my-pkg",
@@ -1006,7 +1054,9 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       ).toMatchInlineSnapshot(`
         Object {
           "dev-dependencies": Object {
-            "my-lib": "9.9.9",
+            "my-lib": Object {
+              "version": "9.9.9",
+            },
           },
           "package": Object {
             "name": "another-project-with-devDependency-on-my-pkg",
