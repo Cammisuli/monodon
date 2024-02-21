@@ -479,7 +479,19 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
     // Return the version data so that it can be leveraged by the overall version command
     return {
       data: versionData,
-      callback: async () => {
+      callback: async (tree, opts) => {
+        output.logSingleLine(`Updating Cargo.lock file`);
+        if (opts.generatorOptions?.skipLockFileUpdate) {
+          if (process.env.NX_VERBOSE_LOGGING === 'true') {
+            console.log(
+              '\nSkipped lock file update because skipLockFileUpdate was set.'
+            );
+          }
+          return [];
+        }
+        if (opts.dryRun) {
+          return [];
+        }
         const updatedPackages: string[] = [];
         Object.entries(versionData).forEach(([projectName, versionData]) => {
           if (versionData.newVersion) {
@@ -488,6 +500,7 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
         });
         execSync(`cargo update ${updatedPackages.join(' ')}`, {
           maxBuffer: 1024 * 1024 * 1024,
+          cwd: tree.root,
         });
         return hasGitDiff('Cargo.lock') ? ['Cargo.lock'] : [];
       },
