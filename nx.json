@@ -14,6 +14,12 @@
       "generatorOptions": {
         "packageRoot": "dist/packages/{projectName}"
       }
+    },
+    "changelog": {
+      "projectChangelogs": {
+        "file": "{projectRoot}/CHANGELOG.md",
+        "createRelease": "github"
+      }
     }
   },
   "targetDefaults": {

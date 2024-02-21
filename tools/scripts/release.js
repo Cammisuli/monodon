@@ -4,6 +4,7 @@ const { execSync } = require('node:child_process');
 const {
   releaseChangelog,
   releaseVersion,
+  releasePublish,
 } = require('nx/src/command-line/release');
 const yargs = require('yargs');
 
@@ -29,13 +30,18 @@ const yargs = require('yargs');
         type: 'boolean',
         default: false,
       })
+      .option('local', {
+        description: 'Whether or not you are running a local release',
+        type: 'boolean',
+        default: true,
+      })
       .option('gitRemote', {
         description:
           'The name of the git remote to push the release to, defaults to origin',
         type: 'string',
       })
       .parseAsync();
-    if (!options.dryRun) {
+    if (!options.dryRun && !options.local) {
       if (!process.env.GH_TOKEN && !process.env.GITHUB_TOKEN) {
         throw new Error(
           `GH_TOKEN or GITHUB_TOKEN environment variable must be set in order to run a real release`
@@ -60,7 +66,7 @@ const yargs = require('yargs');
     console.log();
 
     // Prepare the packages for publishing
-    execSync('yarn build', {
+    execSync('yarn nx run-many -t build', {
       stdio: 'inherit',
       maxBuffer: 1024 * 1024 * 1024, // 1GB
     });
@@ -69,23 +75,27 @@ const yargs = require('yargs');
       specifier: options.version,
       dryRun: options.dryRun,
       verbose: options.verbose,
+      stageChanges: false,
+      firstRelease: true,
     });
 
-    // This will create a release on GitHub, which will act as a trigger for the publish.yml workflow
-    await releaseChangelog({
-      versionData: projectsVersionData,
-      version: workspaceVersion,
-      interactive: 'workspace',
-      gitRemote: options.gitRemote,
+    if (options.dryRun || !options.local) {
+      await releaseChangelog({
+        versionData: projectsVersionData,
+        version: workspaceVersion,
+        interactive: 'workspace',
+        gitRemote: options.gitRemote,
+        dryRun: options.dryRun,
+        verbose: options.verbose,
+        firstRelease: true,
+      });
+    }
+
+    const status = await releasePublish({
       dryRun: options.dryRun,
       verbose: options.verbose,
     });
-
-    if (!options.dryRun) {
-      console.log(
-        'Check GitHub: https://github.com/monodon/rust/actions/workflows/publish.yml'
-      );
-    }
+    process.exit(status);
   } catch (err) {
     console.error(err);
     process.exit(1);
