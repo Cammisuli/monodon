@@ -22,7 +22,6 @@ export default async () => {
     gitCommit: false,
     gitTag: false,
     stageChanges: false,
-    firstRelease: true,
     verbose: true,
   });
   await releasePublish({

@@ -76,7 +76,6 @@ const yargs = require('yargs');
       dryRun: options.dryRun,
       verbose: options.verbose,
       stageChanges: false,
-      firstRelease: true,
     });
 
     if (options.dryRun || !options.local) {
@@ -87,7 +86,6 @@ const yargs = require('yargs');
         gitRemote: options.gitRemote,
         dryRun: options.dryRun,
         verbose: options.verbose,
-        firstRelease: true,
       });
     }
 
