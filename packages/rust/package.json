@@ -14,6 +14,7 @@
     "@nx/devkit": "18.1.0-beta.2",
     "@ltd/j-toml": "1.38.0",
     "chalk": "^4.1.2",
+    "npm-run-path": "^4.0.1",
     "nx": "18.1.0-beta.2",
     "semver": "7.5.4",
     "tslib": "^2.0.0"
