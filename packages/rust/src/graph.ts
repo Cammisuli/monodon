@@ -39,11 +39,29 @@ export const createNodes: CreateNodes = [
         const root = normalizePath(
           dirname(relative(ctx.workspaceRoot, pkg.manifest_path))
         );
+
+        // TODO(cammisuli): provide defaults for non-project.json workspaces
+        const targets: ProjectConfiguration['targets'] = {};
+
+        // Apply nx-release-publish target for non-private projects
+        const isPrivate = pkg.publish?.length === 0;
+        if (!isPrivate) {
+          targets['nx-release-publish'] = {
+            dependsOn: ['^nx-release-publish'],
+            executor: '@monodon/rust:release-publish',
+            options: {},
+          };
+        }
+
         projects[root] = {
           root,
           name: pkg.name,
-          // TODO(cammisuli): provide defaults for non-project.json workspaces
-          targets: {},
+          targets,
+          release: {
+            version: {
+              generator: '@monodon/rust:release-version',
+            },
+          },
         };
       }
       for (const dep of pkg.dependencies) {

@@ -1,5 +1,6 @@
 export interface CargoToml {
-  workspace: { members: string[] };
+  // Workspace is only applicable to the root Cargo.toml
+  workspace?: { members: string[] };
   package: any;
   dependencies?: Record<
     string,

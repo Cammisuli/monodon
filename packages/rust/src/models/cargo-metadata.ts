@@ -26,7 +26,16 @@ export interface Package {
   features: Features;
   manifest_path: string;
   metadata: Metadata;
-  publish: string[];
+  /**
+   * From the docs:
+   * "List of registries to which this package may be published.
+   * Publishing is unrestricted if null, and forbidden if an empty array."
+   *
+   * Additional observation:
+   * false can be used by the end user but it will be converted to an empty
+   * array in the cargo metadata output.
+   */
+  publish: string[] | null;
   authors: string[];
   categories: string[];
   default_run: any;

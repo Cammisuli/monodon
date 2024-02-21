@@ -54,6 +54,12 @@
       "factory": "./src/generators/create-napi-npm-dirs/generator",
       "schema": "./src/generators/create-napi-npm-dirs/schema.json",
       "description": "Generates npm package directories for a NAPI project"
+    },
+    "release-version": {
+      "factory": "./src/generators/release-version/release-version#releaseVersionGenerator",
+      "schema": "./src/generators/release-version/schema.json",
+      "description": "DO NOT INVOKE DIRECTLY WITH `nx generate`. Use `nx release version` instead.",
+      "hidden": true
     }
   }
 }
