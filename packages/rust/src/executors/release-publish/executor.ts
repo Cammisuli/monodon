@@ -46,7 +46,7 @@ export default async function runExecutor(
   const crateName = cargoToml.package.name;
 
   const cargoPublishCommandSegments = [
-    `cargo publish --allow-dirty -p ${crateName} --target-dir ${workspaceRelativePackageRoot}/target`,
+    `cargo publish --allow-dirty -p ${crateName}`,
   ];
 
   if (isDryRun) {
