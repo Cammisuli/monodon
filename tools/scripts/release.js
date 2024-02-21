@@ -44,7 +44,7 @@ const yargs = require('yargs');
     }
 
     if (!options.gitRemote) {
-      options.gitRemote = getRemoteFor('git@github.com:monodon/rust.git');
+      options.gitRemote = getRemoteFor('git@github.com:Cammisuli/monodon.git');
     }
 
     console.log();

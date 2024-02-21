@@ -8,11 +8,20 @@
   "release": {
     "projects": ["rust", "typescript-nx-imports-plugin"],
     "projectsRelationship": "independent",
+    "releaseTagPattern": "{projectName}-{version}",
     "version": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "generatorOptions": {
+        "packageRoot": "dist/packages/{projectName}"
+      }
     }
   },
   "targetDefaults": {
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/packages/{projectName}"
+      }
+    },
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"],
