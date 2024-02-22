@@ -19,6 +19,6 @@ jobs:
       - uses: ./.github/workflows/setup
         with:
           node_version: ${{ env.node_version }}
-      - run: yarn nx affected --target=build,test,lint  --exclude monodon --parallel --max-parallel=3
-      - run: yarn nx affected --target=e2e --exclude monodon --parallel
+      - run: yarn nx run-many --target=build,test,lint  --exclude monodon --parallel --max-parallel=3
+      - run: yarn nx run-many --target=e2e --exclude monodon --parallel
       - run: yarn nx-cloud stop-all-agents
