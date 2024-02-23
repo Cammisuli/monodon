@@ -42,7 +42,7 @@ const yargs = require('yargs');
       })
       .option('otp', {
         description: 'The otp code used for publishing in npm',
-        type: 'number'
+        type: 'number',
       })
       .parseAsync();
     if (!options.dryRun && !options.local) {
@@ -67,7 +67,11 @@ const yargs = require('yargs');
     );
     console.info(`verbose   : ${options.verbose}`);
     console.info(`gitRemote : ${options.gitRemote}`);
-    console.log();
+
+    let registry = getRegistry();
+    if (registry.hostname != 'localhost' && options.local) {
+      throw new Error('--local is set to true, while trying to publish to npm. Please make sure to set --local false');
+    }
 
     // Prepare the packages for publishing
     execSync('yarn nx run-many -t build', {
@@ -82,6 +86,7 @@ const yargs = require('yargs');
       stageChanges: false,
     });
 
+
     if (options.dryRun || !options.local) {
       await releaseChangelog({
         versionData: projectsVersionData,
@@ -92,6 +97,7 @@ const yargs = require('yargs');
         verbose: options.verbose,
       });
     }
+
 
     const status = await releasePublish({
       dryRun: options.dryRun,
@@ -104,6 +110,10 @@ const yargs = require('yargs');
     process.exit(1);
   }
 })();
+
+function getRegistry() {
+  return new URL(execSync('npm config get registry').toString().trim());
+}
 
 /**
  * Gets the name of the git remote for the given URL, if
