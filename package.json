@@ -8,7 +8,8 @@
     "local-registry": "nx run monodon:local-registry",
     "build": "nx run rust:build",
     "test": "nx run rust:test",
-    "e2e": "nx run rust-e2e:e2e"
+    "e2e": "nx run rust-e2e:e2e",
+    "release": "node tools/scripts/release.js"
   },
   "private": true,
   "packageManager": "yarn@1.22.19",

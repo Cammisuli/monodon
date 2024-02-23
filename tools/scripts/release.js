@@ -40,6 +40,10 @@ const yargs = require('yargs');
           'The name of the git remote to push the release to, defaults to origin',
         type: 'string',
       })
+      .option('otp', {
+        description: 'The otp code used for publishing in npm',
+        type: 'number'
+      })
       .parseAsync();
     if (!options.dryRun && !options.local) {
       if (!process.env.GH_TOKEN && !process.env.GITHUB_TOKEN) {
@@ -92,6 +96,7 @@ const yargs = require('yargs');
     const status = await releasePublish({
       dryRun: options.dryRun,
       verbose: options.verbose,
+      otp: options.otp,
     });
     process.exit(status);
   } catch (err) {
