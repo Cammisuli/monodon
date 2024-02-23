@@ -1,6 +1,19 @@
 # Changelog
 
-This file was generated using [@jscutlery/semver](https://github.com/jscutlery/semver).
+## 1.4.0 (2024-02-23)
+
+
+### 🚀 Features
+
+- add nx release version generator ([#45](https://github.com/Cammisuli/monodon/pull/45))
+
+- **rust:** add check executor ([#36](https://github.com/Cammisuli/monodon/pull/36))
+
+
+### ❤️  Thank You
+
+- James Henry @JamesHenry
+- rliang @rliang
 
 ## [1.3.3](https://github.com/Cammisuli/monodon/compare/rust-1.3.2...rust-1.3.3) (2024-02-07)
 
