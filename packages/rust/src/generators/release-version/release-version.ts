@@ -424,19 +424,22 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
             versionPrefix = ''; // we don't want to end up printing auto
 
             if (currentVersion) {
-              const dependencyVersion =
-                typeof dependencyData === 'string'
-                  ? dependencyData
-                  : dependencyData.version;
-              const prefixMatch = dependencyVersion.match(/^[~^=]/);
-              if (prefixMatch) {
-                versionPrefix = prefixMatch[0];
-              } else {
-                versionPrefix = '';
+              if (dependencyData.version) {
+                const dependencyVersion =
+                  typeof dependencyData === 'string'
+                    ? dependencyData
+                    : dependencyData.version;
+                const prefixMatch = dependencyVersion.match(/^[~^=]/);
+                if (prefixMatch) {
+                  versionPrefix = prefixMatch[0];
+                } else {
+                  versionPrefix = '';
+                }
               }
 
               // In rust the default version prefix/behavior is ^, so a ^ may have been inferred by cargo metadata via no prefix or an explicit ^.
               if (versionPrefix === '^') {
+                // dependencyData.version is ensured to not be null here because of the versionPrefix == '^' check
                 if (!dependencyData.version.startsWith('^')) {
                   versionPrefix = '';
                 }
