@@ -266,7 +266,8 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
             specifier = await resolveSemverSpecifierFromConventionalCommits(
               previousVersionRef,
               options.projectGraph,
-              affectedProjects
+              affectedProjects,
+              options.conventionalCommitsConfig!
             );
 
             if (!specifier) {
@@ -356,7 +357,6 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
       versionData[projectName] = {
         currentVersion,
         dependentProjects,
-        // @ts-expect-error: The types will be updated in a future version of Nx
         newVersion: null, // will stay as null in the final result in the case that no changes are detected
       };
 

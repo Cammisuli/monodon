@@ -1081,13 +1081,13 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
         specifier: 'major',
         currentVersionResolver: 'disk',
         releaseGroup: createReleaseGroup('fixed'),
-        versionPrefix: '$',
+        versionPrefix: '$' as any,
       });
 
       expect(outputSpy).toHaveBeenCalledWith({
         title: `Invalid value for version.generatorOptions.versionPrefix: "$"
 
-Valid values are: "auto", "", "~", "^"`,
+Valid values are: "auto", "", "~", "^", "="`,
       });
 
       outputSpy.mockRestore();
