@@ -564,7 +564,7 @@ interface LocalPackageDependency extends ProjectGraphDependency {
   dependencyCollection: 'dependencies' | 'dev-dependencies';
 }
 
-function updateProjectNameToPackageRootMap(
+function fillPackageRootMap(
   projectNameToPackageRootMap: Map<string, string>,
   projectNode: ProjectGraphProjectNode,
   resolvePackageRoot: (projectNode: ProjectGraphProjectNode) => string
@@ -575,7 +575,9 @@ function updateProjectNameToPackageRootMap(
   if (!packageRoot) {
     const resolvedPackageRoot = resolvePackageRoot(projectNode);
     // Append it to the map for later use within the release version generator
-    projectNameToPackageRootMap.set(projectNode.name, resolvedPackageRoot);
+    if (resolvedPackageRoot) {
+      projectNameToPackageRootMap.set(projectNode.name, resolvedPackageRoot);
+    }
   }
 }
 
@@ -596,7 +598,7 @@ function resolveLocalPackageDependencies(
   for (const projectNode of projects) {
     // Ensure that the packageRoot is resolved for the project and added to the map for later use
     if (includeAll) {
-      updateProjectNameToPackageRootMap(
+      fillPackageRootMap(
         projectNameToPackageRootMap,
         projectNode,
         resolvePackageRoot
@@ -613,7 +615,7 @@ function resolveLocalPackageDependencies(
         continue;
       }
       // Ensure that the packageRoot is resolved for the dependent project and added to the map for later use
-      updateProjectNameToPackageRootMap(
+      fillPackageRootMap(
         projectNameToPackageRootMap,
         depProject,
         resolvePackageRoot
