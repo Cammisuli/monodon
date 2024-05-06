@@ -146,7 +146,7 @@ describe('release-version', () => {
       });
 
       expect(outputSpy).toHaveBeenCalledWith({
-        title: `The project "my-lib" does not have a Cargo.toml available at libs/my-lib/Cargo.toml.
+        title: `The project "my-lib" does not have a Cargo.toml available at packages/rust/libs/my-lib/Cargo.toml.
 
 To fix this you will either need to add a Cargo.toml file at that location, or configure "release" within your nx.json to exclude "my-lib" from the current release group, or amend the packageRoot configuration to point to where the Cargo.toml should be.`,
       });

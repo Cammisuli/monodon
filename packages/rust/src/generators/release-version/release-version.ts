@@ -428,7 +428,7 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
                 typeof dependencyData === 'string'
                   ? dependencyData
                   : dependencyData.version;
-              const prefixMatch = dependencyVersion.match(/^[~^=]/);
+              const prefixMatch = dependencyVersion?.match(/^[~^=]/);
               if (prefixMatch) {
                 versionPrefix = prefixMatch[0];
               } else {
@@ -564,6 +564,21 @@ interface LocalPackageDependency extends ProjectGraphDependency {
   dependencyCollection: 'dependencies' | 'dev-dependencies';
 }
 
+function updateProjectNameToPackageRootMap(
+  projectNameToPackageRootMap: Map<string, string>,
+  projectNode: ProjectGraphProjectNode,
+  resolvePackageRoot: (projectNode: ProjectGraphProjectNode) => string
+) {
+  // Resolve the Cargo.toml path for the project, taking into account any custom packageRoot settings
+  const packageRoot = projectNameToPackageRootMap.get(projectNode.name);
+  // packageRoot wasn't added to the map yet, try to resolve it dynamically
+  if (!packageRoot) {
+    const resolvedPackageRoot = resolvePackageRoot(projectNode);
+    // Append it to the map for later use within the release version generator
+    projectNameToPackageRootMap.set(projectNode.name, resolvedPackageRoot);
+  }
+}
+
 function resolveLocalPackageDependencies(
   tree: Tree,
   projectGraph: ProjectGraph,
@@ -579,16 +594,13 @@ function resolveLocalPackageDependencies(
     : filteredProjects;
 
   for (const projectNode of projects) {
-    // Resolve the Cargo.toml path for the project, taking into account any custom packageRoot settings
-    let packageRoot = projectNameToPackageRootMap.get(projectNode.name);
-    // packageRoot wasn't added to the map yet, try to resolve it dynamically
-    if (!packageRoot && includeAll) {
-      packageRoot = resolvePackageRoot(projectNode);
-      if (!packageRoot) {
-        continue;
-      }
-      // Append it to the map for later use within the release version generator
-      projectNameToPackageRootMap.set(projectNode.name, packageRoot);
+    // Ensure that the packageRoot is resolved for the project and added to the map for later use
+    if (includeAll) {
+      updateProjectNameToPackageRootMap(
+        projectNameToPackageRootMap,
+        projectNode,
+        resolvePackageRoot
+      );
     }
     const projectDeps = projectGraph.dependencies[projectNode.name];
     if (!projectDeps) {
@@ -600,6 +612,12 @@ function resolveLocalPackageDependencies(
       if (!depProject) {
         continue;
       }
+      // Ensure that the packageRoot is resolved for the dependent project and added to the map for later use
+      updateProjectNameToPackageRootMap(
+        projectNameToPackageRootMap,
+        depProject,
+        resolvePackageRoot
+      );
       const depProjectRoot = projectNameToPackageRootMap.get(dep.target);
       if (!depProjectRoot) {
         throw new Error(
