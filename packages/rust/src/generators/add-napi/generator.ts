@@ -18,7 +18,11 @@ import {
   parseCargoTomlWithTree,
   stringifyCargoToml,
 } from '../../utils/toml';
-import { NAPI_VERSION } from '../../utils/versions';
+import {
+  NAPI_EMNAPI,
+  NAPI_VERSION,
+  NAPI_WASM_RUNTIME,
+} from '../../utils/versions';
 import { AddNapiGeneratorSchema } from './schema';
 
 interface NormalizedSchema extends AddNapiGeneratorSchema {
@@ -26,6 +30,7 @@ interface NormalizedSchema extends AddNapiGeneratorSchema {
   projectRoot: string;
   packageName: string;
   offsetFromRoot: string;
+  dryRun?: boolean;
 }
 
 export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
@@ -40,7 +45,11 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
   const addPackage = addDependenciesToPackageJson(
     tree,
     {},
-    { '@napi-rs/cli': NAPI_VERSION }
+    {
+      '@napi-rs/cli': NAPI_VERSION,
+      '@napi-rs/wasm-runtime': NAPI_WASM_RUNTIME,
+      emnapi: NAPI_EMNAPI,
+    }
   );
   updateGitIgnore(tree);
   updateTsConfig(tree, normalizedOptions);
@@ -49,6 +58,8 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
     targets: {
       ...project.targets,
       build: {
+        cache: true,
+        outputs: [`{workspaceRoot}/${normalizedOptions.projectRoot}`],
         executor: '@monodon/rust:napi',
         options: {
           dist: normalizedOptions.projectRoot,
@@ -67,6 +78,14 @@ export default async function (tree: Tree, options: AddNapiGeneratorSchema) {
 
   return async () => {
     await addPackage();
+    const { NapiCli } = await import('@napi-rs/cli');
+    const napi = new NapiCli();
+
+    await napi.createNpmDirs({
+      npmDir: `${normalizedOptions.projectRoot}/npm`,
+      packageJsonPath: `${normalizedOptions.projectRoot}/package.json`,
+      dryRun: normalizedOptions.dryRun,
+    });
   };
 }
 

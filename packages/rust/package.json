@@ -18,5 +18,8 @@
     "nx": ">=18.1.1",
     "semver": "7.5.4",
     "tslib": "^2.0.0"
+  },
+  "nx-migrations": {
+    "migrations": "./migrations.json"
   }
 }

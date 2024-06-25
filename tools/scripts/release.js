@@ -70,7 +70,9 @@ const yargs = require('yargs');
 
     let registry = getRegistry();
     if (registry.hostname != 'localhost' && options.local) {
-      throw new Error('--local is set to true, while trying to publish to npm. Please make sure to set --local false');
+      throw new Error(
+        '--local is set to true, while trying to publish to npm. Please make sure to set --local false'
+      );
     }
 
     // Prepare the packages for publishing
@@ -86,7 +88,6 @@ const yargs = require('yargs');
       stageChanges: false,
     });
 
-
     if (options.dryRun || !options.local) {
       await releaseChangelog({
         versionData: projectsVersionData,
@@ -97,7 +98,6 @@ const yargs = require('yargs');
         verbose: options.verbose,
       });
     }
-
 
     const status = await releasePublish({
       dryRun: options.dryRun,
