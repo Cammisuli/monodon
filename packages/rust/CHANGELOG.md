@@ -1,3 +1,15 @@
+## 2.0.0-beta.1 (2024-06-25)
+
+
+### 🚀 Features
+
+- **rust:** update napi to v3 ([86c8ce8](https://github.com/Cammisuli/monodon/commit/86c8ce8))
+
+
+### ❤️  Thank You
+
+- Jonathan Cammisuli
+
 # Changelog
 
 ## 1.4.0 (2024-02-23)
