@@ -47,7 +47,9 @@ describe('napi', () => {
       )
     ).not.toThrow();
     const files2 = listFiles(`test-project/napi_proj`);
-    expect(files2.some((file) => file.endsWith('wasm-wasi.wasm'))).toBeTruthy();
+    expect(
+      files2.some((file) => file.endsWith('wasm32-wasi.wasm'))
+    ).toBeTruthy();
     expect(files2).toContain('wasi-worker.mjs');
     expect(files2).toContain('wasi-worker-browser.mjs');
   });
