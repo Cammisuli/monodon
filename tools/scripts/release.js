@@ -99,9 +99,6 @@ const yargs = require('yargs');
       });
     }
 
-    if (options.version?.includes('.')) {
-    }
-
     const status = await releasePublish({
       dryRun: options.dryRun,
       verbose: options.verbose,
