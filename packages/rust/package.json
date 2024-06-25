@@ -19,6 +19,9 @@
     "semver": "7.5.4",
     "tslib": "^2.0.0"
   },
+  "peerDependencies": {
+    "@napi-rs/cli": "^3.0.0-alpha.55"
+  },
   "nx-migrations": {
     "migrations": "./migrations.json"
   }
