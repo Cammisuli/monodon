@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/rust/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
@@ -44,10 +45,14 @@
             "input": "./packages/rust",
             "glob": "executors.json",
             "output": "."
+          },
+          {
+            "input": "./packages/rust",
+            "glob": "migrations.json",
+            "output": "."
           }
         ]
       }
     }
-  },
-  "tags": []
+  }
 }

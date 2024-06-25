@@ -4,7 +4,7 @@
     "rootDir": ".",
     "strict": true,
     "inlineSourceMap": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,

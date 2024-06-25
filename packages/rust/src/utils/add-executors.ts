@@ -9,6 +9,7 @@ export function addBuildExecutor(
   additionalOptions?: BuildExecutorSchema
 ): TargetConfiguration {
   return {
+    cache: true,
     executor: '@monodon/rust:build',
     outputs: ['{options.target-dir}'],
     options: {
@@ -38,6 +39,7 @@ export function addTestExecutor(
   additionalOptions?: TestExecutorSchema
 ): TargetConfiguration {
   return {
+    cache: true,
     executor: '@monodon/rust:test',
     outputs: ['{options.target-dir}'],
     options: {
@@ -72,6 +74,7 @@ export function addLintExecutor(
   additionalOptions?: LintExecutorSchema
 ): TargetConfiguration {
   return {
+    cache: true,
     executor: '@monodon/rust:lint',
     outputs: ['{options.target-dir}'],
     options: {
@@ -84,6 +87,7 @@ export function addWasmPackExecutor(
   additionalOptions?: WasmPackExecutorSchema
 ): TargetConfiguration {
   return {
+    cache: true,
     executor: '@monodon/rust:wasm-pack',
     outputs: ['{options.target-dir}'],
     options: {
