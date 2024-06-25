@@ -1,11 +1,5 @@
 {
-  "generators": {
-    "updating-napi": {
-      "version": "2.0.0",
-      "description": "Migration for v2.0.0",
-      "implementation": "./src/migrations/updating-napi"
-    }
-  },
+  "generators": {},
   "packageJsonUpdates": {
     "2.0.0": {
       "version": "2.0.0-beta.1",

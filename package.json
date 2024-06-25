@@ -24,7 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.3.0",
-    "@napi-rs/cli": "3.0.0-alpha.50",
+    "@napi-rs/cli": "3.0.0-alpha.55",
     "@nx/eslint": "18.2.1",
     "@nx/eslint-plugin": "18.2.1",
     "@nx/jest": "18.2.1",

@@ -70,6 +70,7 @@ describe('add-napi generator', () => {
     const project = readProjectConfiguration(appTree, 'test');
     expect(project.targets?.build).toMatchInlineSnapshot(`
       Object {
+        "cache": true,
         "configurations": Object {
           "production": Object {
             "dist": "dist/test",
@@ -81,6 +82,9 @@ describe('add-napi generator', () => {
           "dist": "test",
           "jsFile": "index.js",
         },
+        "outputs": Array [
+          "{workspaceRoot}/test",
+        ],
       }
     `);
   });

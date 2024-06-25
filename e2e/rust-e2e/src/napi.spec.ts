@@ -31,14 +31,14 @@ describe('napi', () => {
       projectDirectory
     );
 
-    expect(listFiles('napi_proj/npm').length).toBeGreaterThan(0);
+    expect(listFiles(`test-project/napi_proj/npm`).length).toBeGreaterThan(0);
 
     expect(() =>
       runNxCommand(`build napi_proj`, projectDirectory)
     ).not.toThrow();
 
-    const files = listFiles('napi_proj');
-    expect(files).toContain('.node');
+    const files = listFiles(`test-project/napi_proj`);
+    expect(files.some((file) => file.endsWith('.node'))).toBeTruthy();
 
     expect(() =>
       runNxCommand(
@@ -46,8 +46,8 @@ describe('napi', () => {
         projectDirectory
       )
     ).not.toThrow();
-    const files2 = listFiles('napi_proj');
-    expect(files2).toContain('wasm32-wasi.node');
+    const files2 = listFiles(`test-project/napi_proj`);
+    expect(files2.some((file) => file.endsWith('wasm-wasi.wasm'))).toBeTruthy();
     expect(files2).toContain('wasi-worker.mjs');
     expect(files2).toContain('wasi-worker-browser.mjs');
   });

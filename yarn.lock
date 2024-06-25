@@ -1563,13 +1563,13 @@
     got "^11.8.5"
     os-filter-obj "^2.0.0"
 
-"@napi-rs/cli@3.0.0-alpha.50":
-  version "3.0.0-alpha.50"
-  resolved "https://registry.yarnpkg.com/@napi-rs/cli/-/cli-3.0.0-alpha.50.tgz#3e529c270c59e86fddfbeebe2558743204d714ab"
-  integrity sha512-5lnOzph5H58C7PKQRHbHj6V+fEfkAmEkrsg+UxbUs3l7H84dn4KmypEymfPvxHr3ShluT+dOUwCv66qpJrB6+w==
+"@napi-rs/cli@3.0.0-alpha.55":
+  version "3.0.0-alpha.55"
+  resolved "https://registry.yarnpkg.com/@napi-rs/cli/-/cli-3.0.0-alpha.55.tgz#c4604fdce6b502a87433859a62ad8db7737cf563"
+  integrity sha512-6XgBBTX8O28W5gcSzqYkI72UVJV6Y2YcyQNrEqak39JavJRLlXCv09uLF97raynXAOO50KeP6DEXFy5P8MR2sw==
   dependencies:
-    "@napi-rs/cross-toolchain" "^0.0.14"
-    "@napi-rs/wasm-tools" "^0.0.1"
+    "@napi-rs/cross-toolchain" "^0.0.16"
+    "@napi-rs/wasm-tools" "^0.0.2"
     "@octokit/rest" "^20.0.2"
     clipanion "^3.2.1"
     colorette "^2.0.20"
@@ -1583,277 +1583,293 @@
     typanion "^3.14.0"
     wasm-sjlj "^1.0.5"
 
-"@napi-rs/cross-toolchain@^0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@napi-rs/cross-toolchain/-/cross-toolchain-0.0.14.tgz#2d859c020ad5bcae49611b35c40cd4c3af08adcf"
-  integrity sha512-Xgoe1gCEo5s5VUxmSnK4tYFJXW2JAVM02jptSbqA2+gp8pt4Vuk9oK2LvswwO9iRfHapKacYYhegD8Dq/+PBOQ==
+"@napi-rs/cross-toolchain@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@napi-rs/cross-toolchain/-/cross-toolchain-0.0.16.tgz#e3cdb8624207ef8f3411794583bdcba688c6430a"
+  integrity sha512-jwdjHT5L0m9MH0CmzDwPp0ckn/UO7afHCsPeo7NugHUvYgvlgS7SWhdMVgIgJW2HHqhcW/2nhaLLGpAU1c7QRQ==
   dependencies:
-    "@napi-rs/lzma" "^1.2.1"
-    "@napi-rs/tar" "^0.1.0"
+    "@napi-rs/lzma" "^1.3.1"
+    "@napi-rs/tar" "^0.1.1"
     debug "^4.3.4"
 
-"@napi-rs/lzma-android-arm-eabi@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-android-arm-eabi/-/lzma-android-arm-eabi-1.2.1.tgz#8b88b1fe5ef9e0359493d13819de16b984c505e7"
-  integrity sha512-GKXud2hTddxehff1mAGkbTfseBj+GcM+M/sZuxf9H9CJeOWpfI/HC9Oy3uv8mBqPTkOQdCcZ/xXPU34EOEwiRg==
+"@napi-rs/lzma-android-arm-eabi@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-android-arm-eabi/-/lzma-android-arm-eabi-1.3.1.tgz#2ab069d32f26cc3a12a6a2698f3c53d402c5fcaa"
+  integrity sha512-mtGOg8jXlc+pTBI86cqohfndS9UmOAkk9d5CChKMb8btVks70yhUN1e7YYS3QFbmoxbPs2Ee+wmuH1Khdc7B2w==
 
-"@napi-rs/lzma-android-arm64@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-android-arm64/-/lzma-android-arm64-1.2.1.tgz#29fb31487af56c3a45e95196f14bc5dafad3c84b"
-  integrity sha512-UKFvc56TdgljbdgLvSwM62pSItV/4SuXXCrJtruPDmbIDe8HKag8hsCKsb66hrc9aX7urJ+KGw1yz5hWiONLyw==
+"@napi-rs/lzma-android-arm64@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-android-arm64/-/lzma-android-arm64-1.3.1.tgz#7fb2162278a1fc7bd3c5a26b339d1602ffc553fe"
+  integrity sha512-4uGkQgAv9Tnc/i0k2eIgbhZgyzs94+iECWxz4MFZNcZ1fNGvGbRL2j+SITE4OmwrUn3TuFK/uYWfgzooq8E1Qg==
 
-"@napi-rs/lzma-darwin-arm64@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-darwin-arm64/-/lzma-darwin-arm64-1.2.1.tgz#6259b015ffc3b856fa7f2c3b6e621895b18e0c41"
-  integrity sha512-eLbHzK5xGVzEABb1ESFELQJzXKoQeP9QH9hMPd4Qq29xD6MkWD2VKlAy40AxrMeWc7fCUIImTTlGuGRvg6tI1g==
+"@napi-rs/lzma-darwin-arm64@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-darwin-arm64/-/lzma-darwin-arm64-1.3.1.tgz#a9f0c830d8cde75ab681fbe9432ef396a2d9d7ba"
+  integrity sha512-MZBg4iwHTS8icjTiCMdzh8kYrMmKBCEglFPa+vjI91R2XDwuuwSzqmpATRpmMH8cWUUWtGPF4fnxKzjgkzhd4Q==
 
-"@napi-rs/lzma-darwin-x64@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-darwin-x64/-/lzma-darwin-x64-1.2.1.tgz#efe88a30329b5631460ca4bba2ea62ac6720f1c4"
-  integrity sha512-/a5sHZkkO81w/PCpxlwXjADz++jDiTJquMzCLAhupd23wTRmJoCBAwp4Tur+qV5esI7ahAA0lS5P0M4TZv+OUg==
+"@napi-rs/lzma-darwin-x64@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-darwin-x64/-/lzma-darwin-x64-1.3.1.tgz#c2d608d5d46ae39309df1eb076793060ae5d16ee"
+  integrity sha512-7vte+1lYV7xgZERKH/pjAeh4T16aQASKOzu4op70pK6VP/64Plr5rrvqxQqQmlAIe4pwyo/RkFl1n4LXDod3xg==
 
-"@napi-rs/lzma-freebsd-x64@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-freebsd-x64/-/lzma-freebsd-x64-1.2.1.tgz#3f4c430a956fffff6bf073e89953743006812020"
-  integrity sha512-Ehc0ld148YcqQrDWwUbVta1l45R4PthCIU6ZDbOYzzeYXQnhgr1fWiex7wu4KMFppteHlYntypUIhmMUklqchA==
+"@napi-rs/lzma-freebsd-x64@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-freebsd-x64/-/lzma-freebsd-x64-1.3.1.tgz#cd4d84b02c1d8a0acc6a4dc31b6b398ae3806b15"
+  integrity sha512-uBS74fynTqLUC3catIxyezCafn8UDlr2yxVV47vz1T6Vop2PGDz/cMQdV6rnLSjPE08Rv66ihM36mgf/MmOkOg==
 
-"@napi-rs/lzma-linux-arm-gnueabihf@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-linux-arm-gnueabihf/-/lzma-linux-arm-gnueabihf-1.2.1.tgz#69ff1c5ca514552501be41b4cbff58c7c31a98a2"
-  integrity sha512-EkIsx3kC67viElNetZgaGAtAceA+4pVGj31HKKPn0RZYn3rCNdEEg2i1IRg07Y6m4bHwcaKutLoZ2LDcQ+yiBg==
+"@napi-rs/lzma-linux-arm-gnueabihf@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-linux-arm-gnueabihf/-/lzma-linux-arm-gnueabihf-1.3.1.tgz#524bf384bcd0a22ea65b3beb184a80562d21c4fb"
+  integrity sha512-rrVLyqBJeN29gPJCNkPbZ7dAzaseEcERKyhjwM+DfbFrDUvtkEcrYPvo+iwE/NmF+OkZQkzcanrVMGnq/mcJYQ==
 
-"@napi-rs/lzma-linux-arm64-gnu@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-linux-arm64-gnu/-/lzma-linux-arm64-gnu-1.2.1.tgz#2543badeeb50fa20fe80b625419712871e1c2e6e"
-  integrity sha512-GxSbp1/X7Ppmf+aNiZ95vl1HgQzRS9C8zCv7unEhYRPAjRkAnlrsLluUBOTPIY2yquuUvfIog9XIml6Hpw2wrA==
+"@napi-rs/lzma-linux-arm64-gnu@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-linux-arm64-gnu/-/lzma-linux-arm64-gnu-1.3.1.tgz#9412036d8faf0c95eb17c68cc1991f8f0aaa588d"
+  integrity sha512-vDmVsthRbX2opkgRirJJGKQxUP/spvyVM2Y5CyCWZ7sadSID3hA97r38gf9ISn/sJ8/r93IPWLq+iycudNKi+Q==
 
-"@napi-rs/lzma-linux-arm64-musl@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-linux-arm64-musl/-/lzma-linux-arm64-musl-1.2.1.tgz#90c24fec1752a9f4621f27d2c72640ff50fab8d4"
-  integrity sha512-2L3KHFGGdt0xgU0WcKwKmnjVCYs88t4+ixBgPfEydtYsOceg6B8eOzdM7xsziKxJyUJKWBetGLgARQOy35bfvA==
+"@napi-rs/lzma-linux-arm64-musl@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-linux-arm64-musl/-/lzma-linux-arm64-musl-1.3.1.tgz#1185feaf713618b310c5c7007881ecf5227fc328"
+  integrity sha512-x4m/J3hRdFd3IoqKc+4aBcSUkcuDEP7hH6vdss8bKNLjPfXmnG/lcHJEQX3hNnNOULPP8xVRxgiY8jeL62cnsw==
 
-"@napi-rs/lzma-linux-x64-gnu@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-linux-x64-gnu/-/lzma-linux-x64-gnu-1.2.1.tgz#5e87a207ce2dabda9078bf0f75cc971c5b41336c"
-  integrity sha512-h29XttA2Og1+6vYHsVcp+i1PkeILKzYnoDun0ul/k/5hvfxJ2Jap+EM07sW4HSz/DiscLAeIZmLKbXEqJgF5bg==
+"@napi-rs/lzma-linux-x64-gnu@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-linux-x64-gnu/-/lzma-linux-x64-gnu-1.3.1.tgz#6256d4186c7200ec60819cfc9f4d0c7384a7de6b"
+  integrity sha512-riB+Xg72NfH8Kcpq07omshVu0QsLW0v2bhywBNYxvA+t2dGGWSIEN1U/zazUXys+IEA6pBQKqLVseurWE6Cl8g==
 
-"@napi-rs/lzma-linux-x64-musl@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-linux-x64-musl/-/lzma-linux-x64-musl-1.2.1.tgz#8682c91d9fbe968fb7a05a3c5b3e17371b3e5c38"
-  integrity sha512-8EIkpLid4pepkBsljQ7rgma8jdwAuwVyJ2tY6Wuj1I/AqAkVVfxTwIuYc4zgRR3nfcrmWgOfZE0VneVmQCE5hw==
+"@napi-rs/lzma-linux-x64-musl@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-linux-x64-musl/-/lzma-linux-x64-musl-1.3.1.tgz#62bbd6538dbc5710177d4f238db8167fa185e4e9"
+  integrity sha512-JXLgJFwoeysxdSg7rdVYP8wrliCQVJlU5JcLYjRVSCL4P0mQTjnYi7R7VdaOkDACw/Fvlji7oIJXt0KiaDTcOw==
 
-"@napi-rs/lzma-win32-arm64-msvc@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-win32-arm64-msvc/-/lzma-win32-arm64-msvc-1.2.1.tgz#29ae3cd978cdfec098c475b8d2d3605721206831"
-  integrity sha512-RNPItarWUUbtwz6dyn8FGH9AXEaAsBcMBlTvcRjv8eoqRqyZ9R49Ruk/8WMS57MM1BKdiPDxHBtRi+nZn27Slw==
+"@napi-rs/lzma-wasm32-wasi@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-wasm32-wasi/-/lzma-wasm32-wasi-1.3.1.tgz#28cfaf8dc54fa0baa10b265da08637f1ab09885f"
+  integrity sha512-XTA9XTUtj0KPKuzNS2oi3bWN6tJodk00wwMd/TiKoEqx9Fe/zu+OfDGuXAn+xs+P7S3YCDHqjYinuTQMZ0ucJw==
+  dependencies:
+    "@napi-rs/wasm-runtime" "^0.2.3"
 
-"@napi-rs/lzma-win32-ia32-msvc@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-win32-ia32-msvc/-/lzma-win32-ia32-msvc-1.2.1.tgz#9af5c5263e7e7ef2c6ff9651957949bf57de3879"
-  integrity sha512-rNdsCZnzKVgeDd9NzXWk9WuADVUWUWdnws8qBRCfHRUQqJ56Ic1W7Y1XmP+bNa985MXlU6vbznHTHmU5zk2P+A==
+"@napi-rs/lzma-win32-arm64-msvc@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-win32-arm64-msvc/-/lzma-win32-arm64-msvc-1.3.1.tgz#5f54f54746fd2729530431883207a045223e7144"
+  integrity sha512-qLDfs9UEtLPPTN/FdSz3gSdlx86VwFQBuLBrQtaiYQtUTKZCOYV1Z1fXqFt5Zqa1HKV2oyXnwGcTI7RpcyXxtg==
 
-"@napi-rs/lzma-win32-x64-msvc@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-win32-x64-msvc/-/lzma-win32-x64-msvc-1.2.1.tgz#6c49eb736db9d7613a18d302f0a65baa15634ccc"
-  integrity sha512-1AFrAh1n73Yw+IhDu5HnaiRD4vWEkafY0EarfziPfDsh/GeyNcjbE+Let+XFe8L3j0/CZfsRG3nXarOW1oadUQ==
+"@napi-rs/lzma-win32-ia32-msvc@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-win32-ia32-msvc/-/lzma-win32-ia32-msvc-1.3.1.tgz#eed349400c3e5df521b5c77668c0eac00befc6f9"
+  integrity sha512-rWNlxLFMIfvxzfdQCfeQ3D/HEnQG3vfladFYrXUx6ePXO6r+BLCGn6/LWSSuKlw4vKkb1iHEWsAVaRLIcJEMIA==
 
-"@napi-rs/lzma@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/lzma/-/lzma-1.2.1.tgz#71fc2df0a34cc2096f1ec25c9a30caef29a6fd92"
-  integrity sha512-vwl34tzF2mXWthnFVN2MP6nRzQ40C5+256EEUjxAwj9dbAhDqb7Yz376Up5SlB4YgNC0YvEqK4jsYP/NP0bgpg==
+"@napi-rs/lzma-win32-x64-msvc@1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma-win32-x64-msvc/-/lzma-win32-x64-msvc-1.3.1.tgz#d6bd33c202fa14c669bdb4a20ce564ec14278b41"
+  integrity sha512-SNfHNqEjabXfTL1+KRi0qiAhwIlZHhQystvfSYX6p1g+2trSC/3WUpUQ4fbbR7KyE31g2AAnwjXivnlQ0af/pg==
+
+"@napi-rs/lzma@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/lzma/-/lzma-1.3.1.tgz#5ff0865b00e7954571693d7eaccb60a420a78a68"
+  integrity sha512-XyZoBlYNMvCulK/RmVK/0nB3j7IdH7HpqcrMMg0U+HqQqKRLOQBwvnKNBocPC1bZQ7iZuKWYTLn1ayZwTyek8w==
   optionalDependencies:
-    "@napi-rs/lzma-android-arm-eabi" "1.2.1"
-    "@napi-rs/lzma-android-arm64" "1.2.1"
-    "@napi-rs/lzma-darwin-arm64" "1.2.1"
-    "@napi-rs/lzma-darwin-x64" "1.2.1"
-    "@napi-rs/lzma-freebsd-x64" "1.2.1"
-    "@napi-rs/lzma-linux-arm-gnueabihf" "1.2.1"
-    "@napi-rs/lzma-linux-arm64-gnu" "1.2.1"
-    "@napi-rs/lzma-linux-arm64-musl" "1.2.1"
-    "@napi-rs/lzma-linux-x64-gnu" "1.2.1"
-    "@napi-rs/lzma-linux-x64-musl" "1.2.1"
-    "@napi-rs/lzma-win32-arm64-msvc" "1.2.1"
-    "@napi-rs/lzma-win32-ia32-msvc" "1.2.1"
-    "@napi-rs/lzma-win32-x64-msvc" "1.2.1"
+    "@napi-rs/lzma-android-arm-eabi" "1.3.1"
+    "@napi-rs/lzma-android-arm64" "1.3.1"
+    "@napi-rs/lzma-darwin-arm64" "1.3.1"
+    "@napi-rs/lzma-darwin-x64" "1.3.1"
+    "@napi-rs/lzma-freebsd-x64" "1.3.1"
+    "@napi-rs/lzma-linux-arm-gnueabihf" "1.3.1"
+    "@napi-rs/lzma-linux-arm64-gnu" "1.3.1"
+    "@napi-rs/lzma-linux-arm64-musl" "1.3.1"
+    "@napi-rs/lzma-linux-x64-gnu" "1.3.1"
+    "@napi-rs/lzma-linux-x64-musl" "1.3.1"
+    "@napi-rs/lzma-wasm32-wasi" "1.3.1"
+    "@napi-rs/lzma-win32-arm64-msvc" "1.3.1"
+    "@napi-rs/lzma-win32-ia32-msvc" "1.3.1"
+    "@napi-rs/lzma-win32-x64-msvc" "1.3.1"
 
-"@napi-rs/tar-android-arm-eabi@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-android-arm-eabi/-/tar-android-arm-eabi-0.1.0.tgz#198c086b681601396ff1687aa758ac719c9f3c06"
-  integrity sha512-gY9f7HfyU8MQs/ERi2/Fc4dGRf61ZM2pme31t0FkrzTtmeIaf56LiTeTt4aP8xh/0HOVnXrB6I3taY9IsQVB8Q==
+"@napi-rs/tar-android-arm-eabi@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-android-arm-eabi/-/tar-android-arm-eabi-0.1.1.tgz#0ce6a7e0b005324c45389727918c21a10ae0f534"
+  integrity sha512-Ufa0ahZvE5KGrC2WBux5svCe/jvC+e8IgtleiicwqnfgTfbDknYyq/QuqkP1AnMp/IvTmx2iutCZt6OFIG0zAg==
 
-"@napi-rs/tar-android-arm64@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-android-arm64/-/tar-android-arm64-0.1.0.tgz#259bf980f43c15c8b88d552916d476ac15d2b6f2"
-  integrity sha512-NxszsTRdAYf25kKuzUYz514/5MFI3w3aHToZBcFjaxUmsayrimFrHIiPLwNQVe55lHPRi13njqQUPjMetHMCZw==
+"@napi-rs/tar-android-arm64@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-android-arm64/-/tar-android-arm64-0.1.1.tgz#64701ad880d411efbef63651a6100d9692beec62"
+  integrity sha512-KUu5fHIiIObSuZ/crHxUrQ243+LiCRKPwdCVLHwjtftqFjzls+R2Mp6GrpM41XxexDMN00SUta3kazi93Xr19A==
 
-"@napi-rs/tar-darwin-arm64@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-darwin-arm64/-/tar-darwin-arm64-0.1.0.tgz#bd165f698a9fc64e5f1cd0c5ee8299af45a5c599"
-  integrity sha512-G+fSNcwhbekTMOElS66mf3ccg8M4NcEHIgo7s6Hxo8U2obUSqEJ0WjTDV8oJy7lqRW/MeeDJj8Vz0ceXC8ueeA==
+"@napi-rs/tar-darwin-arm64@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-darwin-arm64/-/tar-darwin-arm64-0.1.1.tgz#97844ed12c21ed1138b42349b1dfffcfd367f201"
+  integrity sha512-jaqgdX20iIga+2gzotQ78eF00Cm8vECocUYeMY62WqyzJNv/jx1dlOfELWEccOjpmawFT9tjWebsS9F1QMvSUg==
 
-"@napi-rs/tar-darwin-x64@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-darwin-x64/-/tar-darwin-x64-0.1.0.tgz#2d5d6c68d0a2c1711e6c26947f76e6d4cabd7bf3"
-  integrity sha512-p9aOLk6O2+Cu62fNOdj1Zx0P3J1VkxtihXOVDaK49o5jszhms0roNA7kZfklwjVdwo8R7OQC6mJcFWmiamMNug==
+"@napi-rs/tar-darwin-x64@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-darwin-x64/-/tar-darwin-x64-0.1.1.tgz#ff481fca086eb2ec16dc3a26f6ae1e86be111bc1"
+  integrity sha512-80sa32IxfRso9x9sGTFpfLSx3BnruyJODpSkUzalOCz9i14n5gOKA8KR/JrnSWwDz0p5l5P9kfQD3pu8Voj7WA==
 
-"@napi-rs/tar-freebsd-x64@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-freebsd-x64/-/tar-freebsd-x64-0.1.0.tgz#c1f3c7bbe33e8f8c64a46c0bc78042ab55ef8b0a"
-  integrity sha512-mZQPtyCc2r+P84WV76Ddbe1+CxBscxlDHtgMIxZPveMgq4esZFKp26M735vjxtk/j2ahT0pZoC6fjsJ//Uxzlg==
+"@napi-rs/tar-freebsd-x64@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-freebsd-x64/-/tar-freebsd-x64-0.1.1.tgz#f3e04040aff8a8445903df5e169a85ca5072fd9a"
+  integrity sha512-P7V1zBjjC1dCrTwtUzuzYM4AeZduigeCtd8qQw2IUZowM5AsmhMd77oYuXjdU29cEpKUpyYjJRxjPCzFy+WbAQ==
 
-"@napi-rs/tar-linux-arm-gnueabihf@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-linux-arm-gnueabihf/-/tar-linux-arm-gnueabihf-0.1.0.tgz#865e95fad3bb76844fcd85691b64a133cc9b5cfd"
-  integrity sha512-FHxnmrOS345T3n3XDmY9QEoVv1PXkkuevQbu+gzq5np4fzN/NX2Az5oJTxKOTGtlJSaxxz90raeaWRZrnV5hZQ==
+"@napi-rs/tar-linux-arm-gnueabihf@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-linux-arm-gnueabihf/-/tar-linux-arm-gnueabihf-0.1.1.tgz#72896546b3730795ca940847abae1adbba12852f"
+  integrity sha512-qpC71ILPkWKt8k1iJCYt5gjwcOkd2VFSQIelTRr12t5CVNKV04rE/TMdwFoCP7kxbtb9Fl2cZzCRISw2BhMCmQ==
 
-"@napi-rs/tar-linux-arm64-gnu@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-linux-arm64-gnu/-/tar-linux-arm64-gnu-0.1.0.tgz#a807c5f819258f019327c8fccc12c815c5c8dd3a"
-  integrity sha512-+8WHnL/8PPpePYc+5oqNLoE5o98vWF7lJvY/seji7tdcS5TPJ3tgXaF4/y1rFAaSxKsZ9l+ClHsZZ0MpCqMOOQ==
+"@napi-rs/tar-linux-arm64-gnu@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-linux-arm64-gnu/-/tar-linux-arm64-gnu-0.1.1.tgz#89f4f2595e39f44e9381b6ead46fe264e021c7b3"
+  integrity sha512-71QgxcFJCog6O4Tauoge8D0ILkDGJTRk3ru7zG8PUFG1QXJ1kkiRikdT77YmoVxtomc9FUOt+bdEdU5Yn+3QUQ==
 
-"@napi-rs/tar-linux-arm64-musl@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-linux-arm64-musl/-/tar-linux-arm64-musl-0.1.0.tgz#0a03561f146eb9163c0800380a46753f62e3f2fe"
-  integrity sha512-SXqU4H30/TD9BZa6pH/U5l2V6E4EKOutjHp9Sqr98iH52Zb+1N84ur1Ti7/+PapKunCIJeZzU+792CQagKIzuQ==
+"@napi-rs/tar-linux-arm64-musl@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-linux-arm64-musl/-/tar-linux-arm64-musl-0.1.1.tgz#dacfbb05031d8fcd2899959a0e9752c5653190fb"
+  integrity sha512-R2e7YEILPKc447N1hUt1zQuyy0st83HX6nhmtFywS1aOj76/3hzxLVrebGiiS6kifyCrO82o66CNTYe7DixMZw==
 
-"@napi-rs/tar-linux-x64-gnu@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-linux-x64-gnu/-/tar-linux-x64-gnu-0.1.0.tgz#6ed972a3169554dc8351078502de3f3e7812b331"
-  integrity sha512-2uZHxl2nH1HbeJuifB1qdK8vU9wKDrxQkFm+u4psUaa/uHLZDUCGS7GMxTnCbR9OehqZcfQabaKsHbxR/8ElDQ==
+"@napi-rs/tar-linux-x64-gnu@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-linux-x64-gnu/-/tar-linux-x64-gnu-0.1.1.tgz#3d1981a80a5736a33c1d4e02601b5f217fa5dd91"
+  integrity sha512-tmy9q2LXUB2GQ+IgUzJn3+us52leplMu96ORyFq1iHQEelGSqXt4xi5DzU07JhX3obJPqVqkybtcRS4enBfmBA==
 
-"@napi-rs/tar-linux-x64-musl@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-linux-x64-musl/-/tar-linux-x64-musl-0.1.0.tgz#570f71fabbc1b99c29fa6dd487c6c3acd42aa717"
-  integrity sha512-S1vEqLK4UCHS4AjVZ3g6o7r0Yu6RbhmDj6JrqxBoEIjrMsuIPKQrODHhtlsykOPeu5IHQuyRT+DevorWAVYdoA==
+"@napi-rs/tar-linux-x64-musl@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-linux-x64-musl/-/tar-linux-x64-musl-0.1.1.tgz#c1d7a29be4f05b69fa4429b1f961d1edc6e003a3"
+  integrity sha512-j5ePbe6vihApl0cGPPDUVTWZbf2mF4NhxngAoG2jp7AeX3cWP2O4pjsvaOraW6QfvWEMFPeER7S0b6eBS7duvA==
 
-"@napi-rs/tar-win32-arm64-msvc@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-win32-arm64-msvc/-/tar-win32-arm64-msvc-0.1.0.tgz#3cced3ed749c53d140fddb9ce2200bbea374dff4"
-  integrity sha512-x23Ganq0hcDbgnhzAFqOu5EWtKvngIsapJL7ZLGgQlqahRb15aQkagYvpju6CLZers6N6znmqxw9Pdov9VFzOQ==
+"@napi-rs/tar-wasm32-wasi@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-wasm32-wasi/-/tar-wasm32-wasi-0.1.1.tgz#55c008f8169434ddd6ed230d609a56561961dc51"
+  integrity sha512-se0+DlOiIRt7mcz7BeOJDoZtCrROpKLwiAOGmNgrjQ/SZS7TnOPuwm3wy9XN9WLoepttEjCEem6UP8yD5GJuQg==
+  dependencies:
+    "@napi-rs/wasm-runtime" "^0.2.3"
 
-"@napi-rs/tar-win32-ia32-msvc@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-win32-ia32-msvc/-/tar-win32-ia32-msvc-0.1.0.tgz#58dc87d22d8db83410370e9c41215b3561030538"
-  integrity sha512-QJgJQEKDbVOrzSJ3EaUuCk+g7t9tKv085eALmRtkiHDBmzd0iAoudcU2N9YgdacSQMe1V/GMuQLky6BFrZb4nw==
+"@napi-rs/tar-win32-arm64-msvc@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-win32-arm64-msvc/-/tar-win32-arm64-msvc-0.1.1.tgz#aaa917d36574fffedabf9bc1d33bfb20ef8840fe"
+  integrity sha512-FDZPi2wC7RwzvodogigLh/pJvhqCTVTUqOYuHlLkPSUbSAGiEkI55wk9RqH3y3EdJQaDuzyqC0QKz5ket2U+GA==
 
-"@napi-rs/tar-win32-x64-msvc@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar-win32-x64-msvc/-/tar-win32-x64-msvc-0.1.0.tgz#521b64d785512118a99607a8b801b2e1de479cc2"
-  integrity sha512-aEhLcPZXmbcz46utpgYrkhY/TIGVCs4T5c+xpBf6H8feIEz7rF44Bm6kECC42OWcqnws2LGRW9TZsv0bWoAn0A==
+"@napi-rs/tar-win32-ia32-msvc@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-win32-ia32-msvc/-/tar-win32-ia32-msvc-0.1.1.tgz#2382a1d1ae10edb3593d3a0c93cc44fb458fb88f"
+  integrity sha512-OPR9Tou5z5M912G7Kc7gkf1ltinbOQx5dS/OeDIWHvPGOfdFDIxt0YVKhzSLRJi43+zIDp8/+cbeMD/cKXfX8w==
 
-"@napi-rs/tar@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@napi-rs/tar/-/tar-0.1.0.tgz#dd5c8f2c32dcb648dd570719dcf0a35c1b21d699"
-  integrity sha512-HodV5VS/ryhNvSmSHPb6CT5lJKzkoKaiyO8JPkVw3XCXbp51+vZs7LJ66kgFqyr4AagaKqmXsgpGVCIwNdFw/w==
+"@napi-rs/tar-win32-x64-msvc@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar-win32-x64-msvc/-/tar-win32-x64-msvc-0.1.1.tgz#08e90cf4e971a296a0c07999979738ae75ce0538"
+  integrity sha512-hiv5KfhrMSg8tTRC2oQXVckVg1h6ZVjwbd5aF9Esl0V3p2TaNFwwbqgnAN4Gm/PmSnHWNL/IRTHkk3cOzDWihQ==
+
+"@napi-rs/tar@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@napi-rs/tar/-/tar-0.1.1.tgz#1b2b47ed630393d07813f98366092105a249a68b"
+  integrity sha512-FOMhwwlvoYjHaDBxP26K3D92ltw1Y/CC4CIjgC6qXdzW4MYNwTlEyI58smCM3k+nCVJH3kpOYyH3sgbK4WZA4A==
   optionalDependencies:
-    "@napi-rs/tar-android-arm-eabi" "0.1.0"
-    "@napi-rs/tar-android-arm64" "0.1.0"
-    "@napi-rs/tar-darwin-arm64" "0.1.0"
-    "@napi-rs/tar-darwin-x64" "0.1.0"
-    "@napi-rs/tar-freebsd-x64" "0.1.0"
-    "@napi-rs/tar-linux-arm-gnueabihf" "0.1.0"
-    "@napi-rs/tar-linux-arm64-gnu" "0.1.0"
-    "@napi-rs/tar-linux-arm64-musl" "0.1.0"
-    "@napi-rs/tar-linux-x64-gnu" "0.1.0"
-    "@napi-rs/tar-linux-x64-musl" "0.1.0"
-    "@napi-rs/tar-win32-arm64-msvc" "0.1.0"
-    "@napi-rs/tar-win32-ia32-msvc" "0.1.0"
-    "@napi-rs/tar-win32-x64-msvc" "0.1.0"
+    "@napi-rs/tar-android-arm-eabi" "0.1.1"
+    "@napi-rs/tar-android-arm64" "0.1.1"
+    "@napi-rs/tar-darwin-arm64" "0.1.1"
+    "@napi-rs/tar-darwin-x64" "0.1.1"
+    "@napi-rs/tar-freebsd-x64" "0.1.1"
+    "@napi-rs/tar-linux-arm-gnueabihf" "0.1.1"
+    "@napi-rs/tar-linux-arm64-gnu" "0.1.1"
+    "@napi-rs/tar-linux-arm64-musl" "0.1.1"
+    "@napi-rs/tar-linux-x64-gnu" "0.1.1"
+    "@napi-rs/tar-linux-x64-musl" "0.1.1"
+    "@napi-rs/tar-wasm32-wasi" "0.1.1"
+    "@napi-rs/tar-win32-arm64-msvc" "0.1.1"
+    "@napi-rs/tar-win32-ia32-msvc" "0.1.1"
+    "@napi-rs/tar-win32-x64-msvc" "0.1.1"
 
-"@napi-rs/wasm-runtime@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-runtime/-/wasm-runtime-0.1.2.tgz#cff8330e3728ab4447af82b67277f067132d341f"
-  integrity sha512-8JuczewTFIZ/XIjHQ+YlQUydHvlKx2hkcxtuGwh+t/t5zWyZct6YG4+xjHcq8xyc/e7FmFwf42Zj2YgICwmlvA==
+"@napi-rs/wasm-runtime@^0.2.3":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-runtime/-/wasm-runtime-0.2.4.tgz#d27788176f250d86e498081e3c5ff48a17606918"
+  integrity sha512-9zESzOO5aDByvhIAsOy9TbpZ0Ur2AJbUI7UT73kcUTS2mxAMHOBaa1st/jAymNoCtvrit99kkzT1FZuXVcgfIQ==
   dependencies:
     "@emnapi/core" "^1.1.0"
     "@emnapi/runtime" "^1.1.0"
-    "@tybys/wasm-util" "^0.8.1"
+    "@tybys/wasm-util" "^0.9.0"
 
-"@napi-rs/wasm-tools-android-arm-eabi@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-android-arm-eabi/-/wasm-tools-android-arm-eabi-0.0.1.tgz#595e379b9ed5b8cfdf6fd1b4d11e37c9183e798c"
-  integrity sha512-Q/SyyO60dbpoLcN/hvGzNWDaCjuaMGFeg92GnsDBWm3OCwhvltr51+VDZbCIHQwfIvH4d63X29nEls7FHK75dA==
+"@napi-rs/wasm-tools-android-arm-eabi@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-android-arm-eabi/-/wasm-tools-android-arm-eabi-0.0.2.tgz#da9978903a97516aad404c12434974c3b8dfea5a"
+  integrity sha512-/b+UU3suXjW4P0DzHRNdrnebQtFKcQf/YMeZJH+xUlKgvwli5kbmWjx8Wqqz0VETVkUTuPqJMBDIVLyc+14FGw==
 
-"@napi-rs/wasm-tools-android-arm64@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-android-arm64/-/wasm-tools-android-arm64-0.0.1.tgz#0f8ede3fc308019cd4663fd3601293ed996e00a1"
-  integrity sha512-mn7QpSWJlQS7Z14DkWqW14HqEiI2R8FV3KT4SNdqm+O+K5uIUvAexxMn9Qu6gqLq1fHXj+7l2luAWmtN7RKLjA==
+"@napi-rs/wasm-tools-android-arm64@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-android-arm64/-/wasm-tools-android-arm64-0.0.2.tgz#5d295edece8988f42e4821d3d6fd7816be3587dc"
+  integrity sha512-j57GbDflwJdZtT8pZj5fOV4JAP+LdKN+wzsUYs+QRUoBqpWbbUANudolqfw63bkS9sD4z7fbCuz8iwtJqzxTVA==
 
-"@napi-rs/wasm-tools-darwin-arm64@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-darwin-arm64/-/wasm-tools-darwin-arm64-0.0.1.tgz#eb26eb986e4ab00450d709ae01e162b8b7a8d044"
-  integrity sha512-WuxMRtd5rCgqfuk7dehcft5eyGDOuNSMaJybprbX4IXvnjlLQf1zsCfp6wBI2Ptp2D+qEgE2SAMWBfzF9XDDkw==
+"@napi-rs/wasm-tools-darwin-arm64@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-darwin-arm64/-/wasm-tools-darwin-arm64-0.0.2.tgz#e551a9aa5401f0665d942111cd7f87b0915332e4"
+  integrity sha512-P2ChgWgVuv9GwmbxN89R84KzIImoTqXINteEixUvmkdnhyFiR+I8deNs89Yed+5w8QLC6MEfrtRqLP9YI+NoQA==
 
-"@napi-rs/wasm-tools-darwin-x64@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-darwin-x64/-/wasm-tools-darwin-x64-0.0.1.tgz#9b497e81fc4341dfda286e5ca291dff3e9dd7632"
-  integrity sha512-YGPjgIo1/Y774aAFb/UT+d8VQtTaIkdF0/ynlChe/UilBZX48vLaEM0HaoSqxA1WHvRm8Il8R3rBDDle0965rw==
+"@napi-rs/wasm-tools-darwin-x64@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-darwin-x64/-/wasm-tools-darwin-x64-0.0.2.tgz#0162f36ac9f46fa49bc532337e6481b8e4cc6957"
+  integrity sha512-T/kQQ0gt8+wau1Z821PKVAD76QhmwVoLs2CT7Z9tTBs2pJvwSCP0C/kQiQAHcJIMi7A2E9Ab/Mez0BERy50EFA==
 
-"@napi-rs/wasm-tools-freebsd-x64@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-freebsd-x64/-/wasm-tools-freebsd-x64-0.0.1.tgz#2da4c88feed681c3b7d07ded45c18f6d2882dc05"
-  integrity sha512-e5y+Z89XwI7HpLyCNEvDKdtO5Sga2+o8bDcNQNHjhMunnnHKPtlTvtIhieVmdqnNGPbuNkIx8xbTjkoWCZ49Tw==
+"@napi-rs/wasm-tools-freebsd-x64@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-freebsd-x64/-/wasm-tools-freebsd-x64-0.0.2.tgz#71ea63deaec98a8d683fb7dcc7d8adbf41d4801b"
+  integrity sha512-GnnHu+r5sfzuxC/1J5UMF/h3BOZnHb3NQZ5hmbCfZYCKzpzRxrAJhzRunlbRN+v0x8M/49dztVTYR3s7K4ooAw==
 
-"@napi-rs/wasm-tools-linux-arm64-gnu@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-linux-arm64-gnu/-/wasm-tools-linux-arm64-gnu-0.0.1.tgz#974c25b0e18461d738d5853d2bb8f776e06a1927"
-  integrity sha512-Hcy+XiCJd8XshxVOYvmyU5FgeY8d6txZf7ZefI38Y3eRm7rzGt/EvABGjvJfujnPaBeWi9fQVm3Zav5pwyxViw==
+"@napi-rs/wasm-tools-linux-arm64-gnu@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-linux-arm64-gnu/-/wasm-tools-linux-arm64-gnu-0.0.2.tgz#7ff25497a4e927ce85e9e035e68c5a48893acf4a"
+  integrity sha512-KnZdLT0OnKb1CG2kdt3/WvM43vr9i+FEwXCvSOVC/6Tsifz7ynhMg7LAVESILd03HubzQJfg9nbRsk0bQ+IOwg==
 
-"@napi-rs/wasm-tools-linux-arm64-musl@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-linux-arm64-musl/-/wasm-tools-linux-arm64-musl-0.0.1.tgz#fd143413177d927801c57f6a33b9e2650c0fe07b"
-  integrity sha512-1mSquGy4N7jlRu/0OY/rqZa/XdCFGKrsl8SH4jRB318DVweOHLqn15QG4iwIrRVjCJROpaU9HRU/sgOKVbdqrA==
+"@napi-rs/wasm-tools-linux-arm64-musl@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-linux-arm64-musl/-/wasm-tools-linux-arm64-musl-0.0.2.tgz#3d167346cf82e5392f85a702a4011c893702d884"
+  integrity sha512-HkpZOID2U8P6pWqK3mqZ8bxU5xcuT3iA2fO+jrxn78h006iYgfNmdc5JaVhHnHazMmk32xKhSV4iV0VUh8UWDg==
 
-"@napi-rs/wasm-tools-linux-x64-gnu@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-linux-x64-gnu/-/wasm-tools-linux-x64-gnu-0.0.1.tgz#124307d13cd38f3c91febbe3ce67c0a063d7113b"
-  integrity sha512-/+XuGQ9667EqrxRbpt2izLDNzWUWLTXl6KaRSh9TjcT7qL5+yllTqchc0JwIHJW5QnQlC1NW7HnSnwQZ+/v+8g==
+"@napi-rs/wasm-tools-linux-x64-gnu@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-linux-x64-gnu/-/wasm-tools-linux-x64-gnu-0.0.2.tgz#0303a385e5898ce6fe58e07230f9b15644f738c5"
+  integrity sha512-YksJWBCyOalB9ogtP9+/dZKP+vR6+h7BmzMXaXMT71WW/GvIsifMVgv+DY/FRSNJQupp5Y+ugjqVAOUOc/G65g==
 
-"@napi-rs/wasm-tools-linux-x64-musl@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-linux-x64-musl/-/wasm-tools-linux-x64-musl-0.0.1.tgz#0bcbd984f996ad2f266e9207d5ae07077d1e8c4f"
-  integrity sha512-L+5QcEsUS+QNcMI1AF6aBRKLzhxQ5VHRHVslaQwOxHoxyhMB/2hRH4ON6Zea1PyQS/zzZugwBuDEOcFtc3UjPQ==
+"@napi-rs/wasm-tools-linux-x64-musl@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-linux-x64-musl/-/wasm-tools-linux-x64-musl-0.0.2.tgz#28dcdd7aca90ff64292ad2cb956558ccf4a1cee3"
+  integrity sha512-sPtRxPMdw05KdTcxgSPMmSXG2+PiK3vJ/l2+g9hvjnnKtvslJN2Hr7j8zgzuoKRAUFPaJVe6+D2xVh5cpdqhww==
 
-"@napi-rs/wasm-tools-wasm32-wasi@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-wasm32-wasi/-/wasm-tools-wasm32-wasi-0.0.1.tgz#3cd551bc109b35c8355b5b18c084757f395b62bf"
-  integrity sha512-I1vAhMQcBblPJPg6pr+xydZ1NjPwKU2ympmI54BZfCOAMHs0ZfVb4yEqYAVIcSWOx3CF/0T2YrcOmiULTU3iGw==
+"@napi-rs/wasm-tools-wasm32-wasi@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-wasm32-wasi/-/wasm-tools-wasm32-wasi-0.0.2.tgz#f279a65ef1bb6e4046065efda23c9bbc38ff1a11"
+  integrity sha512-muRvZK7AIuo88G2AxYx3gA59rHMQgoN004saQkBvXnz3K/DVHKfTZ6TtUebss8zI3dURU6xExL8drxFWYxjEbQ==
   dependencies:
-    "@napi-rs/wasm-runtime" "^0.1.2"
+    "@napi-rs/wasm-runtime" "^0.2.3"
 
-"@napi-rs/wasm-tools-win32-arm64-msvc@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-win32-arm64-msvc/-/wasm-tools-win32-arm64-msvc-0.0.1.tgz#be62475d407b8d5db6f3b770ae92e41dc4723305"
-  integrity sha512-A9peDWijE9X6qt5SNzqlmSMlOZiqeB9zhUVP5dtJKtpqVO098YVnZFsz/4Hv7LkSoxQE7brAd9yln/wz5qb1yQ==
+"@napi-rs/wasm-tools-win32-arm64-msvc@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-win32-arm64-msvc/-/wasm-tools-win32-arm64-msvc-0.0.2.tgz#5a2c438492f44b3ec2e27dd6d303f3dc5f0464a0"
+  integrity sha512-Cn13WQ+tpFqdVwx0DIWKbsI9auFyzVZV4F5UNOUeDt6GgOL+NndgJul0Pc9bSU6fi03AylMPfF/nTCaDWO2Wgw==
 
-"@napi-rs/wasm-tools-win32-ia32-msvc@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-win32-ia32-msvc/-/wasm-tools-win32-ia32-msvc-0.0.1.tgz#d1a94a8afe3098dbdf7e89cd13b3bee4a5fd6c73"
-  integrity sha512-6Y7GqnBCIdl8YsSQ+5AjnZ4iWDJnJrqzRlMDegCmPPf3WmRZ0sgnRU9iAHWcId9AEIf7SAs3x7Bnv2992zCwJA==
+"@napi-rs/wasm-tools-win32-ia32-msvc@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-win32-ia32-msvc/-/wasm-tools-win32-ia32-msvc-0.0.2.tgz#4602b14ba57f3e13df94a7015fd080e17a39591f"
+  integrity sha512-xsg5DkIQi82a8rcx6246Y3XC8TIqHamY+/C6sIlPLaZEuHctDkMECAw0AANwRf5vN//D2oo2oljOuoYtB1GOKw==
 
-"@napi-rs/wasm-tools-win32-x64-msvc@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-win32-x64-msvc/-/wasm-tools-win32-x64-msvc-0.0.1.tgz#9e37900069fb4e7f94da2d4f1e7acdace782ce0d"
-  integrity sha512-Ab6ljJCQmXqJvE4/8DLvHEVTI7vVUrVfh6gCwnVwwrA/B2LgR98SanpT8/951ZaIH/lSuqkeVm+wqzgYM1FHRg==
+"@napi-rs/wasm-tools-win32-x64-msvc@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools-win32-x64-msvc/-/wasm-tools-win32-x64-msvc-0.0.2.tgz#7d393345b12167a7c17653829921ca1821d6e0bc"
+  integrity sha512-yHigltEt33eq8bappvKsIliz4MxfMPn1M+NWbIFRWN+IS1Z57mhmc1osuk+IRXrSlq0Tom0R6MYN1jpkZKz81Q==
 
-"@napi-rs/wasm-tools@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools/-/wasm-tools-0.0.1.tgz#9f60d1219a29052033f84a233d8de64226c54a4c"
-  integrity sha512-itoKmaVqRKIV37sKIEri1qjaYlWNtXyfymUaqXkLu5F16s+FwqwOmvxmdTHsvNKkMy4qCsSSetiLZO1IwvBMLQ==
+"@napi-rs/wasm-tools@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@napi-rs/wasm-tools/-/wasm-tools-0.0.2.tgz#030a69d158380681af31119fd05312f1615f3527"
+  integrity sha512-kBvDQCP5BLw2TxTENXLp3Of7vVEx0uyIye824JHE4dduzzOHVgSoOFVhVqAT3Fx/hLV445RVWfEqQbXMg4w/Mw==
   optionalDependencies:
-    "@napi-rs/wasm-tools-android-arm-eabi" "0.0.1"
-    "@napi-rs/wasm-tools-android-arm64" "0.0.1"
-    "@napi-rs/wasm-tools-darwin-arm64" "0.0.1"
-    "@napi-rs/wasm-tools-darwin-x64" "0.0.1"
-    "@napi-rs/wasm-tools-freebsd-x64" "0.0.1"
-    "@napi-rs/wasm-tools-linux-arm64-gnu" "0.0.1"
-    "@napi-rs/wasm-tools-linux-arm64-musl" "0.0.1"
-    "@napi-rs/wasm-tools-linux-x64-gnu" "0.0.1"
-    "@napi-rs/wasm-tools-linux-x64-musl" "0.0.1"
-    "@napi-rs/wasm-tools-wasm32-wasi" "0.0.1"
-    "@napi-rs/wasm-tools-win32-arm64-msvc" "0.0.1"
-    "@napi-rs/wasm-tools-win32-ia32-msvc" "0.0.1"
-    "@napi-rs/wasm-tools-win32-x64-msvc" "0.0.1"
+    "@napi-rs/wasm-tools-android-arm-eabi" "0.0.2"
+    "@napi-rs/wasm-tools-android-arm64" "0.0.2"
+    "@napi-rs/wasm-tools-darwin-arm64" "0.0.2"
+    "@napi-rs/wasm-tools-darwin-x64" "0.0.2"
+    "@napi-rs/wasm-tools-freebsd-x64" "0.0.2"
+    "@napi-rs/wasm-tools-linux-arm64-gnu" "0.0.2"
+    "@napi-rs/wasm-tools-linux-arm64-musl" "0.0.2"
+    "@napi-rs/wasm-tools-linux-x64-gnu" "0.0.2"
+    "@napi-rs/wasm-tools-linux-x64-musl" "0.0.2"
+    "@napi-rs/wasm-tools-wasm32-wasi" "0.0.2"
+    "@napi-rs/wasm-tools-win32-arm64-msvc" "0.0.2"
+    "@napi-rs/wasm-tools-win32-ia32-msvc" "0.0.2"
+    "@napi-rs/wasm-tools-win32-x64-msvc" "0.0.2"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -2427,10 +2443,10 @@
   resolved "https://registry.npmjs.org/@tsconfig/node16/-/node16-1.0.4.tgz"
   integrity sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==
 
-"@tybys/wasm-util@^0.8.1":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/@tybys/wasm-util/-/wasm-util-0.8.1.tgz#10360976b7f679497ea8526791006417ff304abb"
-  integrity sha512-GSsTwyBl4pIzsxAY5wroZdyQKyhXk0d8PCRZtrSZ2WEB1cBdrp2EgGBwHOGCZtIIPun/DL3+AykCv+J6fyRH4Q==
+"@tybys/wasm-util@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@tybys/wasm-util/-/wasm-util-0.9.0.tgz#3e75eb00604c8d6db470bf18c37b7d984a0e3355"
+  integrity sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==
   dependencies:
     tslib "^2.4.0"
 
