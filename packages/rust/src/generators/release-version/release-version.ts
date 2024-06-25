@@ -437,6 +437,7 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
 
               // In rust the default version prefix/behavior is ^, so a ^ may have been inferred by cargo metadata via no prefix or an explicit ^.
               if (versionPrefix === '^') {
+                // dependencyData.version is ensured to not be null here because of the versionPrefix == '^' check
                 if (!dependencyData.version.startsWith('^')) {
                   versionPrefix = '';
                 }
