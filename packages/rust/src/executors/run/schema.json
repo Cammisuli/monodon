@@ -47,6 +47,11 @@
       "default": false,
       "description": "Build all binary targets"
     },
+    "no-default-features": {
+      "type": "boolean",
+      "default": false,
+      "description": "Disable all default features"
+    },
     "bin": {
       "type": "string",
       "description": "Run the specified binary"
