@@ -47,34 +47,28 @@ describe('add-wasm generator', () => {
 
     const cargoString = appTree.read('./test_lib/Cargo.toml')?.toString() ?? '';
     expect(cargoString).toMatchInlineSnapshot(`
-      "
-      [package]
-      name = 'test_lib'
-      version = '0.1.0'
-      edition = '2021'
+      "[package]
+      name = \\"test_lib\\"
+      version = \\"0.1.0\\"
+      edition = \\"2021\\"
 
       [dependencies]
-      wasm-bindgen = '0.2'
-      console_error_panic_hook = { version = '0.1.6', optional = true }
-      wee_alloc = { version = '0.4', optional = true }
+      wasm-bindgen = \\"0.2\\"
+      console_error_panic_hook = { version = \\"0.1.6\\", optional = true }
+      wee_alloc = { version = \\"0.4\\", optional = true }
 
       [lib]
-      crate-type = [
-      	'cdylib',
-      	'rlib',
-      ]
+      crate-type = [\\"cdylib\\", \\"rlib\\"]
 
       [feature]
-      default = [
-      	'console_error_panic_hook',
-      ]
+      default = [\\"console_error_panic_hook\\"]
 
       [dev-dependencies]
-      wasm-bindgen-test = '0.3'
+      wasm-bindgen-test = \\"0.3\\"
 
-      [profile.release]
-      opt-level = 's' #Tell \`rustc\` to optimize for small code size.
-      "
+      [profile]
+      [release]
+      opt-level = \\"s\\""
     `);
   });
 
@@ -104,38 +98,30 @@ describe('add-wasm generator', () => {
 
     const cargoString = appTree.read('./test_lib/Cargo.toml')?.toString() ?? '';
     expect(cargoString).toMatchInlineSnapshot(`
-      "
-      [package]
-      name = 'test_lib'
-      version = '0.1.0'
-      edition = '2021'
+      "[package]
+      name = \\"test_lib\\"
+      version = \\"0.1.0\\"
+      edition = \\"2021\\"
 
       [dependencies]
-      wasm-bindgen = '0.2'
-      js-sys = '0.3'
-      web-sys = { version = '0.3', features = [
-      	'Window',
-      ] }
-      console_error_panic_hook = { version = '0.1.6', optional = true }
-      wee_alloc = { version = '0.4', optional = true }
+      wasm-bindgen = \\"0.2\\"
+      js-sys = \\"0.3\\"
+      web-sys = { version = \\"0.3\\", features = [\\"Window\\"] }
+      console_error_panic_hook = { version = \\"0.1.6\\", optional = true }
+      wee_alloc = { version = \\"0.4\\", optional = true }
 
       [lib]
-      crate-type = [
-      	'cdylib',
-      	'rlib',
-      ]
+      crate-type = [\\"cdylib\\", \\"rlib\\"]
 
       [feature]
-      default = [
-      	'console_error_panic_hook',
-      ]
+      default = [\\"console_error_panic_hook\\"]
 
       [dev-dependencies]
-      wasm-bindgen-test = '0.3'
+      wasm-bindgen-test = \\"0.3\\"
 
-      [profile.release]
-      opt-level = 's' #Tell \`rustc\` to optimize for small code size.
-      "
+      [profile]
+      [release]
+      opt-level = \\"s\\""
     `);
   });
 });
