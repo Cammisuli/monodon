@@ -67,7 +67,7 @@ describe('add-wasm generator', () => {
       wasm-bindgen-test = \\"0.3\\"
 
       [profile]
-      [release]
+      [profile.release]
       opt-level = \\"s\\""
     `);
   });
@@ -120,7 +120,7 @@ describe('add-wasm generator', () => {
       wasm-bindgen-test = \\"0.3\\"
 
       [profile]
-      [release]
+      [profile.release]
       opt-level = \\"s\\""
     `);
   });

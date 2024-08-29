@@ -54,9 +54,10 @@ describe('rust generator', () => {
     const cargoToml = appTree.read('Cargo.toml')?.toString() ?? '';
     expect(TOML.parse(cargoToml)).toMatchInlineSnapshot(`
       Object {
-        "profile": Object {},
-        "release": Object {
-          "lto": true,
+        "profile": Object {
+          "release": Object {
+            "lto": true,
+          },
         },
         "workspace": Object {
           "members": Array [

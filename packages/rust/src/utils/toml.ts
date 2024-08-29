@@ -36,12 +36,7 @@ export function parseCargoToml(cargoString: string) {
 
 export function stringifyCargoToml(cargoToml: CargoToml): string {
   function isTable(value: TOMLValue): value is TOMLTable {
-    return (
-      typeof value === 'object' &&
-      value !== null &&
-      !Array.isArray(value) &&
-      !(value instanceof Date)
-    );
+    return typeof value === 'object' && value !== null && !Array.isArray(value) && !(value instanceof Date);
   }
 
   function formatValue(value: TOMLValue): string {
@@ -51,9 +46,7 @@ export function stringifyCargoToml(cargoToml: CargoToml): string {
       return `[${value.map(formatValue).join(', ')}]`;
     } else if (isTable(value)) {
       if (TOML.isInline(value)) {
-        return `{ ${Object.entries(value)
-          .map(([k, v]) => `${k} = ${formatValue(v)}`)
-          .join(', ')} }`;
+        return `{ ${Object.entries(value).map(([k, v]) => `${k} = ${formatValue(v)}`).join(', ')} }`;
       } else {
         return '';
       }
@@ -62,13 +55,14 @@ export function stringifyCargoToml(cargoToml: CargoToml): string {
     }
   }
 
-  function stringifyTable(table: TOMLTable): string[] {
+  function stringifyTable(table: TOMLTable, prefix: string = ''): string[] {
     const lines: string[] = [];
     for (const [key, value] of Object.entries(table)) {
       if (isTable(value) && !TOML.isInline(value)) {
         if (lines.length > 0) lines.push('');
-        lines.push(`[${key}]`);
-        lines.push(...stringifyTable(value));
+        const fullKey = prefix ? `${prefix}.${key}` : key;
+        lines.push(`[${fullKey}]`);
+        lines.push(...stringifyTable(value, fullKey));
       } else {
         lines.push(`${key} = ${formatValue(value)}`);
       }
