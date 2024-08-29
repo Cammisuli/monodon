@@ -18,10 +18,13 @@ export function addToCargoWorkspace(tree: Tree, projectPath: string) {
     throw new Error('Cargo.toml workspace section does not contain members');
   }
 
-  if (members.includes(projectPath)) {
-    logger.info(`${projectPath} already exists in the Cargo.toml members`);
+  // Remove leading './' if it exists
+  const cleanProjectPath = projectPath.replace(/^\.\//, '');
+
+  if (members.includes(cleanProjectPath)) {
+    logger.info(`${cleanProjectPath} already exists in the Cargo.toml members`);
   } else {
-    workspace.members = members.concat([projectPath]);
+    workspace.members = members.concat([cleanProjectPath]);
   }
 
   const newCargoToml = stringifyCargoToml(cargoToml);

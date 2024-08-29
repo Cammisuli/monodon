@@ -61,7 +61,7 @@ describe('rust generator', () => {
         },
         "workspace": Object {
           "members": Array [
-            "./test_name",
+            "test_name",
           ],
           "resolver": "2",
         },
