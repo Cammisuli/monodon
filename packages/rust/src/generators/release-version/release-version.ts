@@ -424,7 +424,7 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
             versionPrefix = ''; // we don't want to end up printing auto
 
             if (currentVersion) {
-              if (dependencyData.version) {
+              if (dependencyData) {
                 const dependencyVersion =
                   typeof dependencyData === 'string'
                     ? dependencyData
