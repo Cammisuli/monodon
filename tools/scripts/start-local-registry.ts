@@ -14,7 +14,7 @@ export default async () => {
   (global as any).stopLocalRegistry = await startLocalRegistry({
     localRegistryTarget,
     storage,
-    verbose: false,
+    verbose: true,
   });
 
   await releaseVersion({
