@@ -103,7 +103,7 @@ const yargs = require('yargs');
       dryRun: options.dryRun,
       verbose: options.verbose,
       otp: options.otp,
-      tag: options.version?.includes('.') ? 'next' : undefined,
+      tag: options.version?.includes('-') ? 'next' : undefined,
     });
     process.exit(status);
   } catch (err) {
