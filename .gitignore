@@ -44,3 +44,4 @@ Thumbs.db
 /target
 
 .nx/cache
+.nx/workspace-data
