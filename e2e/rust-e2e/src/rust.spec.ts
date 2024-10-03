@@ -48,7 +48,7 @@ describe('rust', () => {
 
     const projectGraph: ProjectGraph = JSON.parse(
       readFileSync(
-        join(projectDirectory, '.nx/cache/project-graph.json')
+        join(projectDirectory, '.nx/workspace-data/project-graph.json')
       ).toString()
     );
 
