@@ -7,8 +7,8 @@ import { tmpProjPath } from '@nx/plugin/testing';
  * Creates a test project with create-nx-workspace and installs the plugin
  * @returns The directory where the test project was created
  */
-export function createTestProject() {
-  const projectName = 'test-project';
+export function createTestProject(testId = '') {
+  const projectName = 'test-project-' + testId;
   const projectDirectory = tmpProjPath(projectName);
 
   // Ensure projectDirectory is empty
@@ -21,7 +21,7 @@ export function createTestProject() {
   });
 
   execSync(
-    `npx --yes create-nx-workspace@latest ${projectName} --preset apps --nxCloud=skip --no-interactive`,
+    `npx --yes create-nx-workspace@latest ${projectName} --preset apps --nxCloud=skip --no-interactive --packageManager yarn`,
     {
       cwd: dirname(projectDirectory),
       stdio: 'inherit',

@@ -6,11 +6,11 @@ import { listFiles } from '@nx/plugin/testing';
 describe('napi', () => {
   let projectDirectory: string;
   beforeAll(() => {
-    projectDirectory = createTestProject();
+    projectDirectory = createTestProject('napi');
 
     // The plugin has been built and published to a local registry in the jest globalSetup
     // Install the plugin built with the latest source code into the test repo
-    execSync(`npm install @monodon/rust@e2e`, {
+    execSync(`yarn add -D @monodon/rust@e2e`, {
       cwd: projectDirectory,
       stdio: 'inherit',
       env: process.env,
@@ -31,13 +31,15 @@ describe('napi', () => {
       projectDirectory
     );
 
-    expect(listFiles(`test-project/napi_proj/npm`).length).toBeGreaterThan(0);
+    expect(listFiles(`test-project-napi/napi_proj/npm`).length).toBeGreaterThan(
+      0
+    );
 
     expect(() =>
       runNxCommand(`build napi_proj`, projectDirectory)
     ).not.toThrow();
 
-    const files = listFiles(`test-project/napi_proj`);
+    const files = listFiles(`test-project-napi/napi_proj`);
     expect(files.some((file) => file.endsWith('.node'))).toBeTruthy();
 
     expect(() =>
@@ -46,7 +48,7 @@ describe('napi', () => {
         projectDirectory
       )
     ).not.toThrow();
-    const files2 = listFiles(`test-project/napi_proj`);
+    const files2 = listFiles(`test-project-napi/napi_proj`);
     expect(
       files2.some((file) => file.endsWith('wasm32-wasi.wasm'))
     ).toBeTruthy();

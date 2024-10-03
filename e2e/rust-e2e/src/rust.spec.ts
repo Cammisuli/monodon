@@ -12,7 +12,7 @@ describe('rust', () => {
 
     // The plugin has been built and published to a local registry in the jest globalSetup
     // Install the plugin built with the latest source code into the test repo
-    execSync(`npm install @monodon/rust@e2e`, {
+    execSync(`yarn add -D @monodon/rust@e2e`, {
       cwd: projectDirectory,
       stdio: 'inherit',
       env: process.env,
