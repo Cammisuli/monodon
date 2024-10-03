@@ -1,3 +1,24 @@
+# 2.0.0 (2024-10-03)
+
+
+### 🚀 Features
+
+- **rust:** update napi to v3 ([#56](https://github.com/Cammisuli/monodon/pull/56))
+
+
+### 🩹 Fixes
+
+- remove relative path format ([#58](https://github.com/Cammisuli/monodon/pull/58))
+
+- **rust:** make project node dep packageRoot resolvable ([#52](https://github.com/Cammisuli/monodon/pull/52))
+
+
+### ❤️  Thank You
+
+- Jonathan Cammisuli
+- kaan taha köken @kaankoken
+- Kepler Vital
+
 ## 2.0.0-beta.1 (2024-06-25)
 
 
