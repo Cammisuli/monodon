@@ -1,6 +1,6 @@
 {
   "name": "@monodon/rust",
-  "version": "1.3.3",
+  "version": "0.0.0-updated-during-release",
   "main": "src/index.js",
   "repository": {
     "url": "https://github.com/cammisuli/monodon",
