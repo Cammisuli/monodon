@@ -8,7 +8,7 @@
       },
       "packages": {
         "@napi-rs/cli": {
-          "version": "3.0.0-alpha.55",
+          "version": "3.0.0-alpha.63",
           "alwaysAddToPackageJson": false
         },
         "@napi-rs/wasm-runtime": {
