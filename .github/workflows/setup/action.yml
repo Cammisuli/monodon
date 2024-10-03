@@ -15,7 +15,7 @@ runs:
       with:
         node-version: ${{ inputs.node_version}}
     - name: Install
-      uses: dtolnay/rust-toolchain@stable
+      uses: dtolnay/rust-toolchain@1.79.0
     - uses: actions/cache@v4
       id: workspace-cache
       with:

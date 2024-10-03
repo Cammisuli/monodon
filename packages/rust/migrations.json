@@ -1,0 +1,25 @@
+{
+  "generators": {},
+  "packageJsonUpdates": {
+    "2.0.0": {
+      "version": "2.0.0-beta.1",
+      "requires": {
+        "@napi-rs/cli": "<3.0.0"
+      },
+      "packages": {
+        "@napi-rs/cli": {
+          "version": "3.0.0-alpha.63",
+          "alwaysAddToPackageJson": false
+        },
+        "@napi-rs/wasm-runtime": {
+          "version": "^0.2.4",
+          "alwaysAddToPackageJson": true
+        },
+        "emnapi": {
+          "version": "^1.1.0",
+          "alwaysAddToPackageJson": true
+        }
+      }
+    }
+  }
+}

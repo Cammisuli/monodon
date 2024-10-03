@@ -4,9 +4,9 @@
   "main": "index.js",
   "types": "index.d.ts",
   "napi": {
-    "name": "<%= projectName %>",
-    "triples": {
-      "additional": [
+    "binaryName": "<%= projectName %>",
+    "packageName": "<%= packageName %>",
+    "targets": [
         "aarch64-apple-darwin",
         "aarch64-unknown-linux-gnu",
         "aarch64-unknown-linux-musl",
@@ -15,9 +15,9 @@
         "x86_64-unknown-linux-musl",
         "x86_64-unknown-freebsd",
         "x86_64-apple-darwin",
-        "i686-pc-windows-msvc"
-      ]
-    }
+        "i686-pc-windows-msvc",
+        "wasm32-wasip1-threads"
+    ]
   },
   "engines": {
     "node": ">= 10"
