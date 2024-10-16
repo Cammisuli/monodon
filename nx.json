@@ -63,5 +63,5 @@
       "!{projectRoot}/src/test-setup.[jt]s"
     ]
   },
-  "useLegacyCache": true
+  "useLegacyCache": false
 }
