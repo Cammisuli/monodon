@@ -105,7 +105,7 @@ const yargs = require('yargs');
       otp: options.otp,
       tag: options.version?.includes('-') ? 'next' : undefined,
     });
-    process.exit(status);
+    process.exit(0);
   } catch (err) {
     console.error(err);
     process.exit(1);
