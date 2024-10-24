@@ -1,3 +1,7 @@
+## 2.1.0 (2024-10-24)
+
+This was a version bump only for rust to align it with other projects, there were no code changes.
+
 # 2.0.0 (2024-10-03)
 
 
