@@ -7,6 +7,9 @@ describe('build command', () => {
     isVerbose: false,
     root: '',
     workspace: {} as any,
+    projectsConfigurations: {} as any,
+    nxJsonConfiguration: {} as any,
+    projectGraph: {} as any,
   };
 
   it('should build a command for cargo with no arguments', () => {
