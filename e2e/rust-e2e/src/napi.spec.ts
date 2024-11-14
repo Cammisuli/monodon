@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
 import { createTestProject, runNxCommand } from './utils';
 import { rmSync } from 'fs';
-import { listFiles } from '@nx/plugin/testing';
+import { listFiles, readFile, updateFile } from '@nx/plugin/testing';
 
 describe('napi', () => {
   let projectDirectory: string;
@@ -31,6 +31,15 @@ describe('napi', () => {
       projectDirectory
     );
 
+    const projectConfigPath = `test-project-napi/napi_proj/project.json`;
+    const projectFile = JSON.parse(readFile(projectConfigPath));
+    projectFile['targets']['build']['options'] = {
+      ...projectFile['targets']['build']['options'],
+      jsFile: 'native.js',
+      dts: 'native.d.ts',
+    };
+    updateFile(projectConfigPath, JSON.stringify(projectFile, null, 2));
+
     expect(listFiles(`test-project-napi/napi_proj/npm`).length).toBeGreaterThan(
       0
     );
@@ -40,6 +49,8 @@ describe('napi', () => {
     ).not.toThrow();
 
     const files = listFiles(`test-project-napi/napi_proj`);
+    expect(files.some((file) => file.endsWith('native.js'))).toBeTruthy();
+    expect(files.some((file) => file.endsWith('native.d.ts'))).toBeTruthy();
     expect(files.some((file) => file.endsWith('.node'))).toBeTruthy();
 
     expect(() =>

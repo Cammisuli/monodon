@@ -6,7 +6,8 @@
       "executor": "@nx/js:verdaccio",
       "options": {
         "config": ".verdaccio/config.yml",
-        "port": 3889
+        "port": 3889,
+        "clear": true
       }
     }
   }
