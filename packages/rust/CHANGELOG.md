@@ -1,3 +1,14 @@
+## 2.1.1 (2024-11-14)
+
+### 🩹 Fixes
+
+- **rust:** remove hard nx dep ([#67](https://github.com/Cammisuli/monodon/pull/67))
+- **rust:** add dts option to napi executor ([9eee2e8](https://github.com/Cammisuli/monodon/commit/9eee2e8))
+
+### ❤️  Thank You
+
+- Jonathan Cammisuli @Cammisuli
+
 ## 2.1.0 (2024-10-24)
 
 This was a version bump only for rust to align it with other projects, there were no code changes.
