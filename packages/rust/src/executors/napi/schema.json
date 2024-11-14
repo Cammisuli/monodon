@@ -11,6 +11,10 @@
     "jsFile": {
       "type": "string"
     },
+    "dts": {
+      "type": "string",
+      "default": "index.d.ts"
+    },
     "release": {
       "type": "boolean",
       "default": false
