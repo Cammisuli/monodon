@@ -22,6 +22,7 @@ export default async function runExecutor(
 
   buildOptions.platform = true;
   buildOptions.jsBinding = options.jsFile;
+  buildOptions.dts = options.dts;
   buildOptions.outputDir = options.dist;
   buildOptions.manifestPath = join(projectRoot ?? '.', 'Cargo.toml');
   buildOptions.packageJsonPath = packageJson;
