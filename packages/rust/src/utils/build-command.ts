@@ -19,6 +19,10 @@ export function buildCommand(
       continue;
     }
 
+    if (key === 'args') {
+      continue;
+    }
+
     if (typeof value === 'boolean') {
       // false flags should not be added to the cargo args
       if (value) {
@@ -35,6 +39,12 @@ export function buildCommand(
 
   if (!args.includes("--package")) {
     args.push("-p", context.projectName);
+  }
+
+  if (options.args && Array.isArray(options.args)) {
+    args.push("--", ...options.args);
+  } else if (options.args && !Array.isArray(options.args)) {
+    args.push("--", options.args);
   }
 
   return args;
