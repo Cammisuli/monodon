@@ -89,4 +89,41 @@ describe('build command', () => {
       `);
     });
   });
+
+  describe('user arguments', () => {
+    it('should put single string user arguments at the end of the command after --', () => {
+      const command = buildCommand(
+        'run',
+        { args: "file1 file2" },
+        context
+      );
+      expect(command).toMatchInlineSnapshot(`
+        Array [
+          "run",
+          "-p",
+          "project",
+          "--",
+          "file1 file2",
+        ]
+      `);
+    });
+
+    it('should put array of user arguments at the end of the command after --', () => {
+      const command = buildCommand(
+        'run',
+        { args: ["file1", "file2"] },
+        context
+      );
+      expect(command).toMatchInlineSnapshot(`
+        Array [
+          "run",
+          "-p",
+          "project",
+          "--",
+          "file1",
+          "file2",
+        ]
+      `);
+    });
+  });
 });

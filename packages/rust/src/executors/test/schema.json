@@ -140,6 +140,20 @@
       "type": "boolean",
       "default": false,
       "description": "Build all test targets"
+    },
+    "args": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "description": "Extra arguments. You can pass them as follows: nx run project:run --args='--wait=100'."
     }
   },
   "required": []
