@@ -81,13 +81,15 @@ All the executors support these additional properties:
 * features (e.g. `--features=bmp`)
   * [Cargo features](https://doc.rust-lang.org/cargo/reference/features.html)
 * all-features
+* args
+  * [Arguments forwarding](https://nx.dev/nx-api/nx/executors/run-commands#args) to the executor.
 
 ### `@monodon/rust:build`
 Runs cargo to build the project
 > Not supported with napi
 
 ### `@monodon/rust:lint`
-Runs cargo clippy to link the project
+Runs cargo clippy to lint the project
 
 ### `@monodon/rust:napi`
 Runs the napi cli to build the project
