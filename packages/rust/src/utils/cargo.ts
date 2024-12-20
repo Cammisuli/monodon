@@ -20,8 +20,7 @@ export async function cargoCommand(
   ...args: string[]
 ): Promise<{ success: boolean }> {
   console.log(chalk.dim(`> cargo ${args.join(' ')}`));
-  args.push('--color', 'always');
-  return runProcess('cargo', ...args);
+  return runProcess('cargo', [ '--color', 'always', ...args]);
 }
 
 export function cargoRunCommand(
@@ -29,7 +28,7 @@ export function cargoRunCommand(
 ): Promise<{ success: boolean }> {
   console.log(chalk.dim(`> cargo ${args.join(' ')}`));
   return new Promise((resolve, reject) => {
-    childProcess = spawn('cargo', [...args, '--color', 'always'], {
+    childProcess = spawn('cargo', [ '--color', 'always', ...args], {
       cwd: process.cwd(),
       windowsHide: true,
       detached: true,
