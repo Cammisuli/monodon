@@ -32,7 +32,7 @@ export function cargoRunCommand(
     childProcess = spawn('cargo', [...args, '--color', 'always'], {
       cwd: process.cwd(),
       windowsHide: true,
-      detached: true,
+      detached: false,
       shell: false,
       stdio: ['inherit', 'inherit', 'inherit'],
     });
