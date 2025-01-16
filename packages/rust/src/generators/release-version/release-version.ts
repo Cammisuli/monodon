@@ -588,17 +588,30 @@ function resolveLocalPackageDependencies(
   filteredProjects: ProjectGraphProjectNode[],
   projectNameToPackageRootMap: Map<string, string>,
   resolvePackageRoot: (projectNode: ProjectGraphProjectNode) => string,
-  includeAll = false
+  includeAllDependencies = false
 ): Record<string, LocalPackageDependency[]> {
   const localPackageDependencies: Record<string, LocalPackageDependency[]> = {};
 
-  const projects = includeAll
-    ? Object.values(projectGraph.nodes)
+  // Recursively retrieves all implicit dependencies for a given project
+  function retrieveDeps(projectName: string): string[] {
+    const deps =
+      projectGraph.nodes[projectName]?.data?.implicitDependencies || [];
+
+    return [...deps, ...deps.flatMap(retrieveDeps)];
+  }
+
+  // if includeAllDependencies is true, we want to include all dependencies of filtered projects, otherwise we only want to include the filtered projects
+  const projects = includeAllDependencies
+    ? filteredProjects
+        .map((p) => p.name)
+        .flatMap(retrieveDeps)
+        .map((dep) => projectGraph.nodes[dep])
+        .filter(Boolean)
     : filteredProjects;
 
   for (const projectNode of projects) {
     // Ensure that the packageRoot is resolved for the project and added to the map for later use
-    if (includeAll) {
+    if (includeAllDependencies) {
       fillPackageRootMap(
         projectNameToPackageRootMap,
         projectNode,
