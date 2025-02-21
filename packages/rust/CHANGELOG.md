@@ -1,3 +1,20 @@
+## 2.2.0 (2025-02-21)
+
+### 🚀 Features
+
+- **rust:** allows user args to `run` and `test` executor ([#76](https://github.com/Cammisuli/monodon/pull/76))
+
+### 🩹 Fixes
+
+- **rust:** fix dangling process when terminating a long running process with SIGTERM ([#72](https://github.com/Cammisuli/monodon/pull/72))
+- **release-version:** handle project without cargo.toml and include dependents in dependent mode ([#75](https://github.com/Cammisuli/monodon/pull/75))
+
+### ❤️  Thank You
+
+- Bruno Paré-Simard
+- Nicolas Remise @nesimer
+- Pulasthi Bandara
+
 ## 2.1.1 (2024-11-14)
 
 ### 🩹 Fixes
