@@ -588,17 +588,32 @@ function resolveLocalPackageDependencies(
   filteredProjects: ProjectGraphProjectNode[],
   projectNameToPackageRootMap: Map<string, string>,
   resolvePackageRoot: (projectNode: ProjectGraphProjectNode) => string,
-  includeAll = false
+  includeDependents = false
 ): Record<string, LocalPackageDependency[]> {
   const localPackageDependencies: Record<string, LocalPackageDependency[]> = {};
+  const filteredProjectsSet = new Set<string>();
 
-  const projects = includeAll
-    ? Object.values(projectGraph.nodes)
+  // Recursively retrieves all dependents for a given project
+  function addDeps(projectName: string, seen: Set<string>) {
+    if (seen.has(projectName)) return;
+    seen.add(projectName);
+    Object.values(projectGraph.dependencies)
+      .filter((deps) => deps.some((d) => d.target === projectName))
+      .flatMap((deps) => deps.map((d) => d.source))
+      .forEach((d) => addDeps(d, seen));
+  }
+
+  filteredProjects.forEach((p) => addDeps(p.name, filteredProjectsSet));
+
+  const projects = includeDependents
+    ? [...filteredProjectsSet]
+        .map((dep) => projectGraph.nodes[dep])
+        .filter(Boolean)
     : filteredProjects;
 
   for (const projectNode of projects) {
     // Ensure that the packageRoot is resolved for the project and added to the map for later use
-    if (includeAll) {
+    if (includeDependents) {
       fillPackageRootMap(
         projectNameToPackageRootMap,
         projectNode,
