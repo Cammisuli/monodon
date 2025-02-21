@@ -7,4 +7,5 @@ export interface BaseOptions {
   'target-dir'?: string;
   features?: string | string[];
   'all-features'?: boolean;
+  args?: string | string[];
 }
