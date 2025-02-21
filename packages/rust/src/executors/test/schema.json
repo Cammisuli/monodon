@@ -140,6 +140,12 @@
       "type": "boolean",
       "default": false,
       "description": "Build all test targets"
+    },
+    "-- --test-threads": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0,
+      "description": "arguments following the two dashes (--) are passed to the test binaries, 0 disables option"
     }
   },
   "required": []
