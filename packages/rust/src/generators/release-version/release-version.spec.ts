@@ -534,6 +534,48 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
           }
         `);
       });
+
+      it(`should not throw with project without cargo.toml and even when filtering to a subset of projects which do not include those dependents`, async () => {
+        // Add project without Cargo.toml
+        const projectWithoutCargoToml = 'project-without-cargoToml';
+        projectGraph.nodes[projectWithoutCargoToml] = {
+          name: projectWithoutCargoToml,
+          type: 'lib',
+          data: {
+            root: `libs/${projectWithoutCargoToml}`,
+          },
+        };
+        projectGraph.dependencies[projectWithoutCargoToml] = [
+          {
+            target: projectWithoutCargoToml,
+            source: 'project-with-dependency-on-my-pkg',
+            type: 'static',
+          },
+        ];
+        tree.write(
+          `libs/${projectWithoutCargoToml}/package.json`,
+          JSON.stringify({ name: projectWithoutCargoToml, version: '0.0.1' })
+        );
+
+        await releaseVersionGenerator(tree, {
+          projects: [projectGraph.nodes['my-lib']], // version only my-lib
+          projectGraph,
+          specifier: '9.9.9', // user CLI specifier override set, no prompting should occur
+          currentVersionResolver: 'disk',
+          specifierSource: 'prompt',
+          releaseGroup: createReleaseGroup('independent'),
+        });
+
+        expect(parseCargoTomlWithTree(tree, 'libs/my-lib', 'my-lib'))
+          .toMatchInlineSnapshot(`
+          Object {
+            "package": Object {
+              "name": "my-lib",
+              "version": "9.9.9",
+            },
+          }
+        `);
+      });
     });
   });
 
