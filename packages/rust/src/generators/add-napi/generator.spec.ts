@@ -26,26 +26,20 @@ describe('add-napi generator', () => {
     await generator(appTree, options);
     const cargoString = appTree.read('./test/Cargo.toml')?.toString() ?? '';
     expect(cargoString).toMatchInlineSnapshot(`
-      "
-      [package]
-      name = 'test'
-      version = '0.1.0'
-      edition = '2021'
+      "[package]
+      name = \\"test\\"
+      version = \\"0.1.0\\"
+      edition = \\"2021\\"
 
       [dependencies]
-      napi = { version = '2.10.2', default-features = false, features = [
-      	'napi4',
-      ] }
-      napi-derive = '2.9.3'
+      napi = { version = \\"2.10.2\\", default-features = false, features = [\\"napi4\\"] }
+      napi-derive = \\"2.9.3\\"
 
       [lib]
-      crate-type = [
-      	'cdylib',
-      ]
+      crate-type = [\\"cdylib\\"]
 
       [build-dependencies]
-      napi-build = '2.0.1'
-      "
+      napi-build = \\"2.0.1\\""
     `);
   });
 
