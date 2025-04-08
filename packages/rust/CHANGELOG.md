@@ -1,3 +1,13 @@
+## 2.3.0 (2025-04-08)
+
+### 🚀 Features
+
+- **rust:** add `CreateNodesV2` implementation to the graph plugin ([#77](https://github.com/Cammisuli/monodon/pull/77))
+
+### ❤️  Thank You
+
+- Leosvel Pérez Espinosa @leosvelperez
+
 ## 2.2.0 (2025-02-21)
 
 ### 🚀 Features
