@@ -462,12 +462,14 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
           'Cargo.toml'
         );
 
-        modifyCargoTable(
-          dependentPkg,
-          dependentProject.dependencyCollection,
-          dependentProject.target,
-          updatedDependencyData
-        );
+        if (updatedDependencyData && updatedDependencyData !== '') {
+          modifyCargoTable(
+            dependentPkg,
+            dependentProject.dependencyCollection,
+            dependentProject.target,
+            updatedDependencyData
+          );
+        }
 
         tree.write(cargoTomlToUpdate, stringifyCargoToml(dependentPkg));
       }
@@ -650,30 +652,25 @@ function resolveLocalPackageDependencies(
         projectNode.name
       );
       const dependencies = cargoToml.dependencies ?? {};
-      const adjustedDependencies = new Map<
-        string,
-        | string
-        | {
-            version: string;
-            features?: string[];
-            optional?: boolean;
-            package?: string;
-          }
-      >();
-      for (const [key, value] of Object.entries(dependencies)) {
-        if (typeof value !== 'string' && value.package) {
-          adjustedDependencies.set(value.package, value);
-        } else {
-          adjustedDependencies.set(key, value);
-        }
-      }
       const devDependencies = cargoToml['dev-dependencies'] ?? {};
+      const findKeyForPackage = (
+        table: Record<string, any>,
+        pkgName: string
+      ): string | null => {
+        for (const [k, v] of Object.entries(table)) {
+          if (typeof v === 'string') {
+            if (k === pkgName) return k;
+          } else if (v && typeof v === 'object') {
+            if (v.package === pkgName) return k;
+            if (!v.package && k === pkgName) return k;
+          }
+        }
+        return null;
+      };
+      const keyInDeps = findKeyForPackage(dependencies, depProject.name);
+      const keyInDevDeps = findKeyForPackage(devDependencies, depProject.name);
       const dependencyCollection: 'dependencies' | 'dev-dependencies' | null =
-        adjustedDependencies.get(depProject.name)
-          ? 'dependencies'
-          : devDependencies[depProject.name]
-          ? 'dev-dependencies'
-          : null;
+        keyInDeps ? 'dependencies' : keyInDevDeps ? 'dev-dependencies' : null;
       if (!dependencyCollection) {
         throw new Error(
           `The project "${projectNode.name}" does not have a local dependency on "${depProject.name}" in its Cargo.toml`
