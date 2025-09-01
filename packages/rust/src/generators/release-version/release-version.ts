@@ -21,12 +21,10 @@ import {
   resolveSemverSpecifierFromPrompt,
 } from 'nx/src/command-line/release/utils/resolve-semver-specifier';
 import { isValidSemverSpecifier } from 'nx/src/command-line/release/utils/semver';
-import {
-  ReleaseVersionGeneratorResult,
-  VersionData,
-  deriveNewSemverVersion,
-  validReleaseVersionPrefixes,
-} from 'nx/src/command-line/release/version';
+import { validReleaseVersionPrefixes } from 'nx/src/command-line/release/version';
+import { VersionData } from 'nx/src/command-line/release/utils/shared-legacy';
+import { ReleaseVersionGeneratorResult } from 'nx/src/command-line/release/utils/shared-legacy';
+import { deriveNewSemverVersion } from 'nx/src/command-line/release/version-legacy';
 import { interpolate } from 'nx/src/tasks-runner/utils';
 import { prerelease } from 'semver';
 import {
@@ -171,6 +169,10 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
               releaseTagPattern,
               {
                 projectName: project.name,
+              },
+              {
+                releaseTagPatternRequireSemver: true,
+                releaseTagPatternStrictPreid: false,
               }
             );
             if (!latestMatchingGitTag) {
@@ -244,7 +246,7 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
             const affectedProjects =
               options.releaseGroup.projectsRelationship === 'independent'
                 ? [projectName]
-                : projects.map((p) => p.name);
+                : projects.map((p: { name: string }) => p.name);
 
             // latestMatchingGitTag will be undefined if the current version was resolved from the disk fallback.
             // In this case, we want to use the first commit as the ref to be consistent with the changelog command.
@@ -460,12 +462,14 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
           'Cargo.toml'
         );
 
-        modifyCargoTable(
-          dependentPkg,
-          dependentProject.dependencyCollection,
-          dependentProject.target,
-          updatedDependencyData
-        );
+        if (updatedDependencyData && updatedDependencyData !== '') {
+          modifyCargoTable(
+            dependentPkg,
+            dependentProject.dependencyCollection,
+            dependentProject.target,
+            updatedDependencyData
+          );
+        }
 
         tree.write(cargoTomlToUpdate, stringifyCargoToml(dependentPkg));
       }
@@ -649,12 +653,24 @@ function resolveLocalPackageDependencies(
       );
       const dependencies = cargoToml.dependencies ?? {};
       const devDependencies = cargoToml['dev-dependencies'] ?? {};
+      const findKeyForPackage = (
+        table: Record<string, any>,
+        pkgName: string
+      ): string | null => {
+        for (const [k, v] of Object.entries(table)) {
+          if (typeof v === 'string') {
+            if (k === pkgName) return k;
+          } else if (v && typeof v === 'object') {
+            if (v.package === pkgName) return k;
+            if (!v.package && k === pkgName) return k;
+          }
+        }
+        return null;
+      };
+      const keyInDeps = findKeyForPackage(dependencies, depProject.name);
+      const keyInDevDeps = findKeyForPackage(devDependencies, depProject.name);
       const dependencyCollection: 'dependencies' | 'dev-dependencies' | null =
-        dependencies[depProject.name]
-          ? 'dependencies'
-          : devDependencies[depProject.name]
-          ? 'dev-dependencies'
-          : null;
+        keyInDeps ? 'dependencies' : keyInDevDeps ? 'dev-dependencies' : null;
       if (!dependencyCollection) {
         throw new Error(
           `The project "${projectNode.name}" does not have a local dependency on "${depProject.name}" in its Cargo.toml`

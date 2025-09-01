@@ -4,7 +4,13 @@ export interface CargoToml {
   package: any;
   dependencies?: Record<
     string,
-    string | { version: string; features?: string[]; optional?: boolean }
+    | string
+    | {
+        version: string;
+        features?: string[];
+        optional?: boolean;
+        package?: string;
+      }
   >;
   'dev-dependencies'?: Record<
     string,
