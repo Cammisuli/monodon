@@ -21,12 +21,10 @@ import {
   resolveSemverSpecifierFromPrompt,
 } from 'nx/src/command-line/release/utils/resolve-semver-specifier';
 import { isValidSemverSpecifier } from 'nx/src/command-line/release/utils/semver';
-import {
-  ReleaseVersionGeneratorResult,
-  VersionData,
-  deriveNewSemverVersion,
-  validReleaseVersionPrefixes,
-} from 'nx/src/command-line/release/version';
+import { validReleaseVersionPrefixes } from 'nx/src/command-line/release/version';
+import { VersionData } from 'nx/src/command-line/release/utils/shared-legacy';
+import { ReleaseVersionGeneratorResult } from 'nx/src/command-line/release/utils/shared-legacy';
+import { deriveNewSemverVersion } from 'nx/src/command-line/release/version-legacy';
 import { interpolate } from 'nx/src/tasks-runner/utils';
 import { prerelease } from 'semver';
 import {
@@ -171,6 +169,10 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
               releaseTagPattern,
               {
                 projectName: project.name,
+              },
+              {
+                releaseTagPatternRequireSemver: true,
+                releaseTagPatternStrictPreid: false,
               }
             );
             if (!latestMatchingGitTag) {
@@ -244,7 +246,7 @@ To fix this you will either need to add a Cargo.toml file at that location, or c
             const affectedProjects =
               options.releaseGroup.projectsRelationship === 'independent'
                 ? [projectName]
-                : projects.map((p) => p.name);
+                : projects.map((p: { name: string }) => p.name);
 
             // latestMatchingGitTag will be undefined if the current version was resolved from the disk fallback.
             // In this case, we want to use the first commit as the ref to be consistent with the changelog command.
@@ -648,9 +650,26 @@ function resolveLocalPackageDependencies(
         projectNode.name
       );
       const dependencies = cargoToml.dependencies ?? {};
+      const adjustedDependencies = new Map<
+        string,
+        | string
+        | {
+            version: string;
+            features?: string[];
+            optional?: boolean;
+            package?: string;
+          }
+      >();
+      for (const [key, value] of Object.entries(dependencies)) {
+        if (typeof value !== 'string' && value.package) {
+          adjustedDependencies.set(value.package, value);
+        } else {
+          adjustedDependencies.set(key, value);
+        }
+      }
       const devDependencies = cargoToml['dev-dependencies'] ?? {};
       const dependencyCollection: 'dependencies' | 'dev-dependencies' | null =
-        dependencies[depProject.name]
+        adjustedDependencies.get(depProject.name)
           ? 'dependencies'
           : devDependencies[depProject.name]
           ? 'dev-dependencies'
