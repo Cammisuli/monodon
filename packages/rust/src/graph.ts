@@ -3,8 +3,6 @@ import {
   normalizePath,
   workspaceRoot,
   type CreateDependencies,
-  type CreateNodes,
-  type CreateNodesContext,
   type CreateNodesContextV2,
   type CreateNodesV2,
   type ProjectConfiguration,
@@ -26,7 +24,7 @@ export const createNodesV2: CreateNodesV2 = [
     const result = processCargoMetadata(context);
 
     return await createNodesFromFiles(
-      async (configFile, options, context) => {
+      async (configFile) => {
         const projects = filterProject(result.projects, configFile);
         if (!projects) {
           return { projects: {}, externalNodes: {} };
@@ -41,21 +39,7 @@ export const createNodesV2: CreateNodesV2 = [
   },
 ];
 
-export const createNodes: CreateNodes = [
-  cargoGlob,
-  (projectFile, opts, context) => {
-    const result = processCargoMetadata(context);
-
-    const projects = filterProject(result.projects, projectFile);
-    if (!projects) {
-      return { projects: {}, externalNodes: {} };
-    }
-
-    return { projects, externalNodes: result.externalNodes };
-  },
-];
-
-function processCargoMetadata(ctx: CreateNodesContext | CreateNodesContextV2): {
+function processCargoMetadata(ctx: CreateNodesContextV2): {
   projects: Record<string, ProjectConfiguration>;
   externalNodes: Record<string, ProjectGraphExternalNode>;
 } {
@@ -101,7 +85,7 @@ function processCargoMetadata(ctx: CreateNodesContext | CreateNodesContextV2): {
         targets,
         release: {
           version: {
-            generator: '@monodon/rust:release-version',
+            versionActions: '@monodon/rust/src/release/version-actions',
           },
         },
       };
