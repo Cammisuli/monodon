@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/typescript-nx-imports-plugin/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
@@ -28,6 +29,5 @@
         "assets": ["packages/typescript-nx-imports-plugin/*.md"]
       }
     }
-  },
-  "tags": []
+  }
 }
