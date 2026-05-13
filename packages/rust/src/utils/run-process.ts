@@ -21,7 +21,6 @@ export function runProcess(
       cwd: process.cwd(),
       env: {
         ...process.env,
-        RUSTC_WRAPPER: '',
         CARGO_TARGET_DIR: targetDir,
         CARGO_BUILD_TARGET_DIR: targetDir,
       },
