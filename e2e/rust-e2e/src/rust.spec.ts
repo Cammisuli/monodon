@@ -2,7 +2,12 @@ import { ProjectGraph } from '@nx/devkit';
 import { execSync } from 'child_process';
 import { readFileSync, rmSync } from 'fs';
 import { join } from 'path';
-import { createTestProject, runNxCommand } from './utils';
+import {
+  crateRoot,
+  createTestProject,
+  installPlugin,
+  runNxCommand,
+} from './utils';
 
 describe('rust', () => {
   let projectDirectory: string;
@@ -10,13 +15,7 @@ describe('rust', () => {
   beforeAll(() => {
     projectDirectory = createTestProject();
 
-    // The plugin has been built and published to a local registry in the jest globalSetup
-    // Install the plugin built with the latest source code into the test repo
-    execSync(`yarn add -D @monodon/rust@e2e`, {
-      cwd: projectDirectory,
-      stdio: 'inherit',
-      env: process.env,
-    });
+    installPlugin(projectDirectory);
   });
 
   afterAll(() => {
@@ -39,8 +38,11 @@ describe('rust', () => {
     runNxCommand(`generate @monodon/rust:bin hello-world`, projectDirectory);
     runNxCommand(`generate @monodon/rust:lib lib1`, projectDirectory);
 
+    // Crates are generated under a layout-dependent base dir (e.g. packages/),
+    // so resolve lib1's actual path rather than assuming ./lib1.
+    const lib1Root = crateRoot(projectDirectory, 'lib1');
     execSync('cargo add itertools -p lib1', { cwd: projectDirectory });
-    execSync(`cargo add lib1 --path ./lib1 -p hello_world`, {
+    execSync(`cargo add lib1 --path ${lib1Root} -p hello_world`, {
       cwd: projectDirectory,
     });
     expect(() =>

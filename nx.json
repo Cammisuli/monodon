@@ -8,18 +8,19 @@
   "release": {
     "projects": ["rust"],
     "projectsRelationship": "independent",
-    "releaseTagPattern": "{projectName}-{version}",
     "version": {
       "conventionalCommits": true,
-      "generatorOptions": {
-        "packageRoot": "dist/packages/{projectName}"
-      }
+      "preserveLocalDependencyProtocols": false,
+      "manifestRootsToUpdate": ["dist/packages/{projectName}"]
     },
     "changelog": {
       "projectChangelogs": {
         "file": "{projectRoot}/CHANGELOG.md",
         "createRelease": "github"
       }
+    },
+    "releaseTag": {
+      "pattern": "{projectName}-{version}"
     }
   },
   "targetDefaults": {
