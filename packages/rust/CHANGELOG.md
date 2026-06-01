@@ -1,3 +1,48 @@
+# 3.0.0 (2026-06-01)
+
+### 🚀 Features
+
+- ⚠️  **rust:** drop createNodes v1 and migrate to Nx 22 ([#88](https://github.com/Cammisuli/monodon/pull/88))
+
+### ⚠️  Breaking Changes
+
+- **rust:** drop createNodes v1 and migrate to Nx 22  ([#88](https://github.com/Cammisuli/monodon/pull/88))
+  `@monodon/rust` now requires Nx 22. Workspaces on Nx 19-21
+  should stay on the previous plugin version or run `nx migrate latest` first.
+  * test(rust): cover RustVersionActions behavior
+  Port the per-method behavior that the deleted release-version generator spec
+  exercised to the new VersionActions API. The Nx release engine now owns
+  specifier resolution and git-tag lookups, so these tests target the
+  Cargo-specific surface the plugin still owns:
+  - Reading [package].version from Cargo.toml, including error paths.
+  - Resolving dependency versions across [dependencies] and [dev-dependencies],
+    in both string and object form.
+  - Writing new versions back to Cargo.toml.
+  - Preserving existing version prefixes (^ ~ =) and leaving implicit-prefix
+    declarations prefix-less when dependents are updated.
+  - afterAllProjectsVersioned no-op paths (dryRun and skipLockFileUpdate).
+  * fix(rust): stop TS 7016 on @napi-rs/cli dynamic import
+  @napi-rs/cli v3 is ESM-only and ships a .d.ts with ESM syntax; under TS 5.9
+  with moduleResolution=node16 and a CJS build context, the published types
+  resolve to `any` and the dynamic `await import('@napi-rs/cli')` fails the
+  strict implicit-any check (TS7016). This was flaky locally and deterministic
+  on CI once the compilation cache was cold.
+  Add a minimal module shim covering the two methods the plugin actually uses
+  (NapiCli#build, NapiCli#createNpmDirs) so the import type-checks without
+  pulling in the upstream ESM declarations.
+  * chore: bump pinned rustc to 1.88.0
+  napi-build@2.3.1 (pulled in by the @napi-rs/cli v3 generator under e2e)
+  now requires rustc 1.88, and unicode-segmentation@1.13.2 requires 1.85.
+  The workspace was pinned at 1.80 both in rust-toolchain.toml and in the
+  dtolnay/rust-toolchain@1.79.0 step of the CI setup action, so the rust-e2e
+  napi test fails on fresh cargo resolutions. Bump both pins together so
+  they stay in sync.
+  * chore: e2e fixes
+
+### ❤️ Thank You
+
+- Craigory Coppola @AgentEnder
+
 ## 2.3.0 (2025-04-08)
 
 ### 🚀 Features
