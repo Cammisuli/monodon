@@ -16,6 +16,17 @@ runs:
         node-version: ${{ inputs.node_version}}
     - name: Install
       uses: dtolnay/rust-toolchain@1.88.0
+    - name: Cache cargo-http-registry
+      id: cargo-http-registry-cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.cargo/bin/cargo-http-registry
+        key: ${{ runner.os }}-cargo-http-registry-0.1.8
+    - name: Install cargo-http-registry
+      # Local cargo registry used by the rust-e2e release/publish test.
+      if: steps.cargo-http-registry-cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: cargo install cargo-http-registry --version 0.1.8 --locked
     - uses: actions/cache@v4
       id: workspace-cache
       with:

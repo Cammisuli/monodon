@@ -1,6 +1,11 @@
-import { execSync } from 'child_process';
-import { createTestProject, runNxCommand } from './utils';
+import {
+  crateRoot,
+  createTestProject,
+  installPlugin,
+  runNxCommand,
+} from './utils';
 import { rmSync } from 'fs';
+import { join } from 'path';
 import { listFiles, readFile, updateFile } from '@nx/plugin/testing';
 
 describe('napi', () => {
@@ -8,13 +13,7 @@ describe('napi', () => {
   beforeAll(() => {
     projectDirectory = createTestProject('napi');
 
-    // The plugin has been built and published to a local registry in the jest globalSetup
-    // Install the plugin built with the latest source code into the test repo
-    execSync(`yarn add -D @monodon/rust@e2e`, {
-      cwd: projectDirectory,
-      stdio: 'inherit',
-      env: process.env,
-    });
+    installPlugin(projectDirectory);
   });
 
   afterAll(() => {
@@ -31,7 +30,15 @@ describe('napi', () => {
       projectDirectory
     );
 
-    const projectConfigPath = `test-project-napi/napi_proj/project.json`;
+    // Crates are generated under a layout-dependent base dir (e.g. packages/).
+    // The @nx/plugin/testing helpers resolve paths relative to the tmp proj
+    // root, so prefix the crate root with the workspace folder name.
+    const napiProjDir = join(
+      'test-project-napi',
+      crateRoot(projectDirectory, 'napi_proj')
+    );
+
+    const projectConfigPath = join(napiProjDir, 'project.json');
     const projectFile = JSON.parse(readFile(projectConfigPath));
     projectFile['targets']['build']['options'] = {
       ...projectFile['targets']['build']['options'],
@@ -40,15 +47,13 @@ describe('napi', () => {
     };
     updateFile(projectConfigPath, JSON.stringify(projectFile, null, 2));
 
-    expect(listFiles(`test-project-napi/napi_proj/npm`).length).toBeGreaterThan(
-      0
-    );
+    expect(listFiles(join(napiProjDir, 'npm')).length).toBeGreaterThan(0);
 
     expect(() =>
       runNxCommand(`build napi_proj`, projectDirectory)
     ).not.toThrow();
 
-    const files = listFiles(`test-project-napi/napi_proj`);
+    const files = listFiles(napiProjDir);
     expect(files.some((file) => file.endsWith('native.js'))).toBeTruthy();
     expect(files.some((file) => file.endsWith('native.d.ts'))).toBeTruthy();
     expect(files.some((file) => file.endsWith('.node'))).toBeTruthy();
@@ -59,7 +64,7 @@ describe('napi', () => {
         projectDirectory
       )
     ).not.toThrow();
-    const files2 = listFiles(`test-project-napi/napi_proj`);
+    const files2 = listFiles(napiProjDir);
     expect(
       files2.some((file) => file.endsWith('wasm32-wasi.wasm'))
     ).toBeTruthy();
