@@ -1,7 +1,6 @@
 import {
   createNodesFromFiles,
   normalizePath,
-  workspaceRoot,
   type CreateDependencies,
   type CreateNodesContextV2,
   type CreateNodesV2,
@@ -12,6 +11,7 @@ import {
   DependencyType,
   ProjectGraphExternalNode,
 } from 'nx/src/config/project-graph';
+import { realpathSync } from 'fs';
 import { dirname, relative } from 'path';
 import type { Package } from './models/cargo-metadata';
 import { cargoMetadata, isExternal } from './utils/cargo';
@@ -50,6 +50,7 @@ function processCargoMetadata(ctx: CreateNodesContextV2): {
 
   const { packages: cargoPackages } = metadata;
 
+  const workspaceRoot = realpathSync(ctx.workspaceRoot);
   const externalNodes: Record<string, ProjectGraphExternalNode> = {};
   const projects: Record<string, ProjectConfiguration> = {};
 
@@ -61,9 +62,9 @@ function processCargoMetadata(ctx: CreateNodesContextV2): {
   }, new Map<string, Package>());
 
   for (const pkg of cargoPackages) {
-    if (!isExternal(pkg, ctx.workspaceRoot)) {
+    if (!isExternal(pkg, workspaceRoot)) {
       const root = normalizePath(
-        dirname(relative(ctx.workspaceRoot, pkg.manifest_path))
+        dirname(relative(workspaceRoot, pkg.manifest_path))
       );
 
       // TODO(cammisuli): provide defaults for non-project.json workspaces
@@ -91,7 +92,7 @@ function processCargoMetadata(ctx: CreateNodesContextV2): {
       };
     }
     for (const dep of pkg.dependencies) {
-      if (isExternal(dep, ctx.workspaceRoot)) {
+      if (isExternal(dep, workspaceRoot)) {
         const externalDepName = `cargo:${dep.name}`;
         if (!externalNodes?.[externalDepName]) {
           externalNodes[externalDepName] = {
@@ -128,7 +129,7 @@ function filterProject(
 
 export const createDependencies: CreateDependencies = (
   _,
-  { projects, externalNodes }
+  { projects, externalNodes, workspaceRoot }
 ) => {
   const metadata = cargoMetadata();
   if (!metadata) {
@@ -137,21 +138,21 @@ export const createDependencies: CreateDependencies = (
 
   const { packages: cargoPackages } = metadata;
 
+  const root = realpathSync(workspaceRoot);
   const dependencies: RawProjectGraphDependency[] = [];
 
   for (const pkg of cargoPackages) {
     if (projects[pkg.name]) {
+      const sourceFile = normalizePath(relative(root, pkg.manifest_path));
       for (const deps of pkg.dependencies) {
         // if the dependency is listed in nx projects, it's not an external dependency
         if (projects[deps.name]) {
-          dependencies.push(
-            createDependency(pkg, deps.name, DependencyType.static)
-          );
+          dependencies.push(createDependency(pkg.name, deps.name, sourceFile));
         } else {
           const externalDepName = `cargo:${deps.name}`;
           if (externalDepName in (externalNodes ?? {})) {
             dependencies.push(
-              createDependency(pkg, externalDepName, DependencyType.static)
+              createDependency(pkg.name, externalDepName, sourceFile)
             );
           }
         }
@@ -163,16 +164,9 @@ export const createDependencies: CreateDependencies = (
 };
 
 function createDependency(
-  pkg: Package,
-  depName: string,
-  type: DependencyType
+  source: string,
+  target: string,
+  sourceFile: string
 ): RawProjectGraphDependency {
-  const target = pkg.manifest_path.replace(/\\/g, '/');
-  const workspaceRootClean = workspaceRoot.replace(/\\/g, '/');
-  return {
-    type,
-    source: pkg.name,
-    target: depName,
-    sourceFile: target.replace(`${workspaceRootClean}/`, ''),
-  };
+  return { type: DependencyType.static, source, target, sourceFile };
 }
