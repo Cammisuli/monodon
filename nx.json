@@ -64,5 +64,6 @@
       "!{projectRoot}/src/test-setup.[jt]s"
     ]
   },
-  "useLegacyCache": false
+  "useLegacyCache": false,
+  "nxCloudId": "6b072c7fd8ddb37f9adcbb3b"
 }
