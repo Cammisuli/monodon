@@ -1,9 +1,12 @@
 name: CI
-on:
-  push:
-    branches:
-      - main
-  pull_request:
+# Nx Cloud CI now runs CI for this repository, so this workflow no longer runs on its own.
+# To run it again on every change, restore the triggers below and remove `on: workflow_dispatch`.
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request:
+on: workflow_dispatch
 env:
   node_version: 20
 
